@@ -241,14 +241,14 @@ lda-raschka,LDA (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_py
 slides,Slides,reading,,FALSE,,lec-practicum-exploratory-data-analysis
 pantopto,Pantopto,video,,FALSE,,lec-practicum-exploratory-data-analysis
 practicum,Practicum,notebook,https://drive.google.com/file/d/1dWiGow2faAKcG3s0XDem1r0WpYJPn6Al/view?usp=sharing,FALSE,,lec-practicum-exploratory-data-analysis
-confusion-matrix-statquest,Confusion Matrix (StatQuest),video,https://youtu.be/Kdsp6soqA7o?si=g3ssfI10Oqdms09K,FALSE,,lec-practicum-exploratory-data-analysis
-rocauc-statquest,ROC/AUC (StatQuest),video,https://youtu.be/4jRBRDbJemM?si=5sp5qUoMbHvygXYP,FALSE,,lec-practicum-exploratory-data-analysis
+confusion-matrix-statquest,Confusion Matrix (StatQuest),video,https://youtu.be/Kdsp6soqA7o?si=g3ssfI10Oqdms09K,TRUE,,lec-practicum-exploratory-data-analysis
+rocauc-statquest,ROC/AUC (StatQuest),video,https://youtu.be/4jRBRDbJemM?si=5sp5qUoMbHvygXYP,TRUE,,lec-practicum-exploratory-data-analysis
 model-evaluation-rasbt,Model Evaluation (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch06/ch06.ipynb,FALSE,,lec-practicum-exploratory-data-analysis
 ensemble-learning-rasbt,Ensemble Learning (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch07/ch07.ipynb,FALSE,,lec-practicum-exploratory-data-analysis
 model-evaluation-raschka,Model Evaluation (Raschka),paper,https://arxiv.org/pdf/1811.12808,FALSE,,lec-practicum-exploratory-data-analysis
 model-evaluation-raschka,Model Evaluation (Raschka),blogpost,https://sebastianraschka.com/blog/2016/model-evaluation-selection-part3.html,FALSE,,lec-practicum-exploratory-data-analysis
 ensemble-classifier-raschka,Ensemble Classifier (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_ensemble_classifier.html,FALSE,,lec-practicum-exploratory-data-analysis
-precision-vs-recall,Precision vs. Recall,video,https://www.youtube.com/watch?v=qWfzIYCvBqo,FALSE,Catherine Healy '26,lec-practicum-exploratory-data-analysis
+precision-vs-recall,Precision vs. Recall,video,https://www.youtube.com/watch?v=qWfzIYCvBqo,TRUE,Catherine Healy '26,lec-practicum-exploratory-data-analysis
 slides,Slides,reading,,FALSE,,lec-multi-layer-perceptrons-ffns-
 fca-section-81-until-811,FCA - Section 8.1 (Until 8.1.1),reading,https://artint.info/3e/html/ArtInt3e.Ch8.html,FALSE,,lec-multi-layer-perceptrons-ffns-
 pml-section-132,PML - Section 13.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-multi-layer-perceptrons-ffns-
