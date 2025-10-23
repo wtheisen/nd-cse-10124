@@ -1,4 +1,4 @@
-title:      Introduction to Artificial Intelligence
+title:      Introduction to Using Generative AI
 icon:       fa-rocket
 navigation:
     - name: "Logistics"
@@ -25,12 +25,15 @@ body:       |
 
     <div class="row" markdown="1">
 
-    **CSE 30124** is an elective course in the [Computer Science and
+    **CSE 10124** is an elective course in the [Computer Science and
     Engineering] program at the [University of Notre Dame]. This course
-    serves as an introduction and gateway to upper level machine learning
-    and artificial intelligence courses. In this course students will
-    learn the fundamentals of learning algorithms and the basics of common
-    python libraries for these algorithms such as scikit-learn and pytorch.
+    serves as an introduction to working and learning with generative
+    artificial intelligence. In this course students will learn the fundamentals 
+    of using generative ai, including topics such as: prompt engineering, 
+    meta-prompting, retrieval-augmented generation, context engineering, 
+    and agentic workflows. Additionally, students will recieve an overview of 
+    how these models work at the technical level including topics such as 
+    tokenization and self-attention.
 
     [Computer Science and Engineering]:     http://cse.nd.edu
     [University of Notre Dame]:             http://www.nd.edu
@@ -45,11 +48,11 @@ body:       |
 
     1. **Evaluate** which model is appropriate for a given problem.
 
-    2. **Utilize** modern python libraries for ML and AI.
+    2. **Utilize** modern prompting techniqes.
 
-    3. **Implement** basic ML and AI models.
+    3. **Implement** basic agentic workflows.
 
-    4. **Assess** AI/ML implementations for common issues and biases.
+    4. **Assess** state-of-the-art models for common issues and biases.
 
     </div>
 
@@ -67,16 +70,14 @@ body:       |
 
                     <dl>
                         <dt><i class="fa fa-clock-o"></i> Lecture</dt>
-                        <dd><strong>M / W</strong> 3:30 PM - 4:45 PM</dd>
+                        <dd><strong>T / TR</strong>Section 01: 9:30 AM - 10:45 AM</dd>
+                        <dd><strong>T / TR</strong>Section 02: 12:30 PM - 1:45 PM</dd>
 
                         <dt><i class="fa fa-home"></i> Location</dt>
                         <dd>{{ page.external['semester_info']['class_location'] }}</dd>
 
                         <dt><i class="fa fa-slack"></i> Slack</dt>
-                        <dd><a href="https://nd-cse.slack.com/messages/cse-30124-{{ term_code }}/">#cse-30124-{{ term_code }}</a></dd>
-
-                        <dt><i class="fa fa-github"></i> GitHub</dt>
-                        <dd><a href="https://www.github.com/nd-cse-30124-{{ term_code }}/">nd-cse-30124-{{ term_code }}</a></dd>
+                        <dd><a href="https://nd-cse.slack.com/messages/cse-10124-{{ term_code }}/">#cse-10124-{{ term_code }}</a></dd>
                     </dl>
                 </div>
 
@@ -89,7 +90,7 @@ body:       |
                         <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
 
                         <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-                        <dd><strong>Thursdays</strong> 1:00 PM - 5:00 PM, and by <strong>appointment</strong></dd>
+                        <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 5:00 PM, and by <strong>appointment</strong></dd>
 
                         <dt><i class="fa fa-briefcase"></i> Office Location</dt>
                         <dd>356B Fitz</dd>
