@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="gruvbox">
     <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 
 	<title>Reading 14: Diffusion Models</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="static/css/blugold.css" rel="stylesheet">
+	<!-- Theme CSS (toggleable) -->
+	<link id="theme-style" href="static/css/gruvbox.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -38,6 +38,168 @@
 	    content: "\2014";
 	    margin-right: 0.35em;
 	}
+#library-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+    max-height: 540px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.library-card-wrapper {
+    flex: 1 1 260px;
+    max-width: 320px;
+    min-width: 260px;
+    display: flex;
+    max-height: 100%;
+}
+    .theme-toggle-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 54px;
+        height: 28px;
+        margin-top: 8px;
+        margin-left: 12px;
+        padding: 0 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.18);
+        background-color: #f2f6ff;
+        cursor: pointer;
+        transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .theme-toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+    }
+    .theme-toggle-btn .theme-icon,
+    .theme-toggle-btn .theme-toggle-handle {
+        pointer-events: none;
+    }
+    .theme-toggle-btn .theme-icon {
+        font-size: 0.85em;
+        opacity: 0.5;
+        transition: opacity 0.25s ease;
+        position: relative;
+        z-index: 2;
+    }
+    .theme-toggle-btn .theme-icon--sun {
+        color: #f59e0b;
+        opacity: 1;
+    }
+    .theme-toggle-btn .theme-icon--moon {
+        color: #c084fc;
+    }
+    .theme-toggle-btn .theme-toggle-handle {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        transition: transform 0.25s ease, background-color 0.25s ease;
+        z-index: 1;
+    }
+    [data-theme="blugold"] .theme-toggle-btn {
+        background-color: #f2f6ff;
+        border-color: rgba(15, 23, 42, 0.18);
+    }
+    [data-theme="blugold"] .theme-toggle-btn .theme-toggle-handle {
+        transform: translateX(0);
+        background-color: #ffffff;
+    }
+    [data-theme="blugold"] .theme-toggle-btn .theme-icon--sun {
+        opacity: 1;
+    }
+    [data-theme="blugold"] .theme-toggle-btn .theme-icon--moon {
+        opacity: 0.35;
+    }
+    [data-theme="gruvbox"] .theme-toggle-btn {
+        background-color: #3c3836;
+        border-color: #665c54;
+        color: #ebdbb2;
+    }
+    [data-theme="gruvbox"] .theme-toggle-btn .theme-toggle-handle {
+        transform: translateX(26px);
+        background-color: #1d2021;
+    }
+    [data-theme="gruvbox"] .theme-toggle-btn .theme-icon--sun {
+        opacity: 0.35;
+    }
+    [data-theme="gruvbox"] .theme-toggle-btn .theme-icon--moon {
+        opacity: 1;
+    }
+	.library-card {
+	    display: flex;
+	    flex-direction: column;
+	    width: 100%;
+	    border-radius: 6px;
+	    border: 1px solid #ddd;
+	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	    overflow: hidden;
+	    background-color: #fff;
+	    color: #333;
+	}
+	.library-card-cover {
+	    height: 240px;
+	    aspect-ratio: 2 / 3;
+	    background-color: #f7f7f7;
+	    display: grid;
+	    place-items: center;
+	    overflow: hidden;
+	    padding: 10px;
+	}
+	.library-card-cover img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: contain;
+	    background-color: transparent;
+	}
+	.library-card-body {
+	    flex: 1 1 auto;
+	    display: flex;
+	    flex-direction: column;
+	}
+	.library-card-title {
+	    margin-top: 0;
+	    font-size: 1.05em;
+	    line-height: 1.35;
+	    min-height: 3.1em;
+	}
+	.library-card-meta {
+	    font-size: 0.9em;
+	    color: #555;
+	    margin-bottom: 8px;
+	}
+	.library-card-footer {
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    font-size: 0.85em;
+	}
+	[data-theme="gruvbox"] .library-card {
+	    border-color: #504945;
+	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+	    background-color: #282828;
+	    color: #ebdbb2;
+	}
+	[data-theme="gruvbox"] .library-card-cover {
+	    background-color: #32302f;
+	}
+	[data-theme="gruvbox"] .library-card-body {
+	    color: #ebdbb2;
+	}
+	[data-theme="gruvbox"] .library-card-footer {
+	    color: #d5c4a1;
+	}
+	[data-theme="gruvbox"] .library-card-title,
+	[data-theme="gruvbox"] .library-card-meta {
+	    color: #d5c4a1;
+	}
 	</style>
     </head>
     <body>
@@ -45,6 +207,11 @@
 
 	    <div class="row">
 		<div class="page-header">
+		    <button type="button" class="theme-toggle-btn pull-right" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
+			<span class="theme-icon theme-icon--sun"><i class="fa-solid fa-sun"></i></span>
+			<span class="theme-icon theme-icon--moon"><i class="fa-solid fa-moon"></i></span>
+			<span class="theme-toggle-handle"></span>
+		    </button>
 		    <ul class="nav nav-pills pull-right">
 			
 			<li><a href="index.html"><i class="fa fa-gavel"></i> <span class="visible-md-inline visible-lg-inline">Home</span></a></li>
@@ -210,6 +377,52 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	
+	<script>
+	(function() {
+	    var STORAGE_KEY = 'ai-landing-theme';
+	    var prefix = '';
+	    var themes = {
+	        blugold: prefix + 'static/css/blugold.css',
+	        gruvbox: prefix + 'static/css/gruvbox.css'
+	    };
+	    var linkEl = document.getElementById('theme-style');
+	    var toggleBtn = document.getElementById('theme-toggle');
+	    if (!linkEl || !toggleBtn) {
+	        return;
+	    }
+	    function updateButton(theme) {
+	        var isDark = theme === 'gruvbox';
+	        var label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+	        toggleBtn.setAttribute('aria-label', label);
+	        toggleBtn.setAttribute('title', label);
+	        toggleBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+	    }
+	    function applyTheme(theme) {
+	        var name = themes[theme] ? theme : 'gruvbox';
+	        linkEl.setAttribute('href', themes[name]);
+	        document.documentElement.setAttribute('data-theme', name);
+	        updateButton(name);
+	        return name;
+	    }
+	    var savedTheme = (function() {
+	        try {
+	            return localStorage.getItem(STORAGE_KEY);
+	        } catch (err) {
+	            return null;
+	        }
+	    })();
+	    var currentTheme = applyTheme(savedTheme);
+	    toggleBtn.addEventListener('click', function() {
+	        var nextTheme = currentTheme === 'gruvbox' ? 'blugold' : 'gruvbox';
+	        currentTheme = applyTheme(nextTheme);
+	        try {
+	            localStorage.setItem(STORAGE_KEY, currentTheme);
+	        } catch (err) {
+	            /* ignore write errors */
+	        }
+	    });
+	})();
+	</script>
     </body>
 </html>
 
