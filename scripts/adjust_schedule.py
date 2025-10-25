@@ -131,7 +131,7 @@ def main():
     schedule_file = "static/yaml/schedule.yaml"
     semester_info_file = "static/yaml/semester_info.yaml"
     output_file = "static/yaml/adjusted_schedule.yaml"
-    class_days = ['Monday', 'Wednesday']
+    class_days = ['Tuesday', 'Thursday']
 
     # Load semester info from YAML
     with open(semester_info_file, 'r') as f:
