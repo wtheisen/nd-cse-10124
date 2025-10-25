@@ -1,26 +1,26 @@
 - name: Welcome
   days:
-  - date: Mon 08/25
+  - date: Tue 01/13
     topics: Syllabus, What is an LLM?
 - name: 'Unit 01: Introduction to LLMs'
   days:
-  - date: Wed 08/27
+  - date: Thu 01/15
     topics: Prompt Engineering I
-  - date: Mon 09/01
+  - date: Tue 01/20
     topics: Failure Cases of LLMs
-  - date: Wed 09/03
+  - date: Thu 01/22
     topics: Tokenization
-  - date: Mon 09/08
+  - date: Tue 01/27
     topics: High Dimensional Data
-  - date: Wed 09/10
+  - date: Thu 01/29
     topics: Distributions of Data
-  - date: Mon 09/15
+  - date: Tue 02/03
     topics: LLM Architectures
-- name: 'Exam 01'
+- name: Exam 01
   days:
-  - date: Fri 09/12
+  - date: Thu 02/05
     topics: Review
-  - date: Fri 09/12
+  - date: Tue 02/10
     topics: Exam 01
     assignments:
     - Practice Packet 01
@@ -28,32 +28,32 @@
     - Exam 01
 - name: 'Unit 02: Assessing LLMs'
   days:
-  - date: Wed 09/17
+  - date: Thu 02/12
     topics: Ethical Issues in Data
-  - date: Mon 09/22
+  - date: Tue 02/17
     topics: Ethical Issues in LLMs
-  - date: Wed 09/24
+  - date: Thu 02/19
     topics: AI Alignment
-  - date: Mon 09/29
+  - date: Tue 02/24
     topics: Prompt Engineering II
-  - date: Wed 10/01
+  - date: Thu 02/26
     topics: Assessing LLM Output
-  - date: Mon 10/06
+  - date: Tue 03/03
     topics: Explainable AI
 - name: Spring Break
 - name: 'Unit 03: Foundation Models'
   days:
-  - date: Wed 10/08
+  - date: Thu 03/05
     topics: Current Foundation Models
-  - date: Mon 10/13
+  - date: Tue 03/17
     topics: Multimodal Models I
-  - date: Wed 10/15
+  - date: Thu 03/19
     topics: Multimodal Models II
-- name: 'Exam 02'
+- name: Exam 02
   days:
-  - date: Fri 09/12
+  - date: Tue 03/24
     topics: Review
-  - date: Fri 09/12
+  - date: Thu 03/26
     topics: Exam 02
     assignments:
     - Practice Packet 02
@@ -61,27 +61,27 @@
     - Exam 02
 - name: 'Unit 04: Using Generative AI'
   days:
-  - date: Mon 10/27
+  - date: Tue 03/31
     topics: Agentic AI I
-  - date: Wed 10/29
+  - date: Thu 04/02
     topics: Agentic AI II
-  - date: Mon 11/03
+  - date: Tue 04/07
     topics: Agentic Workflows I
-  - date: Wed 11/05
+  - date: Thu 04/09
     topics: Agentic Workflows II
 - name: 'Unit 05: Current Generative AI'
   days:
-  - date: Mon 11/10
+  - date: Tue 04/14
     topics: Current Advancements in AI I
-  - date: Wed 11/12
+  - date: Thu 04/16
     topics: Current Advancements in AI II
-  - date: Mon 11/17
+  - date: Tue 04/21
     topics: Current Advancements in AI III
-  - date: Wed 11/19
+  - date: Thu 04/23
     topics: Current Advancements in AI IV
 - name: Final
   days:
-  - date: Tue 12/16
-    topics:  (TENTATIVELY) Final Exam (1:45 PM - 3:45 PM)
+  - date: Tue 04/28
+    topics: (TENTATIVELY) Final Exam (1:45 PM - 3:45 PM)
     assignments:
     - Final Exam
