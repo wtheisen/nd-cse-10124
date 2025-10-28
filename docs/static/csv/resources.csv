@@ -222,8 +222,8 @@ hierarchical-statquest,Hierarchical (StatQuest),video,https://youtu.be/7xHsRkOdV
 kmeans-statquest,K-Means (StatQuest),video,https://youtu.be/4b5d3muPQmA?si=T2ow71QcEXdbKt7V,FALSE,,lec-clustering
 clustering-rasbt,Clustering (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch10/ch10.ipynb,FALSE,,lec-clustering
 clustering-how-it-works-in-plain-english,Clustering: How It Works (In Plain English!),blogpost,https://web.archive.org/web/20250115001509/https://blog.dataiku.com/clustering-how-it-works-in-plain-english#expand,TRUE,,lec-clustering
-slides,Slides,reading,,FALSE,,lec-dimensionality-reduction
-pantopto,Pantopto,video,,FALSE,,lec-dimensionality-reduction
+slides,Slides,reading,https://drive.google.com/file/d/1RZip1YWW0KqPpeYPPjb127FXacK2IB3G/view?usp=sharing,FALSE,,lec-dimensionality-reduction
+pantopto,Pantopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2161d20b-7c74-4640-a828-b383015107c9,FALSE,,lec-dimensionality-reduction
 pml-section-201,PML - Section 20.1,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-dimensionality-reduction
 islp-section-122,ISLP - Section 12.2,reading,https://www.statlearning.com/,FALSE,,lec-dimensionality-reduction
 uml-chapter-231,UML - Chapter 23.1,reading,https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html,FALSE,,lec-dimensionality-reduction
