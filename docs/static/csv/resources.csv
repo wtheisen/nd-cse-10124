@@ -240,7 +240,7 @@ standardization-raschka,Standardization (Raschka),blogpost,https://sebastianrasc
 lda-raschka,LDA (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_python_lda.html,FALSE,,lec-dimensionality-reduction
 slides,Slides,reading,https://docs.google.com/presentation/d/1tnEukrAqFohT0WPVXjULw7JvwV6Dc3jc/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-practicum-exploratory-data-analysis
 pantopto,Pantopto,video,,FALSE,,lec-practicum-exploratory-data-analysis
-practicum,Practicum,notebook,https://drive.google.com/file/d/1dWiGow2faAKcG3s0XDem1r0WpYJPn6Al/view?usp=sharing,FALSE,,lec-practicum-exploratory-data-analysis
+practicum,Practicum,notebook,https://drive.google.com/file/d/1aQxCPBx5poCkX--4cwZm5u4aIZKV2gVN/view?usp=sharing,FALSE,,lec-practicum-exploratory-data-analysis
 confusion-matrix-statquest,Confusion Matrix (StatQuest),video,https://youtu.be/Kdsp6soqA7o?si=g3ssfI10Oqdms09K,TRUE,,lec-practicum-exploratory-data-analysis
 rocauc-statquest,ROC/AUC (StatQuest),video,https://youtu.be/4jRBRDbJemM?si=5sp5qUoMbHvygXYP,TRUE,,lec-practicum-exploratory-data-analysis
 model-evaluation-rasbt,Model Evaluation (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch06/ch06.ipynb,FALSE,,lec-practicum-exploratory-data-analysis
