@@ -238,7 +238,7 @@ pca-raschka,PCA (Raschka),blogpost,https://sebastianraschka.com/Articles/2015_pc
 pca-from-scratch-raschka,PCA from scratch (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_pca_step_by_step.html,FALSE,,lec-dimensionality-reduction
 standardization-raschka,Standardization (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_about_feature_scaling.html,FALSE,,lec-dimensionality-reduction
 lda-raschka,LDA (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_python_lda.html,FALSE,,lec-dimensionality-reduction
-slides,Slides,reading,,FALSE,,lec-practicum-exploratory-data-analysis
+slides,Slides,reading,https://docs.google.com/presentation/d/1tnEukrAqFohT0WPVXjULw7JvwV6Dc3jc/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-practicum-exploratory-data-analysis
 pantopto,Pantopto,video,,FALSE,,lec-practicum-exploratory-data-analysis
 practicum,Practicum,notebook,https://drive.google.com/file/d/1dWiGow2faAKcG3s0XDem1r0WpYJPn6Al/view?usp=sharing,FALSE,,lec-practicum-exploratory-data-analysis
 confusion-matrix-statquest,Confusion Matrix (StatQuest),video,https://youtu.be/Kdsp6soqA7o?si=g3ssfI10Oqdms09K,TRUE,,lec-practicum-exploratory-data-analysis
