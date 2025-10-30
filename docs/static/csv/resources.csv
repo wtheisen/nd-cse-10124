@@ -249,27 +249,27 @@ model-evaluation-raschka,Model Evaluation (Raschka),paper,https://arxiv.org/pdf/
 model-evaluation-raschka,Model Evaluation (Raschka),blogpost,https://sebastianraschka.com/blog/2016/model-evaluation-selection-part3.html,FALSE,,lec-practicum-exploratory-data-analysis
 ensemble-classifier-raschka,Ensemble Classifier (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_ensemble_classifier.html,FALSE,,lec-practicum-exploratory-data-analysis
 precision-vs-recall,Precision vs. Recall,video,https://www.youtube.com/watch?v=qWfzIYCvBqo,TRUE,Catherine Healy '26,lec-practicum-exploratory-data-analysis
-slides,Slides,reading,,FALSE,,lec-multi-layer-perceptrons-ffns-
-fca-section-81-until-811,FCA - Section 8.1 (Until 8.1.1),reading,https://artint.info/3e/html/ArtInt3e.Ch8.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-pml-section-132,PML - Section 13.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-islp-sections-101-102,"ISLP - Sections 10.1, 10.2",reading,https://www.statlearning.com/,FALSE,,lec-multi-layer-perceptrons-ffns-
-d2l-sections-51-and-52,D2L - Sections 5.1 and 5.2,reading,https://d2l.ai/chapter_multilayer-perceptrons/index.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-uml-sections-201-205,UML - Sections 20.1 - 20.5,reading,https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=64dff764-0306-4caa-8e38-b2ac01594013,FALSE,,lec-multi-layer-perceptrons-ffns-
-harvard-cs50-000-1600,Harvard CS50 (0:00 - 16:00),video,https://www.youtube.com/watch?v=J1QD9hLDEDY,FALSE,,lec-multi-layer-perceptrons-ffns-
-stanford-cs221,Stanford CS221,video,https://www.youtube.com/watch?v=pnKXgBHuN58&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=11,FALSE,,lec-multi-layer-perceptrons-ffns-
-mit-6034,MIT 6.034,video,https://www.youtube.com/watch?v=uXt8qF2Zzfo,FALSE,,lec-multi-layer-perceptrons-ffns-
-simple-ffn-visualization,Simple FFN Visualization,notebook,https://colab.research.google.com/drive/14S8IbQQ59TNdJAF0jqGVKjh4kpu3tT_L?usp=sharing,FALSE,,lec-multi-layer-perceptrons-ffns-
-neural-networks-statquest,Neural Networks (StatQuest),video,https://youtu.be/CqOfi41LfDw?si=uc3frgwCzGIqxuQN,FALSE,,lec-multi-layer-perceptrons-ffns-
-pytorch-statquest,pytorch (StatQuest),video,https://youtu.be/FHdlXe1bSe4?si=jrQBr_XpoS7moqoO,FALSE,,lec-multi-layer-perceptrons-ffns-
-matrix-math-statquest,Matrix Math (StatQuest),video,https://youtu.be/ZTt9gsGcdDo?si=WPN9Vxtbm_94C-nq,FALSE,,lec-multi-layer-perceptrons-ffns-
-mlp-from-scratch-rasbt,MLP from scratch (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch11/ch11.ipynb,FALSE,,lec-multi-layer-perceptrons-ffns-
-neural-networks-hdm,Neural Networks (HdM),reading,https://hannibunny.github.io/mlbook/neuralnetworks/01NeuralNets.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-neural-networks-zhou,Neural Networks (Zhou),blogpost,https://victorzhou.com/blog/intro-to-neural-networks/,FALSE,,lec-multi-layer-perceptrons-ffns-
-softmax-zhou,Softmax (Zhou),blogpost,https://victorzhou.com/blog/softmax/,FALSE,,lec-multi-layer-perceptrons-ffns-
-onehot-zhou,One-hot (Zhou),blogpost,https://victorzhou.com/blog/one-hot/,FALSE,,lec-multi-layer-perceptrons-ffns-
-loss-functions-raschka,Loss Functions (Raschka),blogpost,https://sebastianraschka.com/blog/2022/losses-learned-part1.html,FALSE,,lec-multi-layer-perceptrons-ffns-
-but-what-is-a-neural-network-deep-learning-chapter-1,But what is a neural network? | Deep learning chapter 1,video,https://www.youtube.com/watch?v=aircAruvnKk,TRUE,,lec-multi-layer-perceptrons-ffns-
+slides,Slides,reading,,FALSE,,lec-feedforward-neural-networks
+fca-section-81-until-811,FCA - Section 8.1 (Until 8.1.1),reading,https://artint.info/3e/html/ArtInt3e.Ch8.html,FALSE,,lec-feedforward-neural-networks
+pml-section-132,PML - Section 13.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-feedforward-neural-networks
+islp-sections-101-102,"ISLP - Sections 10.1, 10.2",reading,https://www.statlearning.com/,FALSE,,lec-feedforward-neural-networks
+d2l-sections-51-and-52,D2L - Sections 5.1 and 5.2,reading,https://d2l.ai/chapter_multilayer-perceptrons/index.html,FALSE,,lec-feedforward-neural-networks
+uml-sections-201-205,UML - Sections 20.1 - 20.5,reading,https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html,FALSE,,lec-feedforward-neural-networks
+panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=64dff764-0306-4caa-8e38-b2ac01594013,FALSE,,lec-feedforward-neural-networks
+harvard-cs50-000-1600,Harvard CS50 (0:00 - 16:00),video,https://www.youtube.com/watch?v=J1QD9hLDEDY,FALSE,,lec-feedforward-neural-networks
+stanford-cs221,Stanford CS221,video,https://www.youtube.com/watch?v=pnKXgBHuN58&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=11,FALSE,,lec-feedforward-neural-networks
+mit-6034,MIT 6.034,video,https://www.youtube.com/watch?v=uXt8qF2Zzfo,FALSE,,lec-feedforward-neural-networks
+simple-ffn-visualization,Simple FFN Visualization,notebook,https://colab.research.google.com/drive/14S8IbQQ59TNdJAF0jqGVKjh4kpu3tT_L?usp=sharing,FALSE,,lec-feedforward-neural-networks
+neural-networks-statquest,Neural Networks (StatQuest),video,https://youtu.be/CqOfi41LfDw?si=uc3frgwCzGIqxuQN,FALSE,,lec-feedforward-neural-networks
+pytorch-statquest,pytorch (StatQuest),video,https://youtu.be/FHdlXe1bSe4?si=jrQBr_XpoS7moqoO,FALSE,,lec-feedforward-neural-networks
+matrix-math-statquest,Matrix Math (StatQuest),video,https://youtu.be/ZTt9gsGcdDo?si=WPN9Vxtbm_94C-nq,FALSE,,lec-feedforward-neural-networks
+mlp-from-scratch-rasbt,MLP from scratch (rasbt),notebook,https://github.com/rasbt/machine-learning-book/blob/main/ch11/ch11.ipynb,FALSE,,lec-feedforward-neural-networks
+neural-networks-hdm,Neural Networks (HdM),reading,https://hannibunny.github.io/mlbook/neuralnetworks/01NeuralNets.html,FALSE,,lec-feedforward-neural-networks
+neural-networks-zhou,Neural Networks (Zhou),blogpost,https://victorzhou.com/blog/intro-to-neural-networks/,FALSE,,lec-feedforward-neural-networks
+softmax-zhou,Softmax (Zhou),blogpost,https://victorzhou.com/blog/softmax/,FALSE,,lec-feedforward-neural-networks
+onehot-zhou,One-hot (Zhou),blogpost,https://victorzhou.com/blog/one-hot/,FALSE,,lec-feedforward-neural-networks
+loss-functions-raschka,Loss Functions (Raschka),blogpost,https://sebastianraschka.com/blog/2022/losses-learned-part1.html,FALSE,,lec-feedforward-neural-networks
+but-what-is-a-neural-network-deep-learning-chapter-1,But what is a neural network? | Deep learning chapter 1,video,https://www.youtube.com/watch?v=aircAruvnKk,TRUE,,lec-feedforward-neural-networks
 slides,Slides,reading,,FALSE,,lec-gradient-descent-and-backpropagation
 fca-sections-811-and-82,FCA - Sections 8.1.1 and 8.2,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S1.html,FALSE,,lec-gradient-descent-and-backpropagation
 pml-section-133,PML - Section 13.3,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-gradient-descent-and-backpropagation
