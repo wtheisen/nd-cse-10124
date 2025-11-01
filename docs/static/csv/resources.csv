@@ -186,7 +186,7 @@ logistic-regression-hdm,Logistic Regression (HdM),reading,https://hannibunny.git
         \ d\u2019\xE9quations simultan\xE9es (Cauchy)",paper,https://cs.uwaterloo.ca/~y328yu/classics/cauchy-en.pdf,FALSE,,lec-logistic-regression-and-gradient-descent
 1958-the-regression-analysis-of-binary-sequences-cox,(1958) The Regression Analysis of Binary Sequences (Cox),paper,https://www.jstor.org/stable/2983890?seq=1,FALSE,,lec-logistic-regression-and-gradient-descent
 a-gentle-introduction-to-crossentropy-for-machine-learning,A Gentle Introduction to Cross-Entropy for Machine Learning,blogpost,https://machinelearningmastery.com/cross-entropy-for-machine-learning/,FALSE,,lec-logistic-regression-and-gradient-descent
-slides,Slides,reading,https://docs.google.com/presentation/d/1CNwFmV8_jqi01e8kcy8k_Y6-3uRAG3Mq/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-svms-and-knns
+slides,Slides,reading,https://drive.google.com/file/d/1Dt2Opwhal1aJkpnD5VoPxMWcOHNEdKlr/view?usp=drivesdk,FALSE,,lec-svms-and-knns
 pantopto,Pantopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d19bd425-111d-4297-9a52-b375015995be,FALSE,,lec-svms-and-knns
 pml-sections-161-173,"PML - Sections 16.1, 17.3",reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-svms-and-knns
 -islp-sections-35-476-and-chapter-9," ISLP - Sections 3.5, 4.7.6 and Chapter 9",reading,https://www.statlearning.com/,FALSE,,lec-svms-and-knns
