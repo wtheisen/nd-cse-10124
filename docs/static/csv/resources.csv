@@ -249,7 +249,7 @@ model-evaluation-raschka,Model Evaluation (Raschka),paper,https://arxiv.org/pdf/
 model-evaluation-raschka,Model Evaluation (Raschka),blogpost,https://sebastianraschka.com/blog/2016/model-evaluation-selection-part3.html,FALSE,,lec-practicum-exploratory-data-analysis
 ensemble-classifier-raschka,Ensemble Classifier (Raschka),blogpost,https://sebastianraschka.com/Articles/2014_ensemble_classifier.html,FALSE,,lec-practicum-exploratory-data-analysis
 precision-vs-recall,Precision vs. Recall,video,https://www.youtube.com/watch?v=qWfzIYCvBqo,TRUE,Catherine Healy '26,lec-practicum-exploratory-data-analysis
-slides,Slides,reading,,FALSE,,lec-feedforward-neural-networks
+slides,Slides,reading,https://docs.google.com/presentation/d/1IowKX3hwPKmMaUIZvEdDbM8SWoZl-siM/edit?usp=drivesdk&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-feedforward-neural-networks
 fca-section-81-until-811,FCA - Section 8.1 (Until 8.1.1),reading,https://artint.info/3e/html/ArtInt3e.Ch8.html,FALSE,,lec-feedforward-neural-networks
 pml-section-132,PML - Section 13.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-feedforward-neural-networks
 islp-sections-101-102,"ISLP - Sections 10.1, 10.2",reading,https://www.statlearning.com/,FALSE,,lec-feedforward-neural-networks
