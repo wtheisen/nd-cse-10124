@@ -273,7 +273,7 @@ onehot-zhou,One-hot (Zhou),blogpost,https://victorzhou.com/blog/one-hot/,FALSE,,
 loss-functions-raschka,Loss Functions (Raschka),blogpost,https://sebastianraschka.com/blog/2022/losses-learned-part1.html,FALSE,,lec-feedforward-neural-networks
 but-what-is-a-neural-network-deep-learning-chapter-1,But what is a neural network? | Deep learning chapter 1,video,https://www.youtube.com/watch?v=aircAruvnKk,TRUE,,lec-feedforward-neural-networks
 tom-notebook,Tom Notebook,notebook,https://colab.research.google.com/drive/1Xhw79tDJwihwBXQV01DVTPFs9GS_367R,FALSE,,lec-feedforward-neural-networks
-slides,Slides,reading,,FALSE,,lec-gradient-descent-and-backpropagation
+slides,Slides,reading,https://docs.google.com/presentation/d/12h4pcGe-Tx4jZ2YzlEb0q3EJqRwTHRK-/edit?slide=id.p1#slide=id.p1,FALSE,,lec-gradient-descent-and-backpropagation
 fca-sections-811-and-82,FCA - Sections 8.1.1 and 8.2,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S1.html,FALSE,,lec-gradient-descent-and-backpropagation
 pml-section-133,PML - Section 13.3,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-gradient-descent-and-backpropagation
 islp-section-107,ISLP - Section 10.7,reading,https://www.statlearning.com/,FALSE,,lec-gradient-descent-and-backpropagation
