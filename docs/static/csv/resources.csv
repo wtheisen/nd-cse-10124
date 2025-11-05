@@ -165,6 +165,8 @@ panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.
 supplementary-review-material,Supplementary Review Material,reading,https://drive.google.com/file/d/1DBBNjQWo0S-oFf9i_UMxjRHD76fxn5Bg/view?usp=sharing,FALSE,,lec-review-01
 practice-packet-01,Practice Packet 01,assignment,https://docs.google.com/document/d/1TmptiHTret5FSFLSDB-IdbjZzGZDWPJ4MBuxtjnjZ3M/edit?usp=sharing,FALSE,,lec-exam-01
 practice-packet-01-solutions,Practice Packet 01 Solutions,assignment,https://drive.google.com/file/d/1dJkVsdXi2sO9TvZXiwR_9jUy7FIgCwho/view?usp=sharing,FALSE,,lec-exam-01
+exam-01,Exam 01,assignment,https://docs.google.com/document/d/1tPHD2uUXKTk-k526sWP_6wqx3qL7oMTjpLLpX6hB_w0/edit?usp=sharing,FALSE,,lec-exam-01
+exam-01-solutions,Exam 01 Solutions,assignment,,FALSE,,lec-exam-01
 slides,Slides,reading,https://drive.google.com/file/d/1XTi6NKyN8mpW_gdk5M8BbOoZlBphvxu4/view?usp=sharing,FALSE,,lec-logistic-regression-and-gradient-descent
 pantopto,Pantopto,video,,FALSE,,lec-logistic-regression-and-gradient-descent
 fca-section-732,FCA - Section 7.3.2,reading,https://artint.info/3e/html/ArtInt3e.Ch7.S3.html,FALSE,,lec-logistic-regression-and-gradient-descent
@@ -311,7 +313,9 @@ cnns-zhou,CNNs (Zhou),blogpost,https://victorzhou.com/blog/intro-to-cnns-part-1/
 convolutions-olah,Convolutions (Olah),blogpost,https://colah.github.io/posts/2014-07-Understanding-Convolutions/,FALSE,,lec-convolutional-neural-networks
 cnns-olah,CNNs (Olah),blogpost,https://colah.github.io/posts/2014-07-Conv-Nets-Modular/,FALSE,,lec-convolutional-neural-networks
 cnns-rao,CNNs (Rao),blogpost,https://medium.com/data-science/deep-learning-illustrated-part-3-convolutional-neural-networks-96b900b0b9e0,FALSE,,lec-convolutional-neural-networks
-#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+slides,Slides,reading,,FALSE,,lec-review-02
+panopto,Panopto,video,,FALSE,,lec-review-02
+supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-02
 slides,Slides,reading,,FALSE,,lec-recurrent-neural-networks
 fca-section-85-until-854,FCA - Section 8.5 until 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-recurrent-neural-networks
 pml-section-152,PML - Section 15.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-recurrent-neural-networks
