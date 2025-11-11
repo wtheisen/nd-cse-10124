@@ -317,6 +317,8 @@ cifar-cnn,CIFAR CNN,notebook,https://colab.research.google.com/drive/1NNPzM7Nsx-
 slides,Slides,reading,,FALSE,,lec-review-02
 panopto,Panopto,video,,FALSE,,lec-review-02
 supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-02
+practice-packet-02,Practice Packet 02,assignment,https://docs.google.com/document/d/1RkAbkSBonaqBAS3mcQ6rTafoNyEoaIw34au8HoDahYE/edit?usp=sharing,FALSE,,lec-exam-02
+practice-packet-02-solutions,Practice Packet 02 Solutions,assignment,,FALSE,,lec-exam-02
 slides,Slides,reading,,FALSE,,lec-recurrent-neural-networks
 fca-section-85-until-854,FCA - Section 8.5 until 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-recurrent-neural-networks
 pml-section-152,PML - Section 15.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-recurrent-neural-networks
