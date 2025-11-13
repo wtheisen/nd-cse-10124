@@ -295,7 +295,7 @@ backprop-karpathy,Backprop (Karpathy),blogpost,https://karpathy.medium.com/yes-y
 gradient-descent-how-neural-networks-learn-deep-learning-chapter-2,"Gradient descent, how neural networks learn | Deep Learning Chapter 2",video,https://www.youtube.com/watch?v=IHZwWFHWa-w,TRUE,,lec-gradient-descent-and-backpropagation
 backpropagation-intuitively-deep-learning-chapter-3,"Backpropagation, intuitively | Deep Learning Chapter 3",video,https://www.youtube.com/watch?v=Ilg3gGewQ5U,TRUE,,lec-gradient-descent-and-backpropagation
 backpropagation-calculus-deep-learning-chapter-4,Backpropagation calculus | Deep Learning Chapter 4,video,https://www.youtube.com/watch?v=tIeHLnjs5U8,FALSE,,lec-gradient-descent-and-backpropagation
-ml-to-dl-lecture25-video,ML to DL Lecture2.5 Video,video,https://drive.google.com/file/d/1vSnLhVt_F5HaWYV8saMTEBv7qjTg3Tb9/view?usp=drive_link,FALSE,,lec-gradient-descent-and-backpropagation
+ml-to-dl-lecture25-video-tom,ML to DL Lecture2.5 Video (Tom),video,https://drive.google.com/file/d/1vSnLhVt_F5HaWYV8saMTEBv7qjTg3Tb9/view?usp=drive_link,FALSE,,lec-gradient-descent-and-backpropagation
 slides,Slides,reading,https://drive.google.com/file/d/1_Zh66I6B_2HQPSekFJDKrn98bYlET6Zb/view?usp=sharing,FALSE,,lec-convolutional-neural-networks
 fca-section-84,FCA - Section 8.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S4.html,FALSE,,lec-convolutional-neural-networks
 pml-chapter-14,PML - Chapter 14,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-convolutional-neural-networks
