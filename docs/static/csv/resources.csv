@@ -257,7 +257,7 @@ pml-section-132,PML - Section 13.2,reading,https://probml.github.io/pml-book/boo
 islp-sections-101-102,"ISLP - Sections 10.1, 10.2",reading,https://www.statlearning.com/,FALSE,,lec-feedforward-neural-networks
 d2l-sections-51-and-52,D2L - Sections 5.1 and 5.2,reading,https://d2l.ai/chapter_multilayer-perceptrons/index.html,FALSE,,lec-feedforward-neural-networks
 uml-sections-201-205,UML - Sections 20.1 - 20.5,reading,https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html,FALSE,,lec-feedforward-neural-networks
-panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=64dff764-0306-4caa-8e38-b2ac01594013,FALSE,,lec-feedforward-neural-networks
+panopto-mltodllecture01,Panopto (ML_to_DL_Lecture01),video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=13903efc-0a4c-4793-9ec2-b38a016b3917,FALSE,,lec-feedforward-neural-networks
 harvard-cs50-000-1600,Harvard CS50 (0:00 - 16:00),video,https://www.youtube.com/watch?v=J1QD9hLDEDY,FALSE,,lec-feedforward-neural-networks
 stanford-cs221,Stanford CS221,video,https://www.youtube.com/watch?v=pnKXgBHuN58&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=11,FALSE,,lec-feedforward-neural-networks
 mit-6034,MIT 6.034,video,https://www.youtube.com/watch?v=uXt8qF2Zzfo,FALSE,,lec-feedforward-neural-networks
@@ -279,7 +279,7 @@ pml-section-133,PML - Section 13.3,reading,https://probml.github.io/pml-book/boo
 islp-section-107,ISLP - Section 10.7,reading,https://www.statlearning.com/,FALSE,,lec-gradient-descent-and-backpropagation
 d2l-section-53,D2L - Section 5.3,reading,https://d2l.ai/chapter_multilayer-perceptrons/backprop.html,FALSE,,lec-gradient-descent-and-backpropagation
 uml-section-206,UML - Section 20.6,reading,https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html,FALSE,,lec-gradient-descent-and-backpropagation
-panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=36c905b4-cbd9-4a0d-aa0c-b2b10162772b,FALSE,,lec-gradient-descent-and-backpropagation
+panopto-mltodllecture02,Panopto (ML_to_DL_Lecture02),video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a49a1e6d-2337-489f-9415-b38c0168496f,FALSE,,lec-gradient-descent-and-backpropagation
 harvard-cs50-1600-3900,Harvard CS50 (16:00 - 39:00),video,https://www.youtube.com/watch?v=J1QD9hLDEDY,FALSE,,lec-gradient-descent-and-backpropagation
 stanford-cs221-sgd,Stanford CS221 - SGD,video,https://www.youtube.com/watch?v=bl2WgBLH0tI&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=7,FALSE,,lec-gradient-descent-and-backpropagation
 stanford-cs221-backprop,Stanford CS221 - Backprop,video,https://www.youtube.com/watch?v=OcAF-l2xB9Y&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=12,FALSE,,lec-gradient-descent-and-backpropagation
