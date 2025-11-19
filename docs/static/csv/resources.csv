@@ -321,7 +321,7 @@ panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.
 supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-02
 practice-packet-02,Practice Packet 02,assignment,https://docs.google.com/document/d/1RkAbkSBonaqBAS3mcQ6rTafoNyEoaIw34au8HoDahYE/edit?usp=sharing,FALSE,,lec-exam-02
 practice-packet-02-solutions,Practice Packet 02 Solutions,assignment,https://docs.google.com/document/d/1YVp-I3t_faGEVjl_dr6vA79FhEYKiyrU-pRjrq9EuXw/edit?usp=sharing,FALSE,,lec-exam-02
-slides,Slides,reading,,FALSE,,lec-recurrent-neural-networks
+slides,Slides,reading,https://docs.google.com/presentation/d/1rKJpuvkdtkj-beyGE3mqdnKi1SPjYGCl/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-recurrent-neural-networks
 fca-section-85-until-854,FCA - Section 8.5 until 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-recurrent-neural-networks
 pml-section-152,PML - Section 15.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-recurrent-neural-networks
 islp-section-105,ISLP - Section 10.5,reading,https://www.statlearning.com/,FALSE,,lec-recurrent-neural-networks
