@@ -350,7 +350,8 @@ pml-section-154,PML - Section 15.4,reading,https://probml.github.io/pml-book/boo
 d2l-sections-111-through-116,D2L - Sections 11.1 through 11.6,reading,https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html,FALSE,,lec-self-attention-and-transformers
 panopto,Panopto,video,,FALSE,,lec-self-attention-and-transformers
 harvard-cs50-3540-5415,Harvard CS50 (35:40 - 54:15),video,https://www.youtube.com/watch?v=QAZc9xsQNjQ,FALSE,,lec-self-attention-and-transformers
-3b1b,3b1b,video,https://www.youtube.com/watch?v=eMlx5fFNoYc,TRUE,,lec-self-attention-and-transformers
+transformers-the-tech-behind-llms,"Transformers, the tech behind LLMs",video,https://www.youtube.com/watch?v=wjZofJX0v4M,TRUE,,lec-self-attention-and-transformers
+attention-in-transformers-stepbystep,"Attention in transformers, step-by-step",video,https://www.youtube.com/watch?v=eMlx5fFNoYc,TRUE,,lec-self-attention-and-transformers
 simple-selfattention,Simple Self-Attention,notebook,https://colab.research.google.com/drive/1zrnOd6wE57gefw9VJMFDD_9LTzeng9D8?usp=sharing,FALSE,,lec-self-attention-and-transformers
 attention-statquest,Attention (StatQuest),video,https://youtu.be/PSs6nxngL6k?si=gfuV6LQqtS0jDxQc,FALSE,,lec-self-attention-and-transformers
 matrix-math-statquest,Matrix Math (StatQuest),video,https://youtu.be/KphmOJnLAdI?si=dkXEgyn5ImhMdDnD,FALSE,,lec-self-attention-and-transformers
@@ -359,7 +360,7 @@ attention-rasbt,Attention (rasbt),notebook,https://github.com/rasbt/machine-lear
 attention-lilian,Attention (Lilian),blogpost,https://lilianweng.github.io/posts/2018-06-24-attention/,FALSE,,lec-self-attention-and-transformers
 annotated-transformer-harvard,Annotated Transformer (Harvard),blogpost,http://nlp.seas.harvard.edu/annotated-transformer/,FALSE,,lec-self-attention-and-transformers
 attention-is-all-you-need-vaswani-et-al,Attention is All You Need (Vaswani et al.),paper,https://arxiv.org/abs/1706.03762,FALSE,,lec-self-attention-and-transformers
-illustrated-transformer-alammar,Illustrated Transformer (Alammar),blogpost,https://jalammar.github.io/illustrated-transformer/,TRUE,,lec-self-attention-and-transformers
+illustrated-transformer-alammar,Illustrated Transformer (Alammar),blogpost,https://jalammar.github.io/illustrated-transformer/,FALSE,,lec-self-attention-and-transformers
 transformers-lilian,Transformers (Lilian),blogpost,https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/,FALSE,,lec-self-attention-and-transformers
 transformer-family-tree-amatriain-et-al,Transformer Family Tree (Amatriain et al.),paper,https://arxiv.org/pdf/2302.07730,FALSE,,lec-self-attention-and-transformers
 bert-pretraining-of-deep-bidirectional-transformers-for-language-understanding-devlin-et-al,BERT Pre-training of Deep Bidirectional Transformers for Language Understanding (Devlin et al.),paper,https://arxiv.org/pdf/1810.04805,FALSE,,lec-self-attention-and-transformers
