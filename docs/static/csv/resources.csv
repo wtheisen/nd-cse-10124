@@ -344,7 +344,7 @@ neural-machine-translation-by-jointly-learning-to-align-and-translate-bahdanau-e
 rnns-karpathy,RNNs (Karpathy),blogpost,https://karpathy.github.io/2015/05/21/rnn-effectiveness/,FALSE,,lec-recurrent-neural-networks
 sp25-panopto,sp25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cb9b155b-1306-414b-b059-b2bf0156d398,FALSE,,lec-recurrent-neural-networks
 yes-you-should-understand-backprop,Yes you should understand backprop,blogpost,https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b,FALSE,,lec-recurrent-neural-networks
-slides,Slides,reading,,FALSE,,lec-self-attention-and-transformers
+slides,Slides,reading,https://docs.google.com/presentation/d/1w6V8dqma_jX8BGsD9R0jhByRgI_J8Jin/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-self-attention-and-transformers
 fca-section-854,FCA - Section 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-self-attention-and-transformers
 pml-section-154,PML - Section 15.4,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-self-attention-and-transformers
 d2l-sections-111-through-116,D2L - Sections 11.1 through 11.6,reading,https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html,FALSE,,lec-self-attention-and-transformers
