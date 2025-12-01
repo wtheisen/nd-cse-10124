@@ -395,7 +395,7 @@ llm-reasoning-maarten,LLM Reasoning (Maarten),blogpost,https://newsletter.maarte
 deepseek-alammar,Deepseek (Alammar),blogpost,https://newsletter.languagemodels.co/p/the-illustrated-deepseek-r1,FALSE,,lec-llms-and-agents
 llm-agents-lilian,LLM Agents (Lilian),blogpost,https://lilianweng.github.io/posts/2023-06-23-agent/,FALSE,,lec-llms-and-agents
 a-history-of-large-language-models,A History of Large Language Models,blogpost,https://gregorygundersen.com/blog/2025/10/01/large-language-models/,FALSE,,lec-llms-and-agents
-slides,Slides,reading,,FALSE,,lec-diffusion-models
+slides,Slides,reading,https://docs.google.com/presentation/d/1PHeOsiFTy_MLVWMToJ40wAiT7FpFwh8q/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-diffusion-models
 fca-section-863,FCA - Section 8.6.3,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S6.html,FALSE,,lec-diffusion-models
 diffusion-models,Diffusion Models,video,https://www.youtube.com/watch?v=1pgiu--4W3I,FALSE,,lec-diffusion-models
 simple-diffusion-model,Simple Diffusion Model,notebook,https://colab.research.google.com/drive/1H3ztaNIIsshhPQx3j5oTQ8lGwvgsWDGz?usp=sharing,FALSE,,lec-diffusion-models
