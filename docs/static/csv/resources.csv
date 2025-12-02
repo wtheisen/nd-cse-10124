@@ -384,7 +384,6 @@ alphago-karpathy,AlphaGo (Karpathy),blogpost,https://karpathy.medium.com/alphago
 reinforcement-learning-essential-concepts-statquest,Reinforcement Learning: Essential Concepts (Statquest),video,https://youtu.be/Z-T0iJEXiwM?si=JofxUJWK3lEoKS1X,TRUE,,lec-reinforcement-learning
 reinforcement-learning-with-neural-networks-essential-concepts-statquest,Reinforcement Learning with Neural Networks: Essential Concepts (Statquest),video,https://youtu.be/9hbQieQh7-o?si=4Dn5sYYUu4L1VliI,TRUE,,lec-reinforcement-learning
 reinforcement-learning-with-neural-networks-mathematical-details-statquest,Reinforcement Learning with Neural Networks: Mathematical Details (Statquest),video,https://youtu.be/DVGmsnxB2UQ?si=l5tBufERnX3lWWD0,FALSE,,lec-reinforcement-learning
-reinforcement-learning-with-human-feedback-rlhf-clearly-explained,"Reinforcement Learning with Human Feedback (RLHF), Clearly Explained!!!",video,https://youtu.be/qPN_XZcJf_s?si=RyAXbzOyi_DONTYA,FALSE,,lec-reinforcement-learning
 multiagent-hide-and-seek,Multi-Agent Hide and Seek,video,https://youtu.be/kopoLzvh5jY?si=p8VVf6CjTam7h5J-,FALSE,,lec-reinforcement-learning
 slides,Slides,reading,,FALSE,,lec-llms-and-agents
 fca-section-855,FCA - Section 8.5.5,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-llms-and-agents
@@ -402,6 +401,9 @@ deepseek-alammar,Deepseek (Alammar),blogpost,https://newsletter.languagemodels.c
 llm-agents-lilian,LLM Agents (Lilian),blogpost,https://lilianweng.github.io/posts/2023-06-23-agent/,FALSE,,lec-llms-and-agents
 a-history-of-large-language-models,A History of Large Language Models,blogpost,https://gregorygundersen.com/blog/2025/10/01/large-language-models/,FALSE,,lec-llms-and-agents
 deep-dive-into-llms-like-chatgpt,Deep Dive into LLMs like ChatGPT,video,https://youtu.be/7xTGNNLPyMI?si=Q9SM5PiTCWLaA0t2,FALSE,,lec-llms-and-agents
+what-is-agentic-ai,What is Agentic AI?,video,https://www.youtube.com/watch?v=qu2guVRr2LM,TRUE,,lec-llms-and-agents
+the-big-llm-architecture-comparison-optional-but-highly-recommended,The Big LLM Architecture Comparison (Optional but highly recommended),video,https://www.youtube.com/watch?v=rNlULI-zGcw,TRUE,,lec-llms-and-agents
+reasoning-models-and-deepseek-r1-from-scratch,Reasoning Models and DeepSeek R1 from scratch,video,https://www.youtube.com/watch?v=9knUUdoiVMQ,TRUE,,lec-llms-and-agents
 slides,Slides,reading,https://docs.google.com/presentation/d/1PHeOsiFTy_MLVWMToJ40wAiT7FpFwh8q/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-diffusion-models
 fca-section-863,FCA - Section 8.6.3,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S6.html,FALSE,,lec-diffusion-models
 diffusion-models,Diffusion Models,video,https://www.youtube.com/watch?v=1pgiu--4W3I,FALSE,,lec-diffusion-models
