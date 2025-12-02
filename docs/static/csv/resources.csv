@@ -404,6 +404,7 @@ deep-dive-into-llms-like-chatgpt,Deep Dive into LLMs like ChatGPT,video,https://
 what-is-agentic-ai,What is Agentic AI?,video,https://www.youtube.com/watch?v=qu2guVRr2LM,TRUE,,lec-llms-and-agents
 the-big-llm-architecture-comparison-optional-but-highly-recommended,The Big LLM Architecture Comparison (Optional but highly recommended),video,https://www.youtube.com/watch?v=rNlULI-zGcw,TRUE,,lec-llms-and-agents
 reasoning-models-and-deepseek-r1-from-scratch,Reasoning Models and DeepSeek R1 from scratch,video,https://www.youtube.com/watch?v=9knUUdoiVMQ,TRUE,,lec-llms-and-agents
+reinforcement-learning-with-human-feedback-rlhf-clearly-explained-statquest,"Reinforcement Learning with Human Feedback (RLHF), Clearly Explained!!! (Statquest)",video,https://youtu.be/qPN_XZcJf_s?si=RyAXbzOyi_DONTYA,TRUE,,lec-llms-and-agents
 slides,Slides,reading,https://docs.google.com/presentation/d/1PHeOsiFTy_MLVWMToJ40wAiT7FpFwh8q/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-diffusion-models
 fca-section-863,FCA - Section 8.6.3,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S6.html,FALSE,,lec-diffusion-models
 diffusion-models,Diffusion Models,video,https://www.youtube.com/watch?v=1pgiu--4W3I,FALSE,,lec-diffusion-models
@@ -411,3 +412,4 @@ simple-diffusion-model,Simple Diffusion Model,notebook,https://colab.research.go
 diffusion-models-lilian,Diffusion Models (Lilian),blogpost,https://lilianweng.github.io/posts/2021-07-11-diffusion-models/,FALSE,,lec-diffusion-models
 video-diffusion-lilian,Video Diffusion (Lilian),blogpost,https://lilianweng.github.io/posts/2024-04-12-diffusion-video/,FALSE,,lec-diffusion-models
 sp25-panopto,sp25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234a27fe-5c95-4d40-bffe-b2cf014e66a5,FALSE,,lec-diffusion-models
+but-how-do-ai-images-and-videos-actually-work-guest-video-by-welch-labs-3b1b,But how do AI images and videos actually work? | Guest video by Welch Labs (3b1b),video,https://www.youtube.com/watch?v=iv-5mZ_9CPY,TRUE,,lec-diffusion-models
