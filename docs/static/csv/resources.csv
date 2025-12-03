@@ -367,7 +367,7 @@ bert-pretraining-of-deep-bidirectional-transformers-for-language-understanding-d
 improving-language-understanding-by-generative-pretraining-radford-et-al,Improving Language Understanding by Generative Pre-Training (Radford et al.),paper,https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf,FALSE,,lec-self-attention-and-transformers
 programming-selfattention-raschka,Programming Self-Attention (Raschka),blogpost,https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html,FALSE,,lec-self-attention-and-transformers
 transformer-neural-networks-chatgpts-foundation-clearly-explained-statquest,"Transformer Neural Networks, ChatGPT's foundation, Clearly Explained!!! (Statquest)",video,https://youtu.be/zxQyTK8quyY?si=RmuILpPXyn2Ne-kY,FALSE,,lec-self-attention-and-transformers
-slides,Slides,reading,,FALSE,,lec-reinforcement-learning
+slides,Slides,reading,https://docs.google.com/presentation/d/1s53WRMrDlUWDR51UNpXG-IOjTX4d6we6/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-reinforcement-learning
 fca-chapter-13,FCA - Chapter 13,reading,https://artint.info/3e/html/ArtInt3e.Ch13.html,FALSE,,lec-reinforcement-learning
 d2l-chapter-17,D2L - Chapter 17,reading,https://d2l.ai/chapter_reinforcement-learning/index.html,FALSE,,lec-reinforcement-learning
 panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8f436438-4d36-4efd-a213-b2c8015975d5,FALSE,,lec-reinforcement-learning
