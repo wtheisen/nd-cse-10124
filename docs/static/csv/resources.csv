@@ -385,7 +385,7 @@ reinforcement-learning-essential-concepts-statquest,Reinforcement Learning: Esse
 reinforcement-learning-with-neural-networks-essential-concepts-statquest,Reinforcement Learning with Neural Networks: Essential Concepts (Statquest),video,https://youtu.be/9hbQieQh7-o?si=4Dn5sYYUu4L1VliI,TRUE,,lec-reinforcement-learning
 reinforcement-learning-with-neural-networks-mathematical-details-statquest,Reinforcement Learning with Neural Networks: Mathematical Details (Statquest),video,https://youtu.be/DVGmsnxB2UQ?si=l5tBufERnX3lWWD0,FALSE,,lec-reinforcement-learning
 multiagent-hide-and-seek,Multi-Agent Hide and Seek,video,https://youtu.be/kopoLzvh5jY?si=p8VVf6CjTam7h5J-,FALSE,,lec-reinforcement-learning
-slides,Slides,reading,,FALSE,,lec-llms-and-agents
+slides,Slides,reading,https://docs.google.com/presentation/d/12zx6spPyiLXxLcWtexN8EzCDdRlsnhGt/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-llms-and-agents
 fca-section-855,FCA - Section 8.5.5,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-llms-and-agents
 pml-section-155,PML - Section 15.5,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-llms-and-agents
 d2l-section-117,D2L - Section 11.7,reading,https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html,FALSE,,lec-llms-and-agents
