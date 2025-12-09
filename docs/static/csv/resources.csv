@@ -414,3 +414,9 @@ video-diffusion-lilian,Video Diffusion (Lilian),blogpost,https://lilianweng.gith
 sp25-panopto,sp25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234a27fe-5c95-4d40-bffe-b2cf014e66a5,FALSE,,lec-diffusion-models
 variational-autoencoders,Variational Autoencoders,video,https://www.youtube.com/watch?v=9zKuYvjFFS8,TRUE,,lec-diffusion-models
 but-how-do-ai-images-and-videos-actually-work-guest-video-by-welch-labs-3b1b,But how do AI images and videos actually work? | Guest video by Welch Labs (3b1b),video,https://www.youtube.com/watch?v=iv-5mZ_9CPY,TRUE,,lec-diffusion-models
+slides,Slides,reading,,FALSE,,lec-review-03
+panopto,Panopto,video,,FALSE,,lec-review-03
+supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-03
+practice-packet-03,Practice Packet 03,assignment,https://docs.google.com/document/d/197DJth4qs4Dvj9ywxLZ8yvvKDXC0TSFnPYTkTcnhIx0/edit?usp=sharing,FALSE,,lec-review-03
+practice-packet-03-slides,Practice Packet 03 (Slides),assignment,https://docs.google.com/presentation/d/1T7wBU_95UE12aRzJ9kHZo3pQWYSHMIzc/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-review-03
+practice-packet-03-solutions,Practice Packet 03 Solutions,reading,,FALSE,,lec-review-03
