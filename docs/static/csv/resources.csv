@@ -321,7 +321,9 @@ panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.
 supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-02
 practice-packet-02,Practice Packet 02,assignment,https://docs.google.com/document/d/1RkAbkSBonaqBAS3mcQ6rTafoNyEoaIw34au8HoDahYE/edit?usp=sharing,FALSE,,lec-exam-02
 practice-packet-02-solutions,Practice Packet 02 Solutions,assignment,https://docs.google.com/document/d/1YVp-I3t_faGEVjl_dr6vA79FhEYKiyrU-pRjrq9EuXw/edit?usp=sharing,FALSE,,lec-exam-02
-slides,Slides,reading,https://docs.google.com/presentation/d/1rKJpuvkdtkj-beyGE3mqdnKi1SPjYGCl/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-recurrent-neural-networks
+exam-02,Exam 02,assignment,https://docs.google.com/document/d/1QEv0JhFUQl1xzhNhfzPQpEyhTWFKFzi6bMLWmFCb8i8/edit?usp=sharing,FALSE,,lec-exam-02
+exam-02-solutions,Exam 02 Solutions,assignment,,FALSE,,lec-exam-02
+slides,Slides,reading,https://drive.google.com/file/d/1ozyPrZgOAOLeA_bLK1SuRozu4VKic21A/view?usp=sharing,FALSE,,lec-recurrent-neural-networks
 fca-section-85-until-854,FCA - Section 8.5 until 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-recurrent-neural-networks
 pml-section-152,PML - Section 15.2,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-recurrent-neural-networks
 islp-section-105,ISLP - Section 10.5,reading,https://www.statlearning.com/,FALSE,,lec-recurrent-neural-networks
@@ -344,11 +346,12 @@ neural-machine-translation-by-jointly-learning-to-align-and-translate-bahdanau-e
 rnns-karpathy,RNNs (Karpathy),blogpost,https://karpathy.github.io/2015/05/21/rnn-effectiveness/,FALSE,,lec-recurrent-neural-networks
 sp25-panopto,sp25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cb9b155b-1306-414b-b059-b2bf0156d398,FALSE,,lec-recurrent-neural-networks
 yes-you-should-understand-backprop,Yes you should understand backprop,blogpost,https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b,FALSE,,lec-recurrent-neural-networks
-slides,Slides,reading,https://docs.google.com/presentation/d/1w6V8dqma_jX8BGsD9R0jhByRgI_J8Jin/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-self-attention-and-transformers
+panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=43622636-1f4b-40b9-a505-b39a016bad7d,FALSE,,lec-recurrent-neural-networks
+slides,Slides,reading,https://drive.google.com/file/d/1ET4BCOB0mGCkeUMXtSD_NxqvZdEDdGLq/view?usp=sharing,FALSE,,lec-self-attention-and-transformers
 fca-section-854,FCA - Section 8.5.4,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S5.html,FALSE,,lec-self-attention-and-transformers
 pml-section-154,PML - Section 15.4,reading,https://probml.github.io/pml-book/book1.html,FALSE,,lec-self-attention-and-transformers
 d2l-sections-111-through-116,D2L - Sections 11.1 through 11.6,reading,https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html,FALSE,,lec-self-attention-and-transformers
-panopto,Panopto,video,,FALSE,,lec-self-attention-and-transformers
+panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4c2ea214-f5d3-4d82-a9df-b39f016a5726,FALSE,,lec-self-attention-and-transformers
 harvard-cs50-3540-5415,Harvard CS50 (35:40 - 54:15),video,https://www.youtube.com/watch?v=QAZc9xsQNjQ,FALSE,,lec-self-attention-and-transformers
 transformers-the-tech-behind-llms,"Transformers, the tech behind LLMs",video,https://www.youtube.com/watch?v=wjZofJX0v4M,TRUE,,lec-self-attention-and-transformers
 attention-in-transformers-stepbystep,"Attention in transformers, step-by-step",video,https://www.youtube.com/watch?v=eMlx5fFNoYc,TRUE,,lec-self-attention-and-transformers
@@ -367,10 +370,10 @@ bert-pretraining-of-deep-bidirectional-transformers-for-language-understanding-d
 improving-language-understanding-by-generative-pretraining-radford-et-al,Improving Language Understanding by Generative Pre-Training (Radford et al.),paper,https://gwern.net/doc/www/s3-us-west-2.amazonaws.com/d73fdc5ffa8627bce44dcda2fc012da638ffb158.pdf,FALSE,,lec-self-attention-and-transformers
 programming-selfattention-raschka,Programming Self-Attention (Raschka),blogpost,https://sebastianraschka.com/blog/2023/self-attention-from-scratch.html,FALSE,,lec-self-attention-and-transformers
 transformer-neural-networks-chatgpts-foundation-clearly-explained-statquest,"Transformer Neural Networks, ChatGPT's foundation, Clearly Explained!!! (Statquest)",video,https://youtu.be/zxQyTK8quyY?si=RmuILpPXyn2Ne-kY,FALSE,,lec-self-attention-and-transformers
-slides,Slides,reading,https://docs.google.com/presentation/d/1s53WRMrDlUWDR51UNpXG-IOjTX4d6we6/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-reinforcement-learning
+slides,Slides,reading,https://drive.google.com/file/d/1-ol_zi_fjwfr5B21gLMZ9eVgqQF2kyT5/view?usp=sharing,FALSE,,lec-reinforcement-learning
 fca-chapter-13,FCA - Chapter 13,reading,https://artint.info/3e/html/ArtInt3e.Ch13.html,FALSE,,lec-reinforcement-learning
 d2l-chapter-17,D2L - Chapter 17,reading,https://d2l.ai/chapter_reinforcement-learning/index.html,FALSE,,lec-reinforcement-learning
-panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8f436438-4d36-4efd-a213-b2c8015975d5,FALSE,,lec-reinforcement-learning
+panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a98dcae4-173f-44be-a0e3-b3a8016b7d59,FALSE,,lec-reinforcement-learning
 harvard-cs50-10957-13824,Harvard CS50 (1:09:57 - 1:38:24),video,https://www.youtube.com/watch?v=-g0iJjnO2_w&t=4197s,FALSE,,lec-reinforcement-learning
 stanford-cs221,Stanford CS221,video,https://www.youtube.com/watch?v=HpaHTfY52RQ&list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&index=20,FALSE,,lec-reinforcement-learning
 rl-lunar-lander,RL Lunar Lander,notebook,https://colab.research.google.com/drive/1WtcWFv57EBsRTlk1_Zl0ammBHO1iG1LM?usp=sharing,FALSE,,lec-reinforcement-learning
@@ -405,7 +408,7 @@ what-is-agentic-ai,What is Agentic AI?,video,https://www.youtube.com/watch?v=qu2
 the-big-llm-architecture-comparison-optional-but-highly-recommended,The Big LLM Architecture Comparison (Optional but highly recommended),video,https://www.youtube.com/watch?v=rNlULI-zGcw,TRUE,,lec-llms-and-agents
 reasoning-models-and-deepseek-r1-from-scratch,Reasoning Models and DeepSeek R1 from scratch,video,https://www.youtube.com/watch?v=9knUUdoiVMQ,TRUE,,lec-llms-and-agents
 reinforcement-learning-with-human-feedback-rlhf-clearly-explained-statquest,"Reinforcement Learning with Human Feedback (RLHF), Clearly Explained!!! (Statquest)",video,https://youtu.be/qPN_XZcJf_s?si=RyAXbzOyi_DONTYA,TRUE,,lec-llms-and-agents
-slides,Slides,reading,https://docs.google.com/presentation/d/1PHeOsiFTy_MLVWMToJ40wAiT7FpFwh8q/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-diffusion-models
+slides,Slides,reading,https://drive.google.com/file/d/1Erpv7FUTa4wT3-tKt335jOrHxQPE9YZc/view?usp=sharing,FALSE,,lec-diffusion-models
 fca-section-863,FCA - Section 8.6.3,reading,https://artint.info/3e/html/ArtInt3e.Ch8.S6.html,FALSE,,lec-diffusion-models
 diffusion-models,Diffusion Models,video,https://www.youtube.com/watch?v=1pgiu--4W3I,FALSE,,lec-diffusion-models
 simple-diffusion-model,Simple Diffusion Model,notebook,https://colab.research.google.com/drive/1H3ztaNIIsshhPQx3j5oTQ8lGwvgsWDGz?usp=sharing,FALSE,,lec-diffusion-models
@@ -414,7 +417,8 @@ video-diffusion-lilian,Video Diffusion (Lilian),blogpost,https://lilianweng.gith
 sp25-panopto,sp25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=234a27fe-5c95-4d40-bffe-b2cf014e66a5,FALSE,,lec-diffusion-models
 variational-autoencoders,Variational Autoencoders,video,https://www.youtube.com/watch?v=9zKuYvjFFS8,TRUE,,lec-diffusion-models
 but-how-do-ai-images-and-videos-actually-work-guest-video-by-welch-labs-3b1b,But how do AI images and videos actually work? | Guest video by Welch Labs (3b1b),video,https://www.youtube.com/watch?v=iv-5mZ_9CPY,TRUE,,lec-diffusion-models
-slides,Slides,reading,,FALSE,,lec-review-03
+panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=072d0de9-68e6-4e22-a679-b3a601699d9a,FALSE,,lec-diffusion-models
+slides,Slides,reading,https://drive.google.com/file/d/1nUvSUJjs3cd4ycb32wAHWPcJABHaFdhu/view?usp=sharing,FALSE,,lec-review-03
 panopto,Panopto,video,,FALSE,,lec-review-03
 supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-03
 practice-packet-03,Practice Packet 03,assignment,https://docs.google.com/document/d/197DJth4qs4Dvj9ywxLZ8yvvKDXC0TSFnPYTkTcnhIx0/edit?usp=sharing,FALSE,,lec-review-03
