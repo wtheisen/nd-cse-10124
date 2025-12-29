@@ -2,53 +2,53 @@
   days:
   - date: Tue 01/13
     topics: Syllabus, What is an LLM?
-- name: 'Unit 01: Introduction to LLMs'
+- name: 'Unit 01: Introduction to Neural Networks'
   days:
   - date: Thu 01/15
-    topics: Prompt Engineering I
+    topics: Text as Data
   - date: Tue 01/20
-    topics: Failure Cases of LLMs
-  - date: Thu 01/22
     topics: Tokenization
+  - date: Thu 01/22
+    topics: Embeddings
   - date: Tue 01/27
-    topics: High Dimensional Data
+    topics: Linear Layers
   - date: Thu 01/29
-    topics: Distributions of Data
+    topics: Activation Functions
   - date: Tue 02/03
-    topics: LLM Architectures
+    topics: Loss Functions
+  - date: Thu 02/05
+    topics: Training Neural Networks
 - name: Exam 01
   days:
-  - date: Thu 02/05
-    topics: Review
   - date: Tue 02/10
+    topics: Review 01
+  - date: Thu 02/12
     topics: Exam 01
     assignments:
     - Practice Packet 01
     - Practice Packet 01 Solutions
     - Exam 01
-- name: 'Unit 02: Assessing LLMs'
+- name: 'Unit 02: Large-Language Models'
   days:
-  - date: Thu 02/12
-    topics: Ethical Issues in Data
   - date: Tue 02/17
-    topics: Ethical Issues in LLMs
+    topics: Self-Attention
   - date: Thu 02/19
-    topics: AI Alignment
+    topics: Multi-Headed Attention
   - date: Tue 02/24
-    topics: Prompt Engineering II
+    topics: Positional Encodings
   - date: Thu 02/26
-    topics: Assessing LLM Output
+    topics: Transformer Blocks
   - date: Tue 03/03
-    topics: Explainable AI
+    topics: Sampling & Randomness
 - name: Spring Break
-- name: 'Unit 03: Foundation Models'
+- name: 'Unit 03: Training LLMs'
   days:
   - date: Thu 03/05
-    topics: Current Foundation Models
+    topics: Building nanochat
   - date: Tue 03/17
-    topics: Multimodal Models I
+    topics: Training LLMs
   - date: Thu 03/19
-    topics: Multimodal Models II
+    topics: RLHF
 - name: Exam 02
   days:
   - date: Tue 03/24
@@ -59,26 +59,24 @@
     - Practice Packet 02
     - Practice Packet 02 Solutions
     - Exam 02
-- name: 'Unit 04: Using Generative AI'
+- name: 'Unit 04: Using LLMs'
   days:
   - date: Tue 03/31
-    topics: Agentic AI I
+    topics: Evaluating LLMs
   - date: Thu 04/02
-    topics: Agentic AI II
+    topics: Prompt Engineering
   - date: Tue 04/07
-    topics: Agentic Workflows I
+    topics: Explainable AI
   - date: Thu 04/09
-    topics: Agentic Workflows II
-- name: 'Unit 05: Current Generative AI'
-  days:
+    topics: Ethical Issues in LLMs
   - date: Tue 04/14
-    topics: Current Advancements in AI I
+    topics: Introduction to Agentic AI
   - date: Thu 04/16
-    topics: Current Advancements in AI II
+    topics: Agentic AI Workflows
   - date: Tue 04/21
-    topics: Current Advancements in AI III
+    topics: Multimodal Models
   - date: Thu 04/23
-    topics: Current Advancements in AI IV
+    topics: Current LLMs & Future Directions
 - name: Final
   days:
   - date: Tue 04/28

@@ -1,4 +1,4 @@
-title:      Introduction to Using Generative AI
+title:      Building ChatGPT
 icon:       fa-rocket
 navigation:
     - name: "Logistics"
@@ -27,13 +27,12 @@ body:       |
 
     **CSE 10124** is an elective course in the [Computer Science and
     Engineering] program at the [University of Notre Dame]. This course
-    serves as an introduction to working and learning with generative
-    artificial intelligence. In this course students will learn the fundamentals 
+    serves as an introduction to programming (in python) through the
+    semester long goal of building, from scratch, a large-language model (LLM)
+    similar to ChatGPT. Along the way students will learn the fundamentals 
     of using generative ai, including topics such as: prompt engineering, 
     meta-prompting, retrieval-augmented generation, context engineering, 
-    and agentic workflows. Additionally, students will recieve an overview of 
-    how these models work at the technical level including topics such as 
-    tokenization and self-attention.
+    and agentic workflows.
 
     [Computer Science and Engineering]:     http://cse.nd.edu
     [University of Notre Dame]:             http://www.nd.edu
@@ -46,13 +45,15 @@ body:       |
 
     Upon successful completion of this course, students will be able to:
 
-    1. **Evaluate** which model is appropriate for a given problem.
+    1. **Write** basic python.
 
-    2. **Utilize** modern prompting techniqes.
+    2. **Evaluate** which model is appropriate for a given problem.
 
-    3. **Implement** basic agentic workflows.
+    3. **Utilize** modern prompting techniqes.
 
-    4. **Assess** state-of-the-art models for common issues and biases.
+    4. **Implement** basic agentic workflows.
+
+    5. **Assess** state-of-the-art models for common issues and biases.
 
     </div>
 
@@ -70,8 +71,7 @@ body:       |
 
                     <dl>
                         <dt><i class="fa fa-clock-o"></i> Lecture</dt>
-                        <dd><strong>T / TR</strong>Section 01: 9:30 AM - 10:45 AM</dd>
-                        <dd><strong>T / TR</strong>Section 02: 12:30 PM - 1:45 PM</dd>
+                        <dd><strong>T / TR</strong>12:30 PM - 1:45 PM</dd>
 
                         <dt><i class="fa fa-home"></i> Location</dt>
                         <dd>{{ page.external['semester_info']['class_location'] }}</dd>
@@ -87,10 +87,9 @@ body:       |
                     <dl>
                         <dt><i class="fa fa-user"></i> Instructor</dt>
                         <dd><a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)</dd>
-                        <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
 
                         <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-                        <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 5:00 PM, and by <strong>appointment</strong></dd>
+                        <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
 
                         <dt><i class="fa fa-briefcase"></i> Office Location</dt>
                         <dd>356B Fitz</dd>
