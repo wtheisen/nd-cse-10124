@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Introduction to Using Generative AI</title>
+	<title>Building ChatGPT</title>
 
 	<!-- Theme CSS (toggleable) -->
 	<link id="theme-style" href="static/css/gruvbox-dark.css" rel="stylesheet">
@@ -243,7 +243,7 @@
 			<li><a href="#resources"><i class="fa fa-external-link"></i> <span class="visible-md-inline visible-lg-inline">Resources</span></a></li>
 			
 		    </ul>
-		    <h1><i class="fa fa-rocket"></i> Introduction to Using Generative AI</h1>
+		    <h1><i class="fa fa-rocket"></i> Building ChatGPT</h1>
 		</div>
 	    </div>
 
@@ -252,18 +252,20 @@
 <div class="row">
 <p><strong>CSE 10124</strong> is an elective course in the <a href="http://cse.nd.edu">Computer Science and
 Engineering</a> program at the <a href="http://www.nd.edu">University of Notre Dame</a>. This course
-serves as an introduction to working and learning with generative
-artificial intelligence. In this course students will learn the fundamentals 
+serves as an introduction to programming (in python) through the
+semester long goal of building, from scratch, a large-language model (LLM)
+similar to ChatGPT. Along the way students will learn the fundamentals 
 of using generative ai, including topics such as: prompt engineering, 
 meta-prompting, retrieval-augmented generation, context engineering, 
-and agentic workflows. Additionally, students will recieve an overview of 
-how these models work at the technical level including topics such as 
-tokenization and self-attention.</p>
+and agentic workflows.</p>
 </div>
 <p><img src="static/img/teaser.png" class="pull-right" style="margin-left: 10px; width: 40%"/></p>
 <div class="row">
 <p>Upon successful completion of this course, students will be able to:</p>
 <ol>
+<li>
+<p><strong>Write</strong> basic python.</p>
+</li>
 <li>
 <p><strong>Evaluate</strong> which model is appropriate for a given problem.</p>
 </li>
@@ -292,8 +294,7 @@ tokenization and self-attention.</p>
 
                 <dl>
                     <dt><i class="fa fa-clock-o"></i> Lecture</dt>
-                    <dd><strong>T / TR</strong>Section 01: 9:30 AM - 10:45 AM</dd>
-                    <dd><strong>T / TR</strong>Section 02: 12:30 PM - 1:45 PM</dd>
+                    <dd><strong>T / TR</strong>12:30 PM - 1:45 PM</dd>
 
                     <dt><i class="fa fa-home"></i> Location</dt>
                     <dd>119 Stin-Rem</dd>
@@ -309,10 +310,9 @@ tokenization and self-attention.</p>
                 <dl>
                     <dt><i class="fa fa-user"></i> Instructor</dt>
                     <dd><a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)</dd>
-                    <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
 
                     <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-                    <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 5:00 PM, and by <strong>appointment</strong></dd>
+                    <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
 
                     <dt><i class="fa fa-briefcase"></i> Office Location</dt>
                     <dd>356B Fitz</dd>
@@ -9541,7 +9541,7 @@ tokenization and self-attention.</p>
                         
                             
 
-                            <td id="unit-cell-Unit_01:_Introduction_to_LLMs" rowspan="6" class="text-strong text-primary text-center unit">Unit 01: Introduction to LLMs</td>
+                            <td id="unit-cell-Unit_01:_Introduction_to_Neural_Networks" rowspan="7" class="text-strong text-primary text-center unit">Unit 01: Introduction to Neural Networks</td>
                         
 
                         <td class="text-center text-strong"><tt>Thu 01/15</tt></td>
@@ -9551,8 +9551,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-prompt-engineering-i','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    Prompt Engineering I
+                                <span onclick="toggleResources('lec-text-as-data','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Text as Data
                                     
                                 </span>
                             
@@ -9579,8 +9579,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-failure-cases-of-llms','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    Failure Cases of LLMs
+                                <span onclick="toggleResources('lec-tokenization','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Tokenization
                                     
                                 </span>
                             
@@ -9607,8 +9607,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-tokenization','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    Tokenization
+                                <span onclick="toggleResources('lec-embeddings','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Embeddings
                                     
                                 </span>
                             
@@ -9635,8 +9635,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-high-dimensional-data','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    High Dimensional Data
+                                <span onclick="toggleResources('lec-linear-layers','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Linear Layers
                                     
                                 </span>
                             
@@ -9663,8 +9663,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-distributions-of-data','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    Distributions of Data
+                                <span onclick="toggleResources('lec-activation-functions','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Activation Functions
                                     
                                 </span>
                             
@@ -9691,8 +9691,36 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-llm-architectures','Unit_01:_Introduction_to_LLMs')" style="cursor: pointer;">
-                                    LLM Architectures
+                                <span onclick="toggleResources('lec-loss-functions','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Loss Functions
+                                    
+                                </span>
+                            
+                        
+
+                        
+
+                        </td>
+                        <td class="text-strong text-center">
+
+                        
+                        </td>
+                    </tr>
+                    
+                
+
+                    <tr class="topic-row">
+                        
+
+                        <td class="text-center text-strong"><tt>Thu 02/05</tt></td>
+                        <td class="text-strong">
+                        
+                        
+
+                        
+                            
+                                <span onclick="toggleResources('lec-training-neural-networks','Unit_01:_Introduction_to_Neural_Networks')" style="cursor: pointer;">
+                                    Training Neural Networks
                                     
                                 </span>
                             
@@ -9720,15 +9748,18 @@ tokenization and self-attention.</p>
                             <td id="unit-cell-Exam_01" rowspan="2" class="text-strong text-primary text-center unit">Exam 01</td>
                         
 
-                        <td class="text-center text-strong"><tt>Thu 02/05</tt></td>
+                        <td class="text-center text-strong"><tt>Tue 02/10</tt></td>
                         <td class="text-strong">
                         
                         
 
                         
                             
-                                <span onclick="toggleResources('lec-review','Exam_01')" style="cursor: pointer;">
-                                    Review
+                                <span onclick="toggleResources('lec-review-01','Exam_01')" style="cursor: pointer;">
+                                    Review 01
+                                    
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <i class="fa-solid fa-caret-right caret-icon" id="lec-review-01"></i>
                                     
                                 </span>
                             
@@ -9743,12 +9774,86 @@ tokenization and self-attention.</p>
                         </td>
                     </tr>
                     
+                        <tr id="resources-lec-review-01" class="resource-row" style="display: none;">
+                            <td colspan="3">
+                                
+                                <div class="row">
+    <div class="col-md-4">
+        <h4><i class="fa-solid fa-book"></i> Readings</h4>
+        <ul class="resource-list">
+        
+            
+                <li>
+                    
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    
+                    <a href="https://drive.google.com/file/d/1XJwJ_E783V5DEHsiN-Tv8Aga05ei_czg/view?usp=sharing">Slides</a>
+                    
+                </li>
+            
+        
+            
+        
+            
+                <li>
+                    
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    
+                    <a href="https://drive.google.com/file/d/1DBBNjQWo0S-oFf9i_UMxjRHD76fxn5Bg/view?usp=sharing">Supplementary Review Material</a>
+                    
+                </li>
+            
+        
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
+        <ul class="resource-list">
+        
+            
+        
+            
+                <li>
+                    
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    
+                    <a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3dd9db6b-22c5-4f96-8404-b369015fc155">Panopto</a>
+                    
+                </li>
+            
+        
+            
+        
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
+        <ul class="resource-list">
+        
+            
+        
+            
+        
+            
+        
+        </ul>
+    </div>
+</div>
+
+
+<div class="row">
+    
+</div>
+
+                            </td>
+                        </tr>
+                    
                 
 
                     <tr class="topic-row">
                         
 
-                        <td class="text-center text-strong"><tt>Tue 02/10</tt></td>
+                        <td class="text-center text-strong"><tt>Thu 02/12</tt></td>
                         <td class="text-strong">
                         
                         
@@ -9867,35 +9972,7 @@ tokenization and self-attention.</p>
                         
                             
 
-                            <td id="unit-cell-Unit_02:_Assessing_LLMs" rowspan="6" class="text-strong text-primary text-center unit">Unit 02: Assessing LLMs</td>
-                        
-
-                        <td class="text-center text-strong"><tt>Thu 02/12</tt></td>
-                        <td class="text-strong">
-                        
-                        
-
-                        
-                            
-                                <span onclick="toggleResources('lec-ethical-issues-in-data','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    Ethical Issues in Data
-                                    
-                                </span>
-                            
-                        
-
-                        
-
-                        </td>
-                        <td class="text-strong text-center">
-
-                        
-                        </td>
-                    </tr>
-                    
-                
-
-                    <tr class="topic-row">
+                            <td id="unit-cell-Unit_02:_Large-Language_Models" rowspan="5" class="text-strong text-primary text-center unit">Unit 02: Large-Language Models</td>
                         
 
                         <td class="text-center text-strong"><tt>Tue 02/17</tt></td>
@@ -9905,8 +9982,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-ethical-issues-in-llms','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    Ethical Issues in LLMs
+                                <span onclick="toggleResources('lec-self-attention','Unit_02:_Large-Language_Models')" style="cursor: pointer;">
+                                    Self-Attention
                                     
                                 </span>
                             
@@ -9933,8 +10010,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-ai-alignment','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    AI Alignment
+                                <span onclick="toggleResources('lec-multi-headed-attention','Unit_02:_Large-Language_Models')" style="cursor: pointer;">
+                                    Multi-Headed Attention
                                     
                                 </span>
                             
@@ -9961,8 +10038,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-prompt-engineering-ii','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    Prompt Engineering II
+                                <span onclick="toggleResources('lec-positional-encodings','Unit_02:_Large-Language_Models')" style="cursor: pointer;">
+                                    Positional Encodings
                                     
                                 </span>
                             
@@ -9989,8 +10066,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-assessing-llm-output','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    Assessing LLM Output
+                                <span onclick="toggleResources('lec-transformer-blocks','Unit_02:_Large-Language_Models')" style="cursor: pointer;">
+                                    Transformer Blocks
                                     
                                 </span>
                             
@@ -10017,8 +10094,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-explainable-ai','Unit_02:_Assessing_LLMs')" style="cursor: pointer;">
-                                    Explainable AI
+                                <span onclick="toggleResources('lec-sampling-randomness','Unit_02:_Large-Language_Models')" style="cursor: pointer;">
+                                    Sampling &amp; Randomness
                                     
                                 </span>
                             
@@ -10048,7 +10125,7 @@ tokenization and self-attention.</p>
                         
                             
 
-                            <td id="unit-cell-Unit_03:_Foundation_Models" rowspan="3" class="text-strong text-primary text-center unit">Unit 03: Foundation Models</td>
+                            <td id="unit-cell-Unit_03:_Training_LLMs" rowspan="3" class="text-strong text-primary text-center unit">Unit 03: Training LLMs</td>
                         
 
                         <td class="text-center text-strong"><tt>Thu 03/05</tt></td>
@@ -10058,8 +10135,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-current-foundation-models','Unit_03:_Foundation_Models')" style="cursor: pointer;">
-                                    Current Foundation Models
+                                <span onclick="toggleResources('lec-building-nanochat','Unit_03:_Training_LLMs')" style="cursor: pointer;">
+                                    Building nanochat
                                     
                                 </span>
                             
@@ -10086,8 +10163,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-multimodal-models-i','Unit_03:_Foundation_Models')" style="cursor: pointer;">
-                                    Multimodal Models I
+                                <span onclick="toggleResources('lec-training-llms','Unit_03:_Training_LLMs')" style="cursor: pointer;">
+                                    Training LLMs
                                     
                                 </span>
                             
@@ -10114,8 +10191,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-multimodal-models-ii','Unit_03:_Foundation_Models')" style="cursor: pointer;">
-                                    Multimodal Models II
+                                <span onclick="toggleResources('lec-rlhf','Unit_03:_Training_LLMs')" style="cursor: pointer;">
+                                    RLHF
                                     
                                 </span>
                             
@@ -10290,7 +10367,7 @@ tokenization and self-attention.</p>
                         
                             
 
-                            <td id="unit-cell-Unit_04:_Using_Generative_AI" rowspan="4" class="text-strong text-primary text-center unit">Unit 04: Using Generative AI</td>
+                            <td id="unit-cell-Unit_04:_Using_LLMs" rowspan="8" class="text-strong text-primary text-center unit">Unit 04: Using LLMs</td>
                         
 
                         <td class="text-center text-strong"><tt>Tue 03/31</tt></td>
@@ -10300,8 +10377,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-agentic-ai-i','Unit_04:_Using_Generative_AI')" style="cursor: pointer;">
-                                    Agentic AI I
+                                <span onclick="toggleResources('lec-evaluating-llms','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Evaluating LLMs
                                     
                                 </span>
                             
@@ -10328,8 +10405,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-agentic-ai-ii','Unit_04:_Using_Generative_AI')" style="cursor: pointer;">
-                                    Agentic AI II
+                                <span onclick="toggleResources('lec-prompt-engineering','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Prompt Engineering
                                     
                                 </span>
                             
@@ -10356,8 +10433,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-agentic-workflows-i','Unit_04:_Using_Generative_AI')" style="cursor: pointer;">
-                                    Agentic Workflows I
+                                <span onclick="toggleResources('lec-explainable-ai','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Explainable AI
                                     
                                 </span>
                             
@@ -10384,8 +10461,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-agentic-workflows-ii','Unit_04:_Using_Generative_AI')" style="cursor: pointer;">
-                                    Agentic Workflows II
+                                <span onclick="toggleResources('lec-ethical-issues-in-llms','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Ethical Issues in LLMs
                                     
                                 </span>
                             
@@ -10401,16 +10478,8 @@ tokenization and self-attention.</p>
                     </tr>
                     
                 
-            
-                
-
-                
 
                     <tr class="topic-row">
-                        
-                            
-
-                            <td id="unit-cell-Unit_05:_Current_Generative_AI" rowspan="4" class="text-strong text-primary text-center unit">Unit 05: Current Generative AI</td>
                         
 
                         <td class="text-center text-strong"><tt>Tue 04/14</tt></td>
@@ -10420,8 +10489,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-current-advancements-in-ai-i','Unit_05:_Current_Generative_AI')" style="cursor: pointer;">
-                                    Current Advancements in AI I
+                                <span onclick="toggleResources('lec-introduction-to-agentic-ai','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Introduction to Agentic AI
                                     
                                 </span>
                             
@@ -10448,8 +10517,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-current-advancements-in-ai-ii','Unit_05:_Current_Generative_AI')" style="cursor: pointer;">
-                                    Current Advancements in AI II
+                                <span onclick="toggleResources('lec-agentic-ai-workflows','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Agentic AI Workflows
                                     
                                 </span>
                             
@@ -10476,8 +10545,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-current-advancements-in-ai-iii','Unit_05:_Current_Generative_AI')" style="cursor: pointer;">
-                                    Current Advancements in AI III
+                                <span onclick="toggleResources('lec-multimodal-models','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Multimodal Models
                                     
                                 </span>
                             
@@ -10504,8 +10573,8 @@ tokenization and self-attention.</p>
 
                         
                             
-                                <span onclick="toggleResources('lec-current-advancements-in-ai-iv','Unit_05:_Current_Generative_AI')" style="cursor: pointer;">
-                                    Current Advancements in AI IV
+                                <span onclick="toggleResources('lec-current-llms-future-directions','Unit_04:_Using_LLMs')" style="cursor: pointer;">
+                                    Current LLMs &amp; Future Directions
                                     
                                 </span>
                             
