@@ -1,6 +1,8 @@
 id,name,type,link,is_primary,student,lecture_id
-slides,Slides,reading,https://drive.google.com/file/d/1yUot9T3myty2Tsx1KpXLxhyd77KbFlUl/view?usp=sharing,,,lec-introduction
-panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a449561f-8558-4c15-9d9f-b34401576fc6,,,lec-introduction
+filled-slides,Filled Slides,reading,https://drive.google.com/file/d/1yUot9T3myty2Tsx1KpXLxhyd77KbFlUl/view?usp=sharing,,,lec-introduction
+fa25-panopto,fa25 Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a449561f-8558-4c15-9d9f-b34401576fc6,,,lec-introduction
+blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1veX9IuAt6xwRQ1I9n270Jit-2Zkc4zp9/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-introduction
+panopto,Panopto,video,,FALSE,,lec-introduction
 slides,Slides,reading,https://drive.google.com/file/d/1Rc5V0QSkbObr1hWjcuLyDZ0dnPDhd538/view?usp=sharing,,,lec-search
 fca-section-35,FCA - Section 3.5,reading,https://artint.info/3e/html/ArtInt3e.Ch3.S5.html,,,lec-search
 panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=61ec6c47-5064-4cf2-aab5-b34601597a14,,,lec-search
