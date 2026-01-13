@@ -13,27 +13,24 @@ TAs:
     name: Michael Sorenson
     netid: msorenso
     office_hours:
-      Monday: 6:00 PM - 7:00 PM
-      Wednesday: 6:00 PM - 7:00 PM
-    oh_location: Inno Lounge
+      Monday: 6:00 PM - 7:00 PM | Inno Lounge
+      Wednesday: 6:00 PM - 7:00 PM | Inno Lounge
   mpinedam:
     github: TAPMelvin
     level: Undergraduate
     name: Melvin Pineda Miguel
     netid: mpinedam
     office_hours:
-      Tuesday: 5:00 PM - 6:00 PM
-      Thursday: 5:00 PM - 6:00 PM
-    oh_location: CSE Commons
+      Tuesday: 5:00 PM - 6:00 PM | CSE Commons
+      Thursday: 5:00 PM - 6:00 PM | CSE Commons
   ekoran:
     github: ethankoran
     level: Undergraduate
     name: Ethan Koran
     netid: ekoran
     office_hours:
-      Tuesday: 11:00 AM - 12:00 PM
-      Thursday: 11:00 AM - 12:00 PM
-    oh_location: CSE Commons 
+      Tuesday: 11:00 AM - 12:00 PM | CSE Commons
+      Thursday: 11:00 AM - 12:00 PM | CSE Commons
   tlohman:
     github: Thomas-Lohman
     level: Graduate
