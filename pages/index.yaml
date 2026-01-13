@@ -70,7 +70,7 @@ body:       |
 
                     <dl>
                         <dt><i class="fa fa-clock-o"></i> Lecture</dt>
-                        <dd><strong>T / TR</strong>12:30 PM - 1:45 PM</dd>
+                        <dd><strong>T / TR</strong> 12:30 PM - 1:45 PM</dd>
 
                         <dt><i class="fa fa-home"></i> Location</dt>
                         <dd>{{ page.external['semester_info']['class_location'] }}</dd>
@@ -137,9 +137,6 @@ body:       |
                 <i class="fa-solid fa-circle-info"></i>
                 <i class="fa-solid fa-caret-right"></i>
                 next to a topic for additional resources.
-
-                <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
-                indicates the required resource for the topic.
             </p>
         </div>
     </div>
@@ -334,11 +331,11 @@ body:       |
             </thead>
             <tbody>
                 <tr>
-                    <td><span class="label label-caution">Code</span>Code Copies</td>
+                    <td><span class="label label-caution">Code</span> Code Copies</td>
                     <td class="text-center">5 &times; 5</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-caution">Homework</span>Homework Assignments</td>
+                    <td><span class="label label-caution">Homework</span> Homework Assignments</td>
                     <td class="text-center">10 &times; 5</td>
                 </tr>
                 <tr>
