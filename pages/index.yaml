@@ -77,7 +77,7 @@ body:       |
                         <dd>{{ page.external['semester_info']['class_location'] }}</dd>
 
                         <dt><i class="fa fa-slack"></i> Slack</dt>
-                        <dd><a href="https://nd-cse.slack.com/messages/cse-10124-{{ term_code }}/">#cse-10124-{{ term_code }}</a></dd>
+                        <dd><a href="https://nd-cse.slack.com/messages/{{ term_code }}-cse-10124/">#{{ term_code }}-cse-10124</a></dd>
                     </dl>
                 </div>
 
@@ -92,7 +92,7 @@ body:       |
                         <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
 
                         <dt><i class="fa fa-briefcase"></i> Office Location</dt>
-                        <dd>356B Fitz</dd>
+                        <dd>350 Fitz</dd>
                     </dl>
                 </div>
             </div>
@@ -335,20 +335,20 @@ body:       |
             </thead>
             <tbody>
                 <tr>
-                    <td><span class="label label-primary">Reading</span> Readings</td>
-                    <td class="text-center">15 &times; 2</td>
+                    <td><span class="label label-caution">Code</span>Code Copies</td>
+                    <td class="text-center">5 &times; 5</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-caution">Homework</span> Group Homework Assignments</td>
-                    <td class="text-center">5 &times; 20</td>
+                    <td><span class="label label-caution">Homework</span>Homework Assignments</td>
+                    <td class="text-center">10 &times; 5</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-danger">Midterm</span> Midterm Exams (5 points for turning in exam practice packet)</td>
-                    <td class="text-center">2 &times; 50</td>
+                    <td><span class="label label-danger">Midterm</span> Midterm Exams (10 points for turning in exam practice packet)</td>
+                    <td class="text-center">2 &times; 70</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-danger">Exam</span> Final Exam (5 points for turning in exam practice packet)</td>
-                    <td class="text-center">1 &times; 70</td>
+                    <td><span class="label label-danger">Exam</span> Final Exam (10 points for turning in exam practice packet)</td>
+                    <td class="text-center">1 &times; 85</td>
                 </tr>
                 <tr>
                     <td class="text-strong text-right">Total</td>
