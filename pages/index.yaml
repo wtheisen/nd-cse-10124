@@ -18,6 +18,7 @@ external:
     tas:        'static/yaml/semester_info.yaml'
     schedule:   'static/yaml/schedule.yaml'
     semester_info: 'static/yaml/semester_info.yaml'
+    resources:  'csv:static/csv/resources.csv'
 body:       |
 
     {% set term_code = page.external['semester_info']['Term'][:2].lower() + page.external['semester_info']['Year'][-2:] %}

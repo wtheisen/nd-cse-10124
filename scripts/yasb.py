@@ -42,12 +42,29 @@ except Exception:
 PageFields = 'title prefix icon navigation internal external body'.split()
 Page       = collections.namedtuple('Page', PageFields)
 
+def slugify(s: str) -> str:
+    s = (s or '').lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s)
+    s = s.strip('-')
+    return s
+
+# Known aliases where the topic text doesn't match the desired slug
+LECTURE_ALIASES = {
+    'syllabus, history of ai': 'introduction',
+    'intro to ai': 'introduction',
+}
+
+def lecture_id_for(topic: str) -> str:
+    key = (topic or '').strip().lower()
+    slug = LECTURE_ALIASES.get(key, slugify(topic))
+    return f"lec-{slug}" if slug else ''
+
 def _load_csv_to_resources_map(src: str):
     """
     Load CSV from a URL or file path and return a mapping:
         { lecture_id: [ {name, type, link, student?}, ... ] }
 
-    The CSV should contain columns: lecture_id, name, link, [type], [student].
+    The CSV should contain columns: lecture_id (or topics), name, link, [type], [student].
     Header names are case-insensitive and spaces become underscores.
     """
     def normalize_headers(headers):
@@ -103,6 +120,13 @@ def _load_csv_to_resources_map(src: str):
         row = {k: (v or '').strip() for k, v in raw.items()}
 
         lecture_id = best_of(row, 'lecture_id', 'lecture', 'lecture id', 'topic_id')
+        if lecture_id:
+            if not lecture_id.startswith('lec-'):
+                lecture_id = lecture_id_for(lecture_id)
+        else:
+            topic = best_of(row, 'topics', 'topic', 'topic_name', 'lecture_topic')
+            if topic:
+                lecture_id = lecture_id_for(topic)
         name = best_of(row, 'name', 'title', 'resource', 'resource_name')
         link = best_of(row, 'link', 'url', 'href')
         rtype = best_of(row, 'type', 'category', 'format') or 'reading'
@@ -199,23 +223,6 @@ def render_page(page):
 '''.format(markdown.markdown(page.body, extensions=['extra', toc, hilite, footnotes], output_format='html5'))
 
     template = tornado.template.Template(layout, loader=loader)
-    def slugify(s: str) -> str:
-        s = (s or '').lower()
-        s = re.sub(r"[^a-z0-9]+", "-", s)
-        s = s.strip('-')
-        return s
-
-    # Known aliases where the topic text doesn't match the desired slug
-    LECTURE_ALIASES = {
-        'syllabus, history of ai': 'introduction',
-        'intro to ai': 'introduction',
-    }
-
-    def lecture_id_for(topic: str) -> str:
-        key = (topic or '').strip().lower()
-        slug = LECTURE_ALIASES.get(key, slugify(topic))
-        return f"lec-{slug}" if slug else ''
-
     def resources_for(resources_map, topic_or_id: str):
         if not isinstance(resources_map, dict):
             return []

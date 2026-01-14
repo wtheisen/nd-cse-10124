@@ -6,7 +6,7 @@ navigation:
     icon: "fa-gavel"
 internal:
 external:
-    resources:  'csv:static/csv/resources.csv'
+    resources:  'csv:static/yaml/course_resources.csv'
     semester_info: 'static/yaml/semester_info.yaml'
 body:       |
     {% set term_code = page.external['semester_info']['Term'][:2].lower() + page.external['semester_info']['Year'][-2:] %}

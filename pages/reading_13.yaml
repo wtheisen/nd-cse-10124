@@ -6,7 +6,7 @@ navigation:
     icon: "fa-gavel"
 internal:
 external:
-    resources:  'csv:static/csv/resources.csv'
+    resources:  'csv:static/yaml/course_resources.csv'
 body:       |
 
     ## Self-Attention and Transformers
