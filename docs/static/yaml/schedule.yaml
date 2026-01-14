@@ -1,7 +1,7 @@
 - name: Welcome
   days:
   - date: Tue 01/13
-    topics: What is an LLM?
+    topics: What is an LLM
 - name: 'Unit 01: Introduction to Neural Networks'
   days:
   - date: Thu 01/15
