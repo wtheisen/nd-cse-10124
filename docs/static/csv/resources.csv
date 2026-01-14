@@ -1,6 +1,47 @@
-,,,,,,,
-,id,Primary,Name,Type,Link,Student,Likes
-,filled-slides,,Filled Slides,reading,,,
-,blank-slides,FALSE,Blank Slides,reading,https://docs.google.com/presentation/d/1bK1n8PbekTNO2IkNs8jDs3qvpOP32XNq/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,,
-,panopto,FALSE,Panopto,video,,,
-,meow,FALSE,Meow,paper,,,
+id,name,type,link,is_primary,student,lecture_id
+filled-slides,Filled Slides,reading,,,,lec-what-is-an-llm
+blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1bK1n8PbekTNO2IkNs8jDs3qvpOP32XNq/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-what-is-an-llm
+panopto,Panopto,video,,FALSE,,lec-what-is-an-llm
+meow,Meow,paper,,FALSE,,lec-what-is-an-llm
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+slides,Slides,reading,,FALSE,,lec-review-01
+panopto,Panopto,video,,FALSE,,lec-review-01
+supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-01
+practice-packet-01,Practice Packet 01,assignment,,FALSE,,lec-exam-01
+practice-packet-01-solutions,Practice Packet 01 Solutions,assignment,,FALSE,,lec-exam-01
+exam-01,Exam 01,assignment,,FALSE,,lec-exam-01
+exam-01-solutions,Exam 01 Solutions,assignment,,FALSE,,lec-exam-01
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+slides,Slides,reading,,FALSE,,lec-review-02
+panopto,Panopto,video,,FALSE,,lec-review-02
+supplementary-review-material,Supplementary Review Material,reading,,FALSE,,lec-review-02
+practice-packet-02,Practice Packet 02,assignment,,FALSE,,lec-exam-02
+practice-packet-02-solutions,Practice Packet 02 Solutions,assignment,,FALSE,,lec-exam-02
+exam-02,Exam 02,assignment,,FALSE,,lec-exam-02
+exam-02-solutions,Exam 02 Solutions,assignment,,FALSE,,lec-exam-02
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+slides,Slides,reading,,FALSE,,lec-review-03
+panopto,Panopto,video,,FALSE,,lec-review-03
+practice-packet-03,Practice Packet 03,assignment,,FALSE,,lec-review-03
+practice-packet-03-slides,Practice Packet 03 (Slides),assignment,,FALSE,,lec-review-03
+practice-packet-03-solutions,Practice Packet 03 Solutions,assignment,,FALSE,,lec-review-03
