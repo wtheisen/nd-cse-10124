@@ -4,9 +4,15 @@ panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.
 notebook,Notebook,notebook,https://colab.research.google.com/drive/1VMJkbttGNFSkiicSbkQIubKsAlOx_r5A?usp=sharing,FALSE,,lec-text-as-data
 blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1YeO9aZq6c4hGDDmf41sa39hRAAOoobQk/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-text-as-data
 panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c8b69e13-32bc-489f-8f50-b3d3013c167f,FALSE,,lec-text-as-data
-notebook,Notebook,notebook,,FALSE,,lec-tokenization
-blank-slides,Blank Slides,reading,,FALSE,,lec-tokenization
+notebook,Notebook,notebook,https://colab.research.google.com/drive/1yQNCi_PwSy7fVr6uJdcCLKvL_yrYmuQ5?usp=sharing,FALSE,,lec-tokenization
+blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1Es2VLt-0EY-N2IHuUx8kL7gt063LNx-0/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-tokenization
 panopto,Panopto,video,,FALSE,,lec-tokenization
+bytepair-encoding-tokenization,Byte-Pair Encoding Tokenization,blogpost,https://huggingface.co/learn/llm-course/en/chapter6/5,FALSE,,lec-tokenization
+implementing-a-byte-pair-encoding-bpe-tokenizer-from-scratch,Implementing A Byte Pair Encoding (BPE) Tokenizer From Scratch,blogpost,https://sebastianraschka.com/blog/2025/bpe-from-scratch.html,FALSE,,lec-tokenization
+karpathyminbpe,karpathy/minbpe,notebook,https://github.com/karpathy/minbpe,FALSE,,lec-tokenization
+openai-tokenizer,OpenAI Tokenizer,reading,https://platform.openai.com/tokenizer,FALSE,,lec-tokenization
+llama38b-tokenizerjson,llama-3-8b tokenizer.json,notebook,https://huggingface.co/unsloth/llama-3-8b/raw/main/tokenizer.json,FALSE,,lec-tokenization
+lets-build-the-gpt-tokenizer,Let's build the GPT Tokenizer,video,https://www.youtube.com/watch?v=zduSFxRajkE,FALSE,,lec-tokenization
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
