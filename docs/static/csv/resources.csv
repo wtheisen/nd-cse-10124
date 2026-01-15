@@ -1,8 +1,11 @@
 id,name,type,link,is_primary,student,lecture_id
 filled-slides,Filled Slides,reading,,,,lec-what-is-an-llm
-blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1bK1n8PbekTNO2IkNs8jDs3qvpOP32XNq/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-what-is-an-llm
+blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1SrEhZuDvpcGfGgACfqW_dm-F84mrT6XS/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-what-is-an-llm
 panopto,Panopto,video,https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e683080f-dc16-4172-968f-b3d1012f964f,FALSE,,lec-what-is-an-llm
-#N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
+filled-slides,Filled Slides,reading,,,,lec-text-as-data
+blank-slides,Blank Slides,reading,https://docs.google.com/presentation/d/1YeO9aZq6c4hGDDmf41sa39hRAAOoobQk/edit?usp=sharing&ouid=111601855049772661603&rtpof=true&sd=true,FALSE,,lec-text-as-data
+panopto,Panopto,video,,FALSE,,lec-text-as-data
+notebook,Notebook,notebook,https://drive.google.com/file/d/1ZXobEduPTQSEhJDiLDG7UvOAqDOskdSI/view?usp=sharing,FALSE,,lec-text-as-data
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
 #N/A,#N/A,#N/A,#N/A,#N/A,#N/A,#N/A
