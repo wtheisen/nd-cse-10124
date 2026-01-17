@@ -211,6 +211,8 @@ body:       |
                             {% if 'topics' in day %}
                                 {% if day['topics'] == 'Office Hours' or day['topics'].startswith('Cancelled') %}
                                     <i class="text-muted">{{ day.get('topics', '') }}</i>
+                                {% elif 'homework' in day['topics'].lower() %}
+                                    <i class="text-caution">{{ day.get('topics', '') }}</i>
                                 {% elif 'exam' in day['topics'].lower() %}
                                     <i class="text-danger">{{ day.get('topics', '') }}</i>
                                 {% else %}
