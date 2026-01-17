@@ -26,6 +26,10 @@
     topics: Loss Functions
   - date: Thu 02/05
     topics: Training Neural Networks
+  - date: Sun 02/08
+    topics: Homework 03
+    assignments:
+    - Homework 03
 - name: Exam 01
   days:
   - date: Tue 02/10
@@ -36,10 +40,6 @@
     - Practice Packet 01
     - Practice Packet 01 Solutions
     - Exam 01
-  - date: Sun 02/15
-    topics: Homework 03
-    assignments:
-    - Homework 03
 - name: 'Unit 02: Large-Language Models'
   days:
   - date: Tue 02/17
@@ -93,6 +93,9 @@
     topics: Evaluating LLMs
   - date: Thu 04/02
     topics: Prompt Engineering
+- name: Easter Break
+- name: 'Unit 04: Using LLMs'
+  days:
   - date: Tue 04/07
     topics: Explainable AI
   - date: Thu 04/09
