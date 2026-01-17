@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="gruvbox-dark">
+<html lang="en">
     <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 
 	<title>Reading 03: Knowledge Representation, Feature Engineering, and Decision Trees</title>
 
-	<!-- Theme CSS (toggleable) -->
-	<link id="theme-style" href="static/css/gruvbox-dark.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="static/css/blugold.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,203 +23,6 @@
 	body {
 	    padding: 10px;
 	}
-	.resource-list {
-	    list-style: none;
-	    padding-left: 0;
-	    margin-bottom: 1.25em;
-	}
-	.resource-credit {
-	    margin-left: 0.5em;
-	    font-size: 0.85em;
-	    color: #777;
-	    font-style: italic;
-	}
-	.resource-credit::before {
-	    content: "\2014";
-	    margin-right: 0.35em;
-	}
-#library-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 10px;
-    max-height: 540px;
-    overflow-y: auto;
-    padding-right: 8px;
-}
-.library-card-wrapper {
-    flex: 1 1 calc(20% - 16px);
-    max-width: calc(20% - 16px);
-    min-width: 180px;
-    display: flex;
-    max-height: 100%;
-}
-    .theme-toggle-btn {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 54px;
-        height: 28px;
-        margin-top: 8px;
-        margin-left: 12px;
-        padding: 0 8px;
-        border-radius: 999px;
-        border: 1px solid rgba(15, 23, 42, 0.18);
-        background-color: #f2f6ff;
-        cursor: pointer;
-        transition: background-color 0.25s ease, border-color 0.25s ease;
-    }
-    .theme-toggle-btn:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
-    }
-    .theme-toggle-btn .theme-icon,
-    .theme-toggle-btn .theme-toggle-handle {
-        pointer-events: none;
-    }
-    .theme-toggle-btn .theme-icon {
-        font-size: 0.85em;
-        opacity: 0.5;
-        transition: opacity 0.25s ease;
-        position: relative;
-        z-index: 2;
-    }
-    .theme-toggle-btn .theme-icon--sun {
-        color: #f59e0b;
-        opacity: 1;
-    }
-    .theme-toggle-btn .theme-icon--moon {
-        color: #c084fc;
-    }
-    .theme-toggle-btn .theme-toggle-handle {
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: #ffffff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-        transition: transform 0.25s ease, background-color 0.25s ease;
-        z-index: 1;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn {
-        background-color: #f2f6ff;
-        border-color: rgba(15, 23, 42, 0.18);
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-toggle-handle {
-        transform: translateX(0);
-        background-color: #ffffff;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--sun {
-        opacity: 1;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--moon {
-        opacity: 0.35;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn {
-        background-color: #3c3836;
-        border-color: #665c54;
-        color: #ebdbb2;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-toggle-handle {
-        transform: translateX(26px);
-        background-color: #1d2021;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--sun {
-        opacity: 0.35;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--moon {
-        opacity: 1;
-    }
-	.library-card {
-	    display: flex;
-	    flex-direction: column;
-	    width: 100%;
-	    border-radius: 6px;
-	    border: 1px solid #ddd;
-	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-	    overflow: hidden;
-	    background-color: #fff;
-	    color: #333;
-	}
-	.library-card-cover {
-	    aspect-ratio: 2 / 3;
-	    width: 100%;
-	    min-height: 220px;
-	    max-height: 320px;
-	    background-color: #f7f7f7;
-	    display: grid;
-	    place-items: center;
-	    overflow: hidden;
-	    padding: 6px;
-	}
-	.library-card-cover img {
-	    width: 100%;
-	    height: 100%;
-	    object-fit: contain;
-	    background-color: transparent;
-	}
-	.library-card-body {
-	    flex: 1 1 auto;
-	    display: flex;
-	    flex-direction: column;
-	}
-	.library-card-title {
-	    margin-top: 0;
-	    font-size: 0.95em;
-	    line-height: 1.35;
-	    min-height: 2.7em;
-	}
-	.library-card-meta {
-	    font-size: 0.82em;
-	    color: #555;
-	    margin-bottom: 6px;
-	}
-	.library-card-footer {
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
-	    font-size: 0.78em;
-	}
-	[data-theme="gruvbox-dark"] .library-card {
-	    border-color: #504945;
-	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
-	    background-color: #282828;
-	    color: #ebdbb2;
-	}
-	[data-theme="gruvbox-dark"] .library-card-cover {
-	    background-color: #32302f;
-	}
-	[data-theme="gruvbox-dark"] .library-card-body {
-	    color: #ebdbb2;
-	}
-	[data-theme="gruvbox-dark"] .library-card-footer {
-	    color: #d5c4a1;
-	}
-	[data-theme="gruvbox-dark"] .library-card-title,
-	[data-theme="gruvbox-dark"] .library-card-meta {
-	    color: #d5c4a1;
-	}
-	.embed-responsive {
- 	    border-radius: 8px;
- 	    border: 1px solid rgba(30, 41, 59, 0.18);
- 	    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
- 	    overflow: hidden;
- 	    margin-bottom: 18px;
-	}
-	.course-embed {
-	    background-color: #ffffff;
-	}
-	[data-theme="gruvbox-dark"] .embed-responsive {
-	    border-color: #665c54;
-	    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-	    background-color: rgba(40, 40, 40, 0.9);
-	}
-	[data-theme="gruvbox-dark"] .course-embed {
-	    background-color: rgba(40, 40, 40, 0.9);
-	}
 	</style>
     </head>
     <body>
@@ -227,11 +30,6 @@
 
 	    <div class="row">
 		<div class="page-header">
-		    <button type="button" class="theme-toggle-btn pull-right" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
-			<span class="theme-icon theme-icon--sun"><i class="fa-solid fa-sun"></i></span>
-			<span class="theme-icon theme-icon--moon"><i class="fa-solid fa-moon"></i></span>
-			<span class="theme-toggle-handle"></span>
-		    </button>
 		    <ul class="nav nav-pills pull-right">
 			
 			<li><a href="index.html"><i class="fa fa-gavel"></i> <span class="visible-md-inline visible-lg-inline">Home</span></a></li>
@@ -242,351 +40,36 @@
 	    </div>
 
 		
-<h2 id="knowledge-representation-and-feature-engineering">Knowledge Representation and Feature Engineering:<a class="headerlink" href="#knowledge-representation-and-feature-engineering" title="Permanent link">&para;</a></h2>
-<table>
-    <tr>
-        <td colspan="3">
-            
-            <div class="row">
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-book"></i> Readings</h4>
-        <ul class="resource-list">
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://drive.google.com/file/d/1PZTiiiTxianayPFHaLom8LYglS-ZSm0W/view?usp=sharing">Slides</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://artint.info/3e/html/ArtInt3e.Ch5.html">FCA - Chapters 5, 15, and 16</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d450ea46-dd55-498e-9af6-b2790167db7c">Panopto</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.youtube.com/watch?v=HWQLez87vqM">Harvard CS50</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.youtube.com/watch?v=RIk67yGMVv4&amp;list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&amp;index=44">Stanford CS221</a>
-                    
-                </li>
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-</div>
-
-
-<div class="row">
-    
-</div>
-
-        </td>
-    </tr>
-</table>
-
-<h2 id="decision-trees">Decision Trees:<a class="headerlink" href="#decision-trees" title="Permanent link">&para;</a></h2>
-<table>
-    <tr>
-        <td colspan="3">
-            
-            <div class="row">
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-book"></i> Readings</h4>
-        <ul class="resource-list">
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://drive.google.com/file/d/1jNOF7nxXn-fkEwuArrLaG6cmbl9b-iJx/view?usp=sharing">Slides</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://artint.info/3e/html/ArtInt3e.Ch7.S3.html">FCA - Sections 7.2 and 7.3.1</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://probml.github.io/pml-book/book1.html">PML - Chapter 18</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.statlearning.com/">ISLP - Chapter 8</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html">UML - Chapter 18</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=bf4e157a-ee3d-48b6-ac07-b27b016b88f3">Panopto</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.youtube.com/watch?v=SXBG3RGr_Rc">MIT 6.034</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/a3ioGSwfVpE?si=f0JevsrXU2q3LZw6">Cornell CS4780</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/YtebGVx-Fxw?si=zC-J1JrOOe64b8cM">Entropy (StatQuest)</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/7VeUPuFGJHk?si=SO3AHNT9KX1vJdln">Decision Trees (StatQuest)</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/g9c66TUylZ4?si=SpvGvKvq9DmjLXYi">Regression Trees (StatQuest)</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/v68zYyaEmEA?si=0mkPXsH4BYhxzSCl">Information Theory (3b1b)</a>
-                    
-                </li>
-            
-        
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://colab.research.google.com/drive/1C8MwpktYioRquWU_tz98funLSbe8nM5x?usp=sharing">Playing Tennis Decision Tree</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-</div>
-
-
-<div class="row">
-    
-        <div class="col-md-12">
-            <h4><i class="fa-solid fa-share-alt"></i> Blogposts</h4>
-            <ul class="resource-list">
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://mlu-explain.github.io/decision-tree/">Decision Trees (MLU)</a>
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-</div>
-
-        </td>
-    </tr>
-</table>
-
+<h2 id="knowledge-representation-and-feature-engineering-logical-based-artificial-intelligence-and-expert-systems-blogpost">Knowledge Representation and Feature Engineering: <a href="https://www.primaryobjects.com/2018/07/23/logical-based-artificial-intelligence-and-expert-systems/">Logical-Based Artificial Intelligence and Expert Systems (blogpost)</a><a class="headerlink" href="#knowledge-representation-and-feature-engineering-logical-based-artificial-intelligence-and-expert-systems-blogpost" title="Permanent link">&para;</a></h2>
+<p>Additional Resources:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=HWQLez87vqM">Harvard CS50 (Video)</a></li>
+<li><a href="https://www.youtube.com/watch?v=RIk67yGMVv4&amp;list=PLoROMvodv4rOca_Ovz1DvdtWuz8BfSWL2&amp;index=44">Stanford CS221 (Video)</a></li>
+<li><a href="https://artint.info/3e/html/ArtInt3e.Ch5.html">Foundations of Computational Agents - Chapters 5, 15, and 16 (Reading)</a></li>
+<li><a href="https://www.primaryobjects.com/2020/10/26/designing-an-artificial-intelligence-agent-to-navigate-a-world/">Designing an Artificial Intelligence Agent to Navigate a World (blogpost)</a></li>
+</ul>
+<h2 id="decision-trees-decision-trees-mlu-blog-post">Decision Trees: <a href="https://mlu-explain.github.io/decision-tree/">Decision Trees (MLU) (Blog Post)</a><a class="headerlink" href="#decision-trees-decision-trees-mlu-blog-post" title="Permanent link">&para;</a></h2>
+<p>Additional Resources:</p>
+<ul>
+<li><a href="https://artint.info/3e/html/ArtInt3e.Ch7.S3.html">Foundations of Computational Agents - Sections 7.2 and 7.3.1 (Reading)</a></li>
+<li><a href="https://probml.github.io/pml-book/book1.html">Probabilistic Machine Learning - Chapter 18 (Reading)</a></li>
+<li><a href="https://www.statlearning.com/">Introduction to Statistical Learning - Chapter 8 (Reading)</a></li>
+<li><a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/copy.html">Understanding Machine Learning - Chapter 18 (Reading)</a></li>
+<li><a href="https://www.youtube.com/watch?v=SXBG3RGr_Rc">MIT 6.034 (Video)</a></li>
+<li><a href="https://youtu.be/a3ioGSwfVpE?si=f0JevsrXU2q3LZw6">Cornell CS4780 (Video)</a></li>
+<li><a href="https://colab.research.google.com/drive/1C8MwpktYioRquWU_tz98funLSbe8nM5x?usp=sharing">Playing Tennis Decision Tree (Notebook)</a></li>
+<li><a href="https://youtu.be/YtebGVx-Fxw?si=zC-J1JrOOe64b8cM">Entropy (StatQuest) (Video)</a></li>
+<li><a href="https://youtu.be/7VeUPuFGJHk?si=SO3AHNT9KX1vJdln">Decision Trees (StatQuest) (Video)</a></li>
+<li><a href="https://youtu.be/g9c66TUylZ4?si=SpvGvKvq9DmjLXYi">Regression Trees (StatQuest) (Video)</a></li>
+<li><a href="https://youtu.be/v68zYyaEmEA?si=0mkPXsH4BYhxzSCl">Information Theory (3b1b) (Video)</a></li>
+<li><a href="https://www.r2d3.us/visual-intro-to-machine-learning-part-1/">Decision Trees (r2d3) (Blog Post)</a></li>
+<li><a href="https://victorzhou.com/blog/information-gain/">IG and Entropy (Zhou) (Blog Post)</a></li>
+<li><a href="https://colah.github.io/posts/2015-09-Visual-Information/">Information Theory (Olah) (Blog Post)</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0020737369800283">(1966) Experiments in Induction (Hunt et al.) (Paper)</a></li>
+<li><a href="https://link.springer.com/article/10.1007/BF00116251">(1986) Induction of Decision Trees (Quinlan) (Paper)</a></li>
+<li><a href="https://www.taylorfrancis.com/books/mono/10.1201/9781315139470/classification-regression-trees-leo-breiman-jerome-friedman-olshen-charles-stone">(1984) Classification and Regression Trees (Brieman et al.) (Paper)</a></li>
+</ul>
 <h2 id="reading-quiz-03">Reading Quiz 03<a class="headerlink" href="#reading-quiz-03" title="Permanent link">&para;</a></h2>
-<p>Please respond to the quiz below, you will need to be signed into your ND email in order to respond. You may edit your responses after each submission, so there's really no reason you shouldn't get full credit on these!</p>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd3UkvQcs3LuzsP-XCLhr3PNeMXyUru47i9gUR_MQeLn-26eg/viewform?embedded=true" width="640" height="2830" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
 
@@ -616,67 +99,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	
-	<script>
-	(function() {
-	    var STORAGE_KEY = 'ai-landing-theme';
-	    var prefix = '';
-	    var themes = {
-	        'gruvbox-dark': prefix + 'static/css/gruvbox-dark.css',
-	        'gruvbox-light': prefix + 'static/css/gruvbox-light.css'
-	    };
-	    var linkEl = document.getElementById('theme-style');
-	    var toggleBtn = document.getElementById('theme-toggle');
-	    if (!linkEl || !toggleBtn) {
-	        return;
-	    }
-        function updateButton(theme) {
-            var isDark = theme === 'gruvbox-dark';
-            var label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
-            toggleBtn.setAttribute('aria-label', label);
-            toggleBtn.setAttribute('title', label);
-            toggleBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
-        }
-        function updateNotebookFrames(theme) {
-            var frames = document.querySelectorAll('iframe[data-src-dark][data-src-light]');
-            var attr = theme === 'gruvbox-light' ? 'data-src-light' : 'data-src-dark';
-            Array.prototype.forEach.call(frames, function(frame) {
-                var nextSrc = frame.getAttribute(attr);
-                if (nextSrc && frame.getAttribute('src') !== nextSrc) {
-                    frame.setAttribute('src', nextSrc);
-                }
-            });
-        }
-        function applyTheme(theme) {
-            var name = themes[theme] ? theme : 'gruvbox-dark';
-            linkEl.setAttribute('href', themes[name]);
-            document.documentElement.setAttribute('data-theme', name);
-            updateButton(name);
-            updateNotebookFrames(name);
-            return name;
-        }
-	    var savedTheme = (function() {
-	        try {
-	            return localStorage.getItem(STORAGE_KEY);
-	        } catch (err) {
-	            return null;
-	        }
-    })();
-        var currentTheme = applyTheme(savedTheme);
-        document.addEventListener('themechange', function(event) {
-            updateNotebookFrames(event.detail || currentTheme);
-        });
-        toggleBtn.addEventListener('click', function() {
-            var nextTheme = currentTheme === 'gruvbox-dark' ? 'gruvbox-light' : 'gruvbox-dark';
-            currentTheme = applyTheme(nextTheme);
-            document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
-            try {
-                localStorage.setItem(STORAGE_KEY, currentTheme);
-            } catch (err) {
-                /* ignore write errors */
-            }
-        });
-	})();
-	</script>
     </body>
 </html>
 

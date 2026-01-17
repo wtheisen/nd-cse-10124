@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="gruvbox-dark">
+<html lang="en">
     <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +9,8 @@
 
 	<title>Reading 11: Natural Language Processing and Recurrent Neural Networks</title>
 
-	<!-- Theme CSS (toggleable) -->
-	<link id="theme-style" href="static/css/gruvbox-dark.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="static/css/blugold.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,203 +23,6 @@
 	body {
 	    padding: 10px;
 	}
-	.resource-list {
-	    list-style: none;
-	    padding-left: 0;
-	    margin-bottom: 1.25em;
-	}
-	.resource-credit {
-	    margin-left: 0.5em;
-	    font-size: 0.85em;
-	    color: #777;
-	    font-style: italic;
-	}
-	.resource-credit::before {
-	    content: "\2014";
-	    margin-right: 0.35em;
-	}
-#library-card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 10px;
-    max-height: 540px;
-    overflow-y: auto;
-    padding-right: 8px;
-}
-.library-card-wrapper {
-    flex: 1 1 calc(20% - 16px);
-    max-width: calc(20% - 16px);
-    min-width: 180px;
-    display: flex;
-    max-height: 100%;
-}
-    .theme-toggle-btn {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 54px;
-        height: 28px;
-        margin-top: 8px;
-        margin-left: 12px;
-        padding: 0 8px;
-        border-radius: 999px;
-        border: 1px solid rgba(15, 23, 42, 0.18);
-        background-color: #f2f6ff;
-        cursor: pointer;
-        transition: background-color 0.25s ease, border-color 0.25s ease;
-    }
-    .theme-toggle-btn:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
-    }
-    .theme-toggle-btn .theme-icon,
-    .theme-toggle-btn .theme-toggle-handle {
-        pointer-events: none;
-    }
-    .theme-toggle-btn .theme-icon {
-        font-size: 0.85em;
-        opacity: 0.5;
-        transition: opacity 0.25s ease;
-        position: relative;
-        z-index: 2;
-    }
-    .theme-toggle-btn .theme-icon--sun {
-        color: #f59e0b;
-        opacity: 1;
-    }
-    .theme-toggle-btn .theme-icon--moon {
-        color: #c084fc;
-    }
-    .theme-toggle-btn .theme-toggle-handle {
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: #ffffff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-        transition: transform 0.25s ease, background-color 0.25s ease;
-        z-index: 1;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn {
-        background-color: #f2f6ff;
-        border-color: rgba(15, 23, 42, 0.18);
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-toggle-handle {
-        transform: translateX(0);
-        background-color: #ffffff;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--sun {
-        opacity: 1;
-    }
-    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--moon {
-        opacity: 0.35;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn {
-        background-color: #3c3836;
-        border-color: #665c54;
-        color: #ebdbb2;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-toggle-handle {
-        transform: translateX(26px);
-        background-color: #1d2021;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--sun {
-        opacity: 0.35;
-    }
-    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--moon {
-        opacity: 1;
-    }
-	.library-card {
-	    display: flex;
-	    flex-direction: column;
-	    width: 100%;
-	    border-radius: 6px;
-	    border: 1px solid #ddd;
-	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-	    overflow: hidden;
-	    background-color: #fff;
-	    color: #333;
-	}
-	.library-card-cover {
-	    aspect-ratio: 2 / 3;
-	    width: 100%;
-	    min-height: 220px;
-	    max-height: 320px;
-	    background-color: #f7f7f7;
-	    display: grid;
-	    place-items: center;
-	    overflow: hidden;
-	    padding: 6px;
-	}
-	.library-card-cover img {
-	    width: 100%;
-	    height: 100%;
-	    object-fit: contain;
-	    background-color: transparent;
-	}
-	.library-card-body {
-	    flex: 1 1 auto;
-	    display: flex;
-	    flex-direction: column;
-	}
-	.library-card-title {
-	    margin-top: 0;
-	    font-size: 0.95em;
-	    line-height: 1.35;
-	    min-height: 2.7em;
-	}
-	.library-card-meta {
-	    font-size: 0.82em;
-	    color: #555;
-	    margin-bottom: 6px;
-	}
-	.library-card-footer {
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
-	    font-size: 0.78em;
-	}
-	[data-theme="gruvbox-dark"] .library-card {
-	    border-color: #504945;
-	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
-	    background-color: #282828;
-	    color: #ebdbb2;
-	}
-	[data-theme="gruvbox-dark"] .library-card-cover {
-	    background-color: #32302f;
-	}
-	[data-theme="gruvbox-dark"] .library-card-body {
-	    color: #ebdbb2;
-	}
-	[data-theme="gruvbox-dark"] .library-card-footer {
-	    color: #d5c4a1;
-	}
-	[data-theme="gruvbox-dark"] .library-card-title,
-	[data-theme="gruvbox-dark"] .library-card-meta {
-	    color: #d5c4a1;
-	}
-	.embed-responsive {
- 	    border-radius: 8px;
- 	    border: 1px solid rgba(30, 41, 59, 0.18);
- 	    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
- 	    overflow: hidden;
- 	    margin-bottom: 18px;
-	}
-	.course-embed {
-	    background-color: #ffffff;
-	}
-	[data-theme="gruvbox-dark"] .embed-responsive {
-	    border-color: #665c54;
-	    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-	    background-color: rgba(40, 40, 40, 0.9);
-	}
-	[data-theme="gruvbox-dark"] .course-embed {
-	    background-color: rgba(40, 40, 40, 0.9);
-	}
 	</style>
     </head>
     <body>
@@ -227,11 +30,6 @@
 
 	    <div class="row">
 		<div class="page-header">
-		    <button type="button" class="theme-toggle-btn pull-right" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
-			<span class="theme-icon theme-icon--sun"><i class="fa-solid fa-sun"></i></span>
-			<span class="theme-icon theme-icon--moon"><i class="fa-solid fa-moon"></i></span>
-			<span class="theme-toggle-handle"></span>
-		    </button>
 		    <ul class="nav nav-pills pull-right">
 			
 			<li><a href="index.html"><i class="fa fa-gavel"></i> <span class="visible-md-inline visible-lg-inline">Home</span></a></li>
@@ -242,168 +40,78 @@
 	    </div>
 
 		
-<h2 id="recurrent-neural-networks">Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permanent link">&para;</a></h2>
-<table>
-    <tr>
-        <td colspan="3">
-            
-            <div class="row">
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-book"></i> Readings</h4>
-        <ul class="resource-list">
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://docs.google.com/presentation/d/1PTVKf1WqOO8i0ERlykTnSDb-NdkctqqY/edit?usp=sharing&amp;ouid=111601855049772661603&amp;rtpof=true&amp;sd=true">Slides</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://artint.info/3e/html/ArtInt3e.Ch8.S5.html">FCA - Section 8.5 until 8.5.4</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://probml.github.io/pml-book/book1.html">PML - Section 15.2</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.statlearning.com/">ISLP - Section 10.5</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://d2l.ai/chapter_recurrent-neural-networks/index.html">D2L - Chapters 9 and 10</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://www.youtube.com/watch?v=J1QD9hLDEDY">Harvard CS50 (1:27:00 - end)</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/AsNTP8Kwu80?si=Dm7SlTxtLYedMi7R">RNNs (StatQuest)</a>
-                    
-                </li>
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://youtu.be/YCzL96nL7j0?si=cy5A4boGNLkMu6os">LSTMs (StatQuest)</a>
-                    
-                </li>
-            
-        
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
-        <ul class="resource-list">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <li>
-                    
-                        <span style="display:inline-block; width: 1em;">&bull;</span>
-                    
-                    <a href="https://colab.research.google.com/drive/1soMewNR1oVJvznbfa6oI1PUnKeblZdRc?usp=sharing">Character-Level LSTM</a>
-                    
-                </li>
-            
-        
-            
-        
-            
-        
-        </ul>
-    </div>
-</div>
-
-
-<div class="row">
-    
-</div>
-
-        </td>
-    </tr>
-</table>
-
+<p><strong>Everyone</strong>:</p>
+<h2 id="materials">Materials<a class="headerlink" href="#materials" title="Permanent link">&para;</a></h2>
+<h3 id="perceptrons">Perceptrons<a class="headerlink" href="#perceptrons" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><a href="https://probml.github.io/pml-book/book1.html">Probabilistic Machine Learning</a></p>
+<ul>
+<li><a href="https://probml.github.io/pml-book/book1.html">Sections 10.2.5 (Reading)</a></li>
+</ul>
+</li>
+<li>
+<p>Additional Resources</p>
+</li>
+</ol>
+<h3 id="logistic-regression">Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><a href="https://artint.info/3e/html/ArtInt3e.html">Foundations of Computational Agents</a></p>
+<ul>
+<li><a href="https://artint.info/3e/html/ArtInt3e.Ch7.S3.html">Section 7.3.2 (Reading)</a></li>
+</ul>
+</li>
+<li>
+<p>Additional Resources</p>
+</li>
+</ol>
+<h3 id="gradient-descent">Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permanent link">&para;</a></h3>
 <h2 id="quiz">Quiz<a class="headerlink" href="#quiz" title="Permanent link">&para;</a></h2>
+<p>Once you have done the readings, answer the following <a href="static/json/reading02.json">Reading 02 Quiz</a>
+questions:</p>
+<div id="quiz-questions"></div>
+
+<div id="quiz-responses"></div>
+
+<script src="static/js/dredd-quiz.js"></script>
+<script>
+loadQuiz('static/json/reading02.json');
+</script>
+
+<pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+<h2 id="submission">Submission<a class="headerlink" href="#submission" title="Permanent link">&para;</a></h2>
+<p>To submit you work, follow the same process outlined in <a href="reading00.html">Reading 00</a>:</p>
+<div class="codehilite" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>checkout<span style="color: #BBB"> </span>master<span style="color: #BBB">                 </span><span style="color: #3D7B7B; font-style: italic"># Make sure we are in master branch</span>
+$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>pull<span style="color: #BBB"> </span>--rebase<span style="color: #BBB">                   </span><span style="color: #3D7B7B; font-style: italic"># Make sure we are up-to-date with GitHub</span>
+
+$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>checkout<span style="color: #BBB"> </span>-b<span style="color: #BBB"> </span>reading02<span style="color: #BBB">           </span><span style="color: #3D7B7B; font-style: italic"># Create reading02 branch and check it out</span>
+
+$<span style="color: #BBB"> </span><span style="color: #008000">cd</span><span style="color: #BBB"> </span>reading02<span style="color: #BBB">                        </span><span style="color: #3D7B7B; font-style: italic"># Go into reading02 folder</span>
+$<span style="color: #BBB"> </span><span style="color: #19177C">$EDITOR</span><span style="color: #BBB"> </span>answers.json<span style="color: #BBB">                </span><span style="color: #3D7B7B; font-style: italic"># Edit your answers.json file</span>
+
+$<span style="color: #BBB"> </span>../.scripts/check.py<span style="color: #BBB">                </span><span style="color: #3D7B7B; font-style: italic"># Check reading02 quiz</span>
+Checking<span style="color: #BBB"> </span>reading02<span style="color: #BBB"> </span>quiz<span style="color: #BBB"> </span>...
+<span style="color: #BBB">      </span>Q1<span style="color: #BBB"> </span><span style="color: #666">0</span>.60
+<span style="color: #BBB">      </span>Q2<span style="color: #BBB"> </span><span style="color: #666">0</span>.60
+<span style="color: #BBB">      </span>Q3<span style="color: #BBB"> </span><span style="color: #666">0</span>.90
+<span style="color: #BBB">      </span>Q4<span style="color: #BBB"> </span><span style="color: #666">0</span>.90
+<span style="color: #BBB">   </span>Score<span style="color: #BBB"> </span><span style="color: #666">3</span>.00<span style="color: #BBB"> </span>/<span style="color: #BBB"> </span><span style="color: #666">3</span>.00
+<span style="color: #BBB">  </span>Status<span style="color: #BBB"> </span>Success
+
+$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>add<span style="color: #BBB"> </span>answers.json<span style="color: #BBB">                </span><span style="color: #3D7B7B; font-style: italic"># Add answers.json to staging area</span>
+$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>commit<span style="color: #BBB"> </span>-m<span style="color: #BBB"> </span><span style="color: #BA2121">&quot;Reading 02: Done&quot;</span><span style="color: #BBB">    </span><span style="color: #3D7B7B; font-style: italic"># Commit work</span>
+
+$<span style="color: #BBB"> </span>git<span style="color: #BBB"> </span>push<span style="color: #BBB"> </span>-u<span style="color: #BBB"> </span>origin<span style="color: #BBB"> </span>reading02<span style="color: #BBB">        </span><span style="color: #3D7B7B; font-style: italic"># Push branch to GitHub</span>
+</code></pre></div>
+
+<div class="alert alert-success">
+<h4 id="pull-request"><i class="fa fa-github"></i> Pull Request<a class="headerlink" href="#pull-request" title="Permanent link">&para;</a></h4>
+<p>Once you have committed your work and pushed it to <a href="https://github.com">GitHub</a>, remember to
+create a <strong>pull request</strong> and assign it to the appropriate <strong>teaching
+assistant</strong> from the <a href="reading02_tas.html">Reading 02 TA List</a>.</p>
+</div>
 
 
 	    <div class="row">
@@ -432,67 +140,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	
-	<script>
-	(function() {
-	    var STORAGE_KEY = 'ai-landing-theme';
-	    var prefix = '';
-	    var themes = {
-	        'gruvbox-dark': prefix + 'static/css/gruvbox-dark.css',
-	        'gruvbox-light': prefix + 'static/css/gruvbox-light.css'
-	    };
-	    var linkEl = document.getElementById('theme-style');
-	    var toggleBtn = document.getElementById('theme-toggle');
-	    if (!linkEl || !toggleBtn) {
-	        return;
-	    }
-        function updateButton(theme) {
-            var isDark = theme === 'gruvbox-dark';
-            var label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
-            toggleBtn.setAttribute('aria-label', label);
-            toggleBtn.setAttribute('title', label);
-            toggleBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
-        }
-        function updateNotebookFrames(theme) {
-            var frames = document.querySelectorAll('iframe[data-src-dark][data-src-light]');
-            var attr = theme === 'gruvbox-light' ? 'data-src-light' : 'data-src-dark';
-            Array.prototype.forEach.call(frames, function(frame) {
-                var nextSrc = frame.getAttribute(attr);
-                if (nextSrc && frame.getAttribute('src') !== nextSrc) {
-                    frame.setAttribute('src', nextSrc);
-                }
-            });
-        }
-        function applyTheme(theme) {
-            var name = themes[theme] ? theme : 'gruvbox-dark';
-            linkEl.setAttribute('href', themes[name]);
-            document.documentElement.setAttribute('data-theme', name);
-            updateButton(name);
-            updateNotebookFrames(name);
-            return name;
-        }
-	    var savedTheme = (function() {
-	        try {
-	            return localStorage.getItem(STORAGE_KEY);
-	        } catch (err) {
-	            return null;
-	        }
-    })();
-        var currentTheme = applyTheme(savedTheme);
-        document.addEventListener('themechange', function(event) {
-            updateNotebookFrames(event.detail || currentTheme);
-        });
-        toggleBtn.addEventListener('click', function() {
-            var nextTheme = currentTheme === 'gruvbox-dark' ? 'gruvbox-light' : 'gruvbox-dark';
-            currentTheme = applyTheme(nextTheme);
-            document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
-            try {
-                localStorage.setItem(STORAGE_KEY, currentTheme);
-            } catch (err) {
-                /* ignore write errors */
-            }
-        });
-	})();
-	</script>
     </body>
 </html>
 

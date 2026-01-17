@@ -10,6 +10,10 @@
     topics: Tokenization
   - date: Thu 01/22
     topics: Embeddings
+  - date: Sun 01/25
+    topics: Homework 01
+    assignments:
+    - Homework 01
   - date: Tue 01/27
     topics: Linear Layers
   - date: Thu 01/29
