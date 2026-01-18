@@ -1,48 +1,13 @@
-Instructor:
-  github: wtheisen
-  level: Professor
-  name: Bill Theisen
-  netid: wtheisen
-  office_hours:
-    Tuesday: 2:00 PM - 4:00 PM | 350 Fitz
-    Thursday: 2:00 PM - 4:00 PM | 350 Fitz
-TAs:
-  msorenso:
-    github: msorenso
-    level: Undergraduate
-    name: Michael Sorenson
-    netid: msorenso
-    office_hours:
-      Monday: 6:00 PM - 7:00 PM | Inno Lounge
-      Wednesday: 6:00 PM - 7:00 PM | Inno Lounge
-  mpinedam:
-    github: TAPMelvin
-    level: Undergraduate
-    name: Melvin Pineda Miguel
-    netid: mpinedam
-    office_hours:
-      Tuesday: 5:00 PM - 6:00 PM | CSE Commons
-      Thursday: 5:00 PM - 6:00 PM | CSE Commons
-  ekoran:
-    github: ethankoran
-    level: Undergraduate
-    name: Ethan Koran
-    netid: ekoran
-    office_hours:
-      Tuesday: 11:00 AM - 12:00 PM | CSE Commons
-      Thursday: 11:00 AM - 12:00 PM | CSE Commons
-  tlohman:
-    github: Thomas-Lohman
-    level: Graduate
-    name: Thomas Lohman
-    netid: tlohman
-    office_hours:
-      Monday: 7:15 PM - 9:00 PM | Inno Lounge
-      Tuesday: 3:15 PM - 5:00 PM | Inno Lounge
-Term: Spring
-Year: '2026'
-class_location: Debart 210
-class_times:
-  Tuesday: 12:30 PM - 1:45 PM
-  Thursday: 12:30 PM - 1:45 PM
-gh_homework_link: https://classroom.github.com/a/4JvWlt8h
+csv_urls:
+  info: https://docs.google.com/spreadsheets/d/e/2PACX-1vR_5uOjH69vkS7ek3XFCaVzkw1-UMKYXjttIef_CJHhs01-UQDFA4l0sPVmMuNNjktX0GF3ILrPZfFg/pub?gid=458959625&single=true&output=csv
+  schedule: https://docs.google.com/spreadsheets/d/e/2PACX-1vRKFSFriFOBvLteVPnMotBJ2vDKXaolJiLM2XmApjQ8JgUkANBK0uzlaOIZH5GZNlG5jBS77JuVo1Ik/pub?gid=1012833739&single=true&output=csv
+  resources: https://docs.google.com/spreadsheets/d/e/2PACX-1vS36Bu2KLdSSLpTcJdP7slX5lOLa44brD9l-1cvVIBmOW_IW-6lc_e7t9E5I2O0IoCWQ_EsnlPmbHsF/pub?gid=1610570298&single=true&output=csv
+cancelled_days:
+  - Homework
+  - Cancelled
+  - Office Hours
+  - MLK Day
+  - Spring Break
+  - Easter Monday
+  - Fall Break
+  - Thanksgiving Break
