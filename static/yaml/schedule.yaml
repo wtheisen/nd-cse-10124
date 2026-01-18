@@ -1,130 +1,148 @@
 - name: Welcome
   days:
-  - date: Tue 01/13
-    topics: What is an LLM
-- name: 'Unit 01: Introduction to Neural Networks'
+  - date: Mon 01/12
+    topics: Syllabus, History of AI
+- name: 'Unit 01: Good Old Fashioned AI (GOFAI)'
+- name: Search and Representations
   days:
-  - date: Thu 01/15
-    topics: Text as Data
-  - date: Tue 01/20
-    topics: Tokenization
-  - date: Thu 01/22
-    topics: Embeddings
-  - date: Sun 01/25
-    topics: Homework 01
+  - date: Wed 01/14
+    topics: Search
+    assignments:
+    - Reading 01
+  - date: Wed 01/21
+    topics: A* Search
+  - date: Mon 01/26
+    topics: Constraint Satisfaction Problems
+    assignments:
+    - Reading 02
+  - date: Wed 01/28
+    topics: Adversarial Search
+    assignments:
+    - Lab 00
+  - date: Mon 02/02
+    topics: Intro to ML and KNNs
+    assignments:
+    - Reading 03
+- name: 'Unit 02: Machine Learning'
+- name: Direct Fit Models
+  days:
+  - date: Wed 02/04
+    topics: Decision Trees
     assignments:
     - Homework 01
-  - date: Tue 01/27
-    topics: Linear Layers
-  - date: Thu 01/29
-    topics: Activation Functions
-  - date: Sun 02/01
-    topics: Homework 02
+  - date: Mon 02/09
+    topics: Markov Models
     assignments:
-    - Homework 02
-  - date: Tue 02/03
-    topics: Loss Functions
-  - date: Thu 02/05
-    topics: Training Neural Networks
-  - date: Sun 02/08
-    topics: Homework 03
+    - Reading 04
+  - date: Wed 02/11
+    topics: Bayesian Reasoning
+  - date: Mon 02/16
+    topics: Linear Regression
     assignments:
-    - Homework 03
+    - Reading 05
 - name: Exam 01
   days:
-  - date: Tue 02/10
+  - date: Wed 02/18
     topics: Review 01
-  - date: Thu 02/12
+  - date: Mon 02/23
     topics: Exam 01
     assignments:
     - Practice Packet 01
     - Practice Packet 01 Solutions
     - Exam 01
-- name: 'Unit 02: Large-Language Models'
+    - Exam 01 Solutions
+- name: Supervised Learning I
   days:
-  - date: Tue 02/17
-    topics: Self-Attention
-  - date: Thu 02/19
-    topics: Multi-Headed Attention
-  - date: Sun 02/22
-    topics: Homework 04
+  - date: Wed 02/25
+    topics: Perceptrons
+  - date: Mon 03/02
+    topics: Logistic Regression and Gradient Descent
     assignments:
-    - Homework 04
-  - date: Tue 02/24
-    topics: Positional Encodings
-  - date: Thu 02/26
-    topics: Transformer Blocks
-  - date: Sun 03/01
-    topics: Homework 05
+    - Reading 06
+  - date: Wed 03/04
+    topics: Support Vector Machines
     assignments:
-    - Homework 05
-  - date: Tue 03/03
-    topics: Sampling & Randomness
-  - date: Thu 03/05
-    topics: Building nanochat
+    - Reading 07
 - name: Spring Break
-- name: 'Unit 03: Training LLMs'
+- name: Unsupervised Learning
   days:
-  - date: Tue 03/17
-    topics: Training LLMs
-  - date: Thu 03/19
-    topics: RLHF
-  - date: Sun 03/22
-    topics: Homework 06
+  - date: Mon 03/16
+    topics: Clustering
     assignments:
-    - Homework 06
-- name: Exam 02
+    - Homework 02
+  - date: Wed 03/18
+    topics: Dimensionality Reduction
+    assignments:
+    - Reading 08
+- name: Applied ML
   days:
-  - date: Tue 03/24
-    topics: Review
-  - date: Thu 03/26
+  - date: Mon 03/23
+    topics: Practicum - Exploratory Data Analysis
+- name: 'Unit 03: Deep Learning'
+- name: Foundations of Deep Learning
+  days:
+  - date: Wed 03/25
+    topics: Feedforward Neural Networks
+    assignments:
+    - Homework 03
+    - Reading 09
+  - date: Mon 03/30
+    topics: Gradient Descent and Backpropagation
+- name: Computer Vision
+  days:
+  - date: Wed 04/01
+    topics: Convolutional Neural Networks
+    assignments:
+    - Reading 10
+- name: Midterm 02
+  days:
+  - date: Wed 04/08
+    topics: Review 02
+  - date: Mon 04/13
     topics: Exam 02
     assignments:
     - Practice Packet 02
     - Practice Packet 02 Solutions
     - Exam 02
-  - date: Sun 03/29
-    topics: Homework 07
-    assignments:
-    - Homework 07
-- name: 'Unit 04: Using LLMs'
+    - Exam 02 Solutions
+- name: Natural Language Processing
   days:
-  - date: Tue 03/31
-    topics: Evaluating LLMs
-  - date: Thu 04/02
-    topics: Prompt Engineering
-- name: Easter Break
-- name: 'Unit 04: Using LLMs'
+  - date: Wed 04/15
+    topics: Recurrent Neural Networks
+    assignments:
+    - Reading 11
+- name: Modern Deep Learning
   days:
-  - date: Tue 04/07
-    topics: Explainable AI
-  - date: Thu 04/09
-    topics: Ethical Issues in LLMs
-  - date: Sun 04/12
-    topics: Homework 08
+  - date: Mon 04/20
+    topics: Self-Attention and Transformers
     assignments:
-    - Homework 08
-  - date: Tue 04/14
-    topics: Introduction to Agentic AI
-  - date: Thu 04/16
-    topics: Agentic AI Workflows
-  - date: Sun 04/19
-    topics: Homework 09
+    - Homework 04
+    - Reading 12
+  - date: Wed 04/22
+    topics: Cancelled (Thanksgiving Break)
+  - date: Mon 04/27
+    topics: Diffusion Models
     assignments:
-    - Homework 09
-  - date: Tue 04/21
-    topics: Multimodal Models
-  - date: Thu 04/23
-    topics: Current LLMs & Future Directions
-  - date: Sun 04/26
-    topics: Homework 10
+    - Reading 13
+  - date: Wed 04/29
+    topics: Reinforcement Learning
     assignments:
-    - Homework 10
-  - date: Thu 04/28
+    - Reading 14
+  - date: Mon 05/04
+    topics: LLMs and Agents
+    assignments:
+    - Reading 15
+  - date: Wed 05/06
     topics: Review 03
+    assignments:
+    - Practice Packet 03
+    - Practice Packet 03 Solutions
+    - Homework 05
+    - Bonus Homework
+    - CIF Bribe
 - name: Final
   days:
-  - date: Tue 04/05
-    topics: (TENTATIVELY) Exam 03
+  - date: Tues 05/05
+    topics: Final Exam (7:30 PM - 9:30 PM)
     assignments:
-    - Exam 03
+    - Final Exam

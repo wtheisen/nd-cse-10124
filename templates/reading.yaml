@@ -1,0 +1,157 @@
+title:      "{{ title }}"
+icon:       fa-book
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-gavel"
+internal:
+external:
+    resources:  'csv:static/csv/resources.csv'
+    semester_info: 'static/yaml/semester_info.yaml'
+body:       |
+
+    {% set reading_display = "Reading " + reading_number %}
+    {% set assignment_resource = find_assignment_resource(page.external.get('resources', {}), reading_display, '') %}
+    {% set quiz_link = '' %}
+    {% if assignment_resource %}
+    {% set quiz_link = assignment_resource.get('link', '') %}
+    {% end %}
+
+    {% if reading_number and reading_number == "01" %}
+    {% set semester_info = page.external.get('semester_info', {}) %}
+    {% set term_code = '' %}
+    {% if semester_info.get('Term') and semester_info.get('Year') %}
+    {% set term_code = semester_info['Term'][:2].lower() + semester_info['Year'][-2:] %}
+    {% end %}
+    {% set gh_homework_link = semester_info.get('gh_homework_link', '') %}
+
+    **Welcome** to [CSE 30124 Introduction to Artifical Intelligence](index.html), which (as the syllabus
+    states) is a broad introduction to the field of artificial intelligence. We
+    will begin the semester with a brief history of the field and review of relevant
+    mathematical concepts that form the foundation of AI. As the semester continues
+    we will dive into Machine and Deep Learning and then at the very end loop back
+    around to where we started.
+
+    <div class="alert alert-info" markdown="1">
+
+    #### <i class="fa fa-bookmark"></i> TL;DR
+
+    For this week, you should familiarize yourself with using [Slack], setup
+    your [GitHub] assignments repository, decide how you will run the notebook
+    software used in this course and then submit your first reading quiz.
+
+    </div>
+
+    ## Course Overview
+
+    Artificial Intelligence is an extremely broad field and while no doubt all of
+    you will be familiar with some aspects of it, likely the GPT family, these
+    tools are only a small subset of what the field encompasses as a whole.
+
+    <div class="thumbnail">
+        <img src="static/svg/AI_Layers.svg">
+    </div>
+
+    We will begin the course at the top of the circle and work our way down.
+    However at the end of the semester and the bottom of the circles we will
+    find that we start to wrap back around again to the top.
+
+    ## Task 1: Slack
+
+    For communication outside of our meeting time, we will be using [Slack],
+    specifically the `#cse-30124-{{ term_code }}` channel:
+
+    > [https://nd-cse.slack.com/messages/{{ term_code }}-cse-30124](https://nd-cse.slack.com/messages/{{ term_code }}-cse-30124)
+
+    There is a [class mailing list], but most day-to-day communication
+    (including office hours and homework help) should take place on [Slack].
+
+    [class mailing list]: mailto:sp26-cse-30124-01-group@nd.edu
+
+    <div class="alert alert-warning" markdown="1">
+    <p>Be aware of the following:</p><br>
+
+    - You will need to signup and create a [Slack] account if you don't already
+      have one.
+
+    - You can use the web interface or download the [Slack] desktop client
+      (there are also mobile applications as well).
+
+    - Feel free to join any other channels that may interest you such as
+      `#commons` or `#jobs`.
+
+    </div>
+
+    ## Task 2: Canvas Homework Group
+
+    All of your assignments (labs and homeworks) will be submitted via Canvas as an html file.
+
+    1. (Optional) Find a partner to work with.
+
+    2. **Sign-in** to Canvas and navigate to the course page.
+
+    <div class="thumbnail">
+    <img src="static/img/group_join_1.png" class="img-responsive"/>
+    </div>
+
+    3. **Navigate** to the People tab, and then the Intro to AI Groups tab.
+
+    <div class="thumbnail">
+    <img src="static/img/group_join_2.png" class="img-responsive"/>
+    </div>
+
+    4. **Join** one of the avaible teams with your partner.
+    
+    5. Now when you or your partner submit a homework assignment, it will be submitted for both of you!
+
+    6. **Optionally:** Message the professor or one of your TAs to update your team name!
+
+    ## Task 3: Notebooks
+
+    - [Google Colab](https://colab.research.google.com/notebooks/basic_features_overview.ipynb)
+
+    - [Jupyter Notebooks](https://realpython.com/jupyter-notebook-introduction/)
+
+    - [VSCode Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks)
+
+    - [Kaggle Notebooks](https://www.kaggle.com/code/alexisbcook/creating-your-own-notebooks)
+
+    Please at least skim all four, but for the purposes of this course you just
+    need to get one of the methods working to run your notebooks. Notebooks
+    can be run locally through something like VSCode, and this is what I
+    recommend and use. If you have other methods, please feel free to reach out to 
+    your me to discuss them.
+
+    ## Task 4: Reading
+
+    <pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+    ### Syllabus: [CSE 30124 Introduction to Artificial Intelligence](index.html)
+
+    Most weeks you will have a reading assignment followed by a brief quiz that will cover the two upcoming lectures. Each of the two will have a primary reading and then a link to a number of additional resources that I encourage you to explore if you're interested. Once completing the readings, use the link below to access the canvas quiz. Quizzes are due at 3:00 PM on the day of the first lecture for the topic.
+
+    <div class="alert alert-info" markdown="1">
+    **Note**: We will be a little lenient on this first reading quiz.
+    </div>
+
+    <div class="alert alert-info" markdown="1">
+    **Note**: Most of the readings are significantly more in depth than what you will need to answer the quizzes. It's completely fine if you skim portions (especially the ones full of equations (yuck)), these are merely meant to prepare you for the lectures so you at least have some familiarity with the material (and they allow me to shift some of the exam points to the quizzes, which are hopefully less stressful).
+    </div>
+    
+    {% end %}
+
+{{ topic_sections }}
+
+    {% if reading_number and reading_number == "01" %}
+    ## Task 5: Quiz
+    {% else %}
+    ## Reading Quiz {{ reading_number }}
+    {% end %}
+
+    Please respond to the quiz below{% if not reading_number or reading_number != "01" %}, you will need to be signed into your ND email in order to respond{% end %}. You may edit your responses after each submission, so there's really no reason you shouldn't get full credit on these!
+
+    {% if quiz_link %}
+    <div class="alert alert-success" markdown="1">
+    [Access the quiz here]({{ quiz_link }})
+    </div>
+    {% end %}

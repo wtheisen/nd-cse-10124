@@ -1,0 +1,177 @@
+    <div class="row">
+        <div class="page-header">
+            <h2 id="logistics"><i class="fa fa-cogs"></i> Logistics</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Class Information</h3>
+
+                    <dl>
+                        <dt><i class="fa fa-clock-o"></i> Lecture</dt>
+                        <dd>
+                            {% set class_times = page.external['semester_info'].get('class_times', {}) %}
+                            {% if class_times %}
+                                {% set days_list = [] %}
+                                {% set times_list = [] %}
+                                {% for day, time in class_times.items() %}
+                                    {% if day == 'Monday' %}
+                                        {% set _ = days_list.append('M') %}
+                                    {% elif day == 'Tuesday' %}
+                                        {% set _ = days_list.append('T') %}
+                                    {% elif day == 'Wednesday' %}
+                                        {% set _ = days_list.append('W') %}
+                                    {% elif day == 'Thursday' %}
+                                        {% set _ = days_list.append('TR') %}
+                                    {% elif day == 'Friday' %}
+                                        {% set _ = days_list.append('F') %}
+                                    {% else %}
+                                        {% set _ = days_list.append(day[:1]) %}
+                                    {% end %}
+                                    {% set _ = times_list.append(time) %}
+                                {% end %}
+                                <strong>{{ ' / '.join(days_list) }}</strong>
+                                {% if times_list %}
+                                    {{ times_list[0] }}
+                                {% end %}
+                            {% else %}
+                                <strong>M / W</strong> 3:30 PM - 4:45 PM
+                            {% end %}
+                        </dd>
+
+                        <dt><i class="fa fa-home"></i> Location</dt>
+                        <dd>{{ page.external['semester_info'].get('class_location', 'TBD') }}</dd>
+
+                        <dt><i class="fa fa-slack"></i> Slack</dt>
+                        <dd>
+                            {% set term_code = page.external['semester_info']['Term'][:2].lower() + page.external['semester_info']['Year'][-2:] %}
+                            <a href="https://nd-cse.slack.com/messages/cse-30124-{{ term_code }}/">#cse-30124-{{ term_code }}</a>
+                        </dd>
+
+                        <dt><i class="fa fa-github"></i> GitHub</dt>
+                        <dd>
+                            {% set instructor = page.external['semester_info'].get('Instructor') %}
+                            {% if instructor and instructor.get('github') %}
+                                <a href="https://www.github.com/{{ instructor['github'] }}/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
+                            {% else %}
+                                <a href="https://www.github.com/wtheisen/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
+                            {% end %}
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Instructor</h3>
+
+                    <dl>
+                        {% set instructor = page.external['semester_info'].get('Instructor') %}
+                        {% if instructor %}
+                            <dt><i class="fa fa-user"></i> Instructor</dt>
+                            <dd>
+                                {% if instructor.get('name') %}
+                                    {% if instructor.get('github') %}
+                                        <a href="http://www.williamtheisen.com">{{ instructor['name'] }}</a>
+                                    {% else %}
+                                        {{ instructor['name'] }}
+                                    {% end %}
+                                    (<a href="mailto:{{ instructor['netid'] }}@nd.edu">{{ instructor['netid'] }}@nd.edu</a>)
+                                {% else %}
+                                    <a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)
+                                {% end %}
+                            </dd>
+                            <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
+
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd>
+                                {% if instructor.get('office_hours') %}
+                                    {% set oh_count = 0 %}
+                                    {% for day, oh_info in instructor['office_hours'].items() %}
+                                        {% if oh_info %}
+                                            {% set oh_time = oh_info.split('|')[0].strip() if '|' in oh_info else oh_info.strip() %}
+                                            {% if day == 'Tuesday' %}
+                                                {% set day_abbrev = 'T' %}
+                                            {% elif day == 'Thursday' %}
+                                                {% set day_abbrev = 'TR' %}
+                                            {% else %}
+                                                {% set day_abbrev = day[:1] %}
+                                            {% end %}
+                                            {% if oh_count == 0 %}
+                                                <strong>{{ day_abbrev }}</strong> {{ oh_time }}
+                                            {% else %}
+                                                , {{ day_abbrev }} {{ oh_time }}
+                                            {% end %}
+                                            {% set oh_count = oh_count + 1 %}
+                                        {% end %}
+                                    {% end %}
+                                    {% if oh_count > 0 %}
+                                        , and by <strong>appointment</strong>
+                                    {% else %}
+                                        By <strong>appointment</strong>
+                                    {% end %}
+                                {% else %}
+                                    By <strong>appointment</strong>
+                                {% end %}
+                            </dd>
+
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>
+                                {% if instructor.get('office_hours') %}
+                                    {% set found_location = False %}
+                                    {% for day, oh_info in instructor['office_hours'].items() %}
+                                        {% if oh_info and '|' in oh_info and not found_location %}
+                                            {{ oh_info.split('|')[1].strip() }}
+                                            {% set found_location = True %}
+                                        {% end %}
+                                    {% end %}
+                                    {% if not found_location %}
+                                        350 Fitz
+                                    {% end %}
+                                {% else %}
+                                    350 Fitz
+                                {% end %}
+                            </dd>
+                        {% else %}
+                            <dt><i class="fa fa-user"></i> Instructor</dt>
+                            <dd><a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)</dd>
+                            <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
+
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd><strong>T/TR</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
+
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>350 Fitz</dd>
+                        {% end %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Teaching Assistants</h3>
+
+            <div class="row">
+                {% set ta_count = 0 %}
+                {% for ta_id, ta_data in page.external['semester_info'].get('TAs', {}).items() %}
+                    <div class="col-md-4">
+                        <dl>
+                            <dt><i class="fa fa-user"></i> {{ ta_data.get('level', 'Teaching') }} Teaching Assistant</dt>
+                            <dd>{{ ta_data.get('name', 'TBD') }} (<a href="mailto:{{ ta_data.get('netid', '') }}@nd.edu">{{ ta_data.get('netid', '') }}@nd.edu</a>)</dd>
+                            <!--
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd>{{ ta_data.get('office_hours', 'TBD') }}</dd>
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>{{ ta_data.get('oh_location', 'TBD') }}</dd>
+                            //-->
+                        </dl>
+                    </div>
+                    {% set ta_count = ta_count + 1 %}
+                    {% if ta_count % 3 == 0 %}
+                        <div class="row"></div>
+                    {% end %}
+                {% end %}
+            </div>
+        </div>
+    </div>

@@ -4,10 +4,18 @@ import csv
 import random
 import glob
 import sys
+import os
 import yaml
 
-# Load TAs from semester_info.yaml
-semester_info = yaml.safe_load(open('../static/yaml/semester_info.yaml'))
+# Load TAs from semester_info.yaml (which may contain CSV URLs)
+try:
+    # Try to import the helper function from yasb
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from yasb import load_semester_info_from_yaml_or_csv
+    semester_info = load_semester_info_from_yaml_or_csv('../static/yaml/semester_info.yaml')
+except ImportError:
+    # Fallback: load directly from YAML
+    semester_info = yaml.safe_load(open('../static/yaml/semester_info.yaml'))
 TAS = [ta['github'] for ta in semester_info['TAs'].values()]
 
 TEAMS = set()  # Use a set to store unique team names

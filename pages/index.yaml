@@ -1,4 +1,4 @@
-title:      Building ChatGPT
+title:      Introduction to Artificial Intelligence
 icon:       fa-rocket
 navigation:
     - name: "Logistics"
@@ -16,23 +16,19 @@ navigation:
 internal:
 external:
     tas:        'static/yaml/semester_info.yaml'
-    schedule:   'static/yaml/schedule.yaml'
+    schedule:   'csv:static/csv/schedule.csv'
     semester_info: 'static/yaml/semester_info.yaml'
     resources:  'csv:static/csv/resources.csv'
 body:       |
 
-    {% set term_code = page.external['semester_info']['Term'][:2].lower() + page.external['semester_info']['Year'][-2:] %}
-
     <div class="row" markdown="1">
 
-    **CSE 10124** is an elective course in the [Computer Science and
+    **CSE 30124** is an elective course in the [Computer Science and
     Engineering] program at the [University of Notre Dame]. This course
-    serves as an introduction to programming (in python) through the
-    semester long goal of building, from scratch, a large-language model (LLM)
-    similar to ChatGPT. Along the way students will learn the fundamentals 
-    of using generative ai, including topics such as: prompt engineering, 
-    meta-prompting, retrieval-augmented generation, context engineering, 
-    and agentic workflows.
+    serves as an introduction and gateway to upper level machine learning
+    and artificial intelligence courses. In this course students will
+    learn the fundamentals of learning algorithms and the basics of common
+    python libraries for these algorithms such as scikit-learn and pytorch.
 
     [Computer Science and Engineering]:     http://cse.nd.edu
     [University of Notre Dame]:             http://www.nd.edu
@@ -45,83 +41,17 @@ body:       |
 
     Upon successful completion of this course, students will be able to:
 
-    1. **Write** basic python.
+    1. **Evaluate** which model is appropriate for a given problem.
 
-    2. **Evaluate** which model is appropriate for a given problem.
+    2. **Utilize** modern python libraries for ML and AI.
 
-    3. **Utilize** modern prompting techniqes.
+    3. **Implement** basic ML and AI models.
 
-    4. **Implement** basic agentic workflows.
-
-    5. **Assess** state-of-the-art models for common issues and biases.
+    4. **Assess** AI/ML implementations for common issues and biases.
 
     </div>
 
-    <div class="row">
-        <div class="page-header">
-            <h2 id="logistics"><i class="fa fa-cogs"></i> Logistics</h2>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Class Information</h3>
-
-                    <dl>
-                        <dt><i class="fa fa-clock-o"></i> Lecture</dt>
-                        <dd><strong>T / TR</strong> 12:30 PM - 1:45 PM</dd>
-
-                        <dt><i class="fa fa-home"></i> Location</dt>
-                        <dd>{{ page.external['semester_info']['class_location'] }}</dd>
-
-                        <dt><i class="fa fa-slack"></i> Slack</dt>
-                        <dd><a href="https://nd-cse.slack.com/messages/{{ term_code }}-cse-10124/">#{{ term_code }}-cse-10124</a></dd>
-                    </dl>
-                </div>
-
-                <div class="col-md-6">
-                    <h3>Instructor</h3>
-
-                    <dl>
-                        <dt><i class="fa fa-user"></i> Instructor</dt>
-                        <dd><a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)</dd>
-
-                        <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-                        <dd><strong>Tuesdays and Thursdays</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
-
-                        <dt><i class="fa fa-briefcase"></i> Office Location</dt>
-                        <dd>350 Fitz</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <h3>Teaching Assistants</h3>
-
-            <div class="row">
-                {% for index, (ta_id, ta_data) in enumerate(sorted(page.external['semester_info']['TAs'].items(), key=lambda x: x[1]['name'].split()[-1])) %}
-                    <div class="col-md-4">
-                        <dl>
-                            <dt><i class="fa fa-user"></i> {{ ta_data['level'] }} Teaching Assistant</dt>
-                            <dd>{{ ta_data['name'] }} (<a href="mailto:{{ ta_data['netid'] }}@nd.edu">{{ ta_data['netid'] }}@nd.edu</a>)</dd>
-                            <!--
-                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-                            <dd>{{ ta_data.get('office_hours', 'TBD') }}</dd>
-                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
-                            <dd>{{ ta_data.get('oh_location', 'TBD') }}</dd>
-                            //-->
-                        </dl>
-                    </div>
-                    {% if (index + 1) % 3 == 0 %}
-                        <div class="row"></div>
-                    {% end %}
-                {% end %}
-            </div>
-        </div>
-    </div>
+    {% include "logistics_info.tmpl" %}
 
     <div class="row">
         <div class="page-header">
@@ -131,180 +61,7 @@ body:       |
 
     {% include "ta_office_hours.tmpl" %}
 
-    <div class="row">
-        <div class="page-header">
-            <h2 id="schedule"><i class="fa fa-calendar"></i> Schedule</h2>
-            <p>Click on the
-                <i class="fa-solid fa-circle-info"></i>
-                <i class="fa-solid fa-caret-right"></i>
-                next to a topic for additional resources.
-            </p>
-        </div>
-    </div>
-
-    <style>
-        table.schedule td.unit {
-            background-color: #fff;
-            border-right: 2px solid #ddd;
-            text-align: right;
-            width: 175px;
-            vertical-align: middle;
-        }
-
-        table.schedule tbody tr.topic-row:nth-of-type(even) {
-            background-color: #f9f9f9;
-        }
-
-        table.schedule tbody tr.topic-row:nth-of-type(odd) {
-            background-color: #ffffff;
-        }
-
-        table.schedule tbody tr.resource-row {
-            background-color: #ffffff !important;
-        }
-
-        tr.resource-row ul {
-            list-style-position: inside;
-            padding-left: 0;
-            margin-left: 0;
-        }
-
-        tr.resource-row li {
-            padding-left: 0;
-            margin-left: 0;
-        }
-    </style>
-
-    <div class="row">
-        <table class="table condensed schedule">
-            <thead>
-                <tr>
-                    <th class="text-center">Unit</th>
-                    <th class="text-center" style="width: 100px;">Date</th>
-                    <th class="text-center">Topics</th>
-                    <th class="text-center">Assignments</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for theme in page.external['schedule'] %}
-                    {% if not theme.get('days') %}
-                        <tr class="topic-row">
-                        <td colspan="4" class="text-center text-strong" style="border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; padding: 4px;">{{ theme['name'] }}</td>
-                        </tr>
-                        {% continue %}
-                    {% end %}
-
-                    {% for index, day in enumerate(theme['days']) %}
-
-                        <tr class="topic-row">
-                            {% if index == 0 %}
-                                {% set unit_id = theme['name'].replace(' ', '_') %}
-
-                                <td id="unit-cell-{{ unit_id }}" rowspan="{{ len(theme['days']) }}" class="text-strong text-primary text-center unit">{{ theme['name'] }}</td>
-                            {% end %}
-
-                            <td class="text-center text-strong"><tt>{{ day['date'] }}</tt></td>
-                            <td class="text-strong">
-                            {% set lecture_id = lecture_id_for(day.get('topics', '')) or (unit_id + '-' + day['date'].replace(' ', '_').replace('/', '-')) %}
-                            {% set day_resources = page.external.get('resources', {}).get(lecture_id, []) %}
-
-                            {% if 'topics' in day %}
-                                {% if day['topics'] == 'Office Hours' or day['topics'].startswith('Cancelled') %}
-                                    <i class="text-muted">{{ day.get('topics', '') }}</i>
-                                {% elif 'homework' in day['topics'].lower() %}
-                                    <i class="text-muted">{{ day.get('topics', '') }}</i>
-                                {% elif 'exam' in day['topics'].lower() %}
-                                    <i class="text-danger">{{ day.get('topics', '') }}</i>
-                                {% else %}
-                                    <span onclick="toggleResources('{{ lecture_id }}','{{ unit_id }}')" style="cursor: pointer;">
-                                        {{ day.get('topics', '') }}
-                                        {% if day_resources %}
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <i class="fa-solid fa-caret-right caret-icon" id="{{ lecture_id }}"></i>
-                                        {% end %}
-                                    </span>
-                                {% end %}
-                            {% else %}
-                                <i class="text-muted">Intro to AI</i>
-                            {% end %}
-
-                            {% for item in day.get('items', []) %}
-                                {% if 'exam' in item['name'].lower() %}
-                                    {% set item['label'] = 'danger' %}
-                                {% elif item['name'].lower().startswith('panopto') %}
-                                    {% set item['label'] = 'success' %}
-                                {% elif item['name'].lower().startswith('blogpost') %}
-                                    {% set item['label'] = 'primary' %}
-                                {% else %}
-                                    {% set item['label'] = 'default' %}
-                                {% end %}
-
-                                {% if 'link' in item %}
-                                    <a class="label label-{{ item['label'] }}" href="{{ item['link'] }}">{{ item['name'] }}</a>
-                                {% else %}
-                                    <span class="label label-{{ item['label'] }}">{{ item['name'] }}</span>
-                                {% end %}
-                            {% end %}
-
-                            </td>
-                            <td class="text-strong text-center">
-
-                            {% for assignment in day.get('assignments', []) %}
-                                {% set assignment_id = '_'.join(assignment.lower().split()) %}
-                                {% set assignment_label = 'caution' %}
-                                {% if 'solutions' in assignment_id %}
-                                    {% set assignment_label = 'success' %}
-                                {% elif assignment_id.startswith('reading') %}
-                                    {% set assignment_label = 'primary' %}
-                                {% elif 'practice' in assignment_id %}
-                                    {% set assignment_label = 'success' %}
-                                {% elif 'exam' in assignment_id %}
-                                    {% set assignment_label = 'danger' %}
-                                {% elif 'primer' in assignment_id %}
-                                    {% set assignment_label = 'success' %}
-                                {% end %}
-
-                                {% set assignment_resource = find_assignment_resource(page.external.get('resources', {}), assignment, lecture_id) %}
-                                {% if assignment_resource and assignment_resource.get('link') %}
-                                    {% set assignment_type = (assignment_resource.get('type') or '').lower() %}
-                                    {% if assignment_label == 'caution' %}
-                                        {% if 'exam' in assignment_type %}
-                                            {% set assignment_label = 'danger' %}
-                                        {% elif 'practice' in assignment_type or 'solution' in assignment_type %}
-                                            {% set assignment_label = 'success' %}
-                                        {% elif assignment_type.startswith('reading') %}
-                                            {% set assignment_label = 'primary' %}
-                                        {% elif 'primer' in assignment_type %}
-                                            {% set assignment_label = 'success' %}
-                                        {% elif 'homework' in assignment_type or 'assignment' in assignment_type or 'project' in assignment_type %}
-                                            {% set assignment_label = 'caution' %}
-                                        {% end %}
-                                    {% end %}
-                                    <a href="{{ assignment_resource.get('link') }}" class="label label-{{ assignment_label }}">{{ assignment }}</a>
-                                {% else %}
-                                    {% if 'solutions' in assignment_id or 'practice' in assignment_id or 'exam' in assignment_id %}
-                                        <a href="static/pdf/{{ assignment_id }}.pdf" class="label label-{{ assignment_label }}">{{ assignment }}</a>
-                                    {% else %}
-                                        <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment }}</a>
-                                    {% end %}
-                                {% end %}
-                            {% end %}
-                            </td>
-                        </tr>
-                        {% if day_resources %}
-                            <tr id="resources-{{ lecture_id }}" class="resource-row" style="display: none;">
-                                <td colspan="3">
-                                    {% set resources = day_resources %}
-                                    {% include "resource_sections.tmpl" %}
-                                </td>
-                            </tr>
-                        {% end %}
-                    {% end %}
-                {% end %}
-            </tbody>
-        </table>
-        <br>
-    </div>
+    {% include "schedule_table.tmpl" %}
 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -334,20 +91,24 @@ body:       |
             </thead>
             <tbody>
                 <tr>
-                    <td><span class="label label-caution">Code</span> Code Copies</td>
+                    <td><span class="label label-primary">Reading</span> Readings</td>
+                    <td class="text-center">15 &times; 1</td>
+                </tr>
+                <tr>
+                    <td><span class="label label-caution">Homework</span> Individual Labs</td>
                     <td class="text-center">5 &times; 5</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-caution">Homework</span> Homework Assignments</td>
-                    <td class="text-center">10 &times; 5</td>
+                    <td><span class="label label-caution">Homework</span> Partner Homework Assignments</td>
+                    <td class="text-center">5 &times; 10</td>
                 </tr>
                 <tr>
                     <td><span class="label label-danger">Midterm</span> Midterm Exams (10 points for turning in exam practice packet)</td>
-                    <td class="text-center">2 &times; 70</td>
+                    <td class="text-center">2 &times; 65</td>
                 </tr>
                 <tr>
                     <td><span class="label label-danger">Exam</span> Final Exam (10 points for turning in exam practice packet)</td>
-                    <td class="text-center">1 &times; 85</td>
+                    <td class="text-center">1 &times; 80</td>
                 </tr>
                 <tr>
                     <td class="text-strong text-right">Total</td>
@@ -770,58 +531,4 @@ body:       |
         </div>
     </div>
 
-    <script>
-        function toggleResources(id, unit) {
-            const button = document.getElementById(id);
-            const resourcesRow = document.getElementById(`resources-${id}`);
-            const unitCell = document.getElementById(`unit-cell-${unit}`);
-
-            if (resourcesRow.style.display === 'table-row') {
-                button.classList.remove('fa-caret-down');
-                button.classList.add('fa-caret-right');
-
-                if (unitCell) { unitCell.rowSpan = unitCell.rowSpan - 1; }
-                resourcesRow.style.display = 'none';
-            } else {
-                button.classList.remove('fa-caret-right');
-                button.classList.add('fa-caret-down');
-
-                if (unitCell) { unitCell.rowSpan = unitCell.rowSpan + 1; }
-                resourcesRow.style.display = 'table-row';
-            }
-        }
-
-        function fixAlternatingRows() {
-            let topicRows = document.querySelectorAll(".topic-row");
-            topicRows.forEach((row, index) => {
-                if (index % 2 === 0) {
-                    row.style.backgroundColor = "#f9f9f9";
-                } else {
-                    row.style.backgroundColor = "#ffffff";
-                }
-            });
-        }
-
-        document.querySelectorAll(".caret-icon").forEach(icon => {
-            icon.addEventListener("click", function() {
-                setTimeout(fixAlternatingRows, 200);
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", fixAlternatingRows);
-
-        function toggleResourceSection(id) {
-            const resourcesDiv = document.getElementById(id);
-            const icon = document.getElementById(`${id}-icon`);
-
-            if (resourcesDiv.style.display === 'none' || resourcesDiv.style.display === '') {
-                resourcesDiv.style.display = 'block';
-                icon.classList.remove('fa-caret-right');
-                icon.classList.add('fa-caret-down');
-            } else {
-                resourcesDiv.style.display = 'none';
-                icon.classList.remove('fa-caret-down');
-                icon.classList.add('fa-caret-right');
-            }
-        }
-    </script>
+    <script src="static/js/index.js"></script>

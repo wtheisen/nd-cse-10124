@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import yaml
+import csv
+import io
+import os
 from datetime import datetime, timedelta
 
 def parse_date_or_range(date_str, year):
@@ -125,23 +128,158 @@ def adjust_schedule(schedule, semester_start, break_dates, class_days):
 
     return adjusted_schedule
 
+def load_schedule_from_csv(csv_path):
+    """
+    Load schedule from CSV file and convert to YAML-like structure.
+    This uses similar logic to yasb.py's _load_csv_to_schedule().
+    """
+    def normalize_headers(headers):
+        return [h.strip().lower().replace(' ', '_') for h in headers]
+
+    def best_of(row, *cands):
+        for c in cands:
+            if c in row and row[c]:
+                return str(row[c]).strip()
+        return ''
+
+    # Read CSV file
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        text = f.read()
+
+    reader = csv.DictReader(io.StringIO(text))
+    reader.fieldnames = normalize_headers(reader.fieldnames or [])
+
+    # Group rows by (Date, Unit, Topic) to collect assignments
+    day_groups = {}
+    all_rows = []
+
+    for raw in reader:
+        row = {k: (v or '').strip() for k, v in raw.items()}
+        all_rows.append(row)
+        
+        date = best_of(row, 'date')
+        unit = best_of(row, 'unit')
+        topic = best_of(row, 'topic')
+        assignment = best_of(row, 'assignments', 'assignment')
+        topic_slug = best_of(row, 'topic_slug', 'topic_slug')
+
+        # Header rows: Unit but no Date/Topic - skip for now
+        if unit and not date and not topic:
+            continue
+
+        # Skip rows without date and topic
+        if not date or not topic:
+            continue
+
+        # Group by (date, unit, topic) to collect assignments
+        key = (date, unit, topic)
+        if key not in day_groups:
+            day_groups[key] = {
+                'date': date,
+                'unit': unit,
+                'topic': topic,
+                'assignments': [],
+                'topic_slug': topic_slug
+            }
+        
+        if assignment:
+            day_groups[key]['assignments'].append(assignment)
+
+    # Convert to hierarchical structure
+    result = []
+    current_section = None
+    current_unit = None
+    seen_units = set()
+    seen_days = set()  # Track which (date, unit, topic) combinations we've already added
+    
+    for row in all_rows:
+        date = best_of(row, 'date')
+        unit = best_of(row, 'unit')
+        topic = best_of(row, 'topic')
+        
+        # Header row: Unit but no Date/Topic
+        if unit and not date and not topic:
+            if current_section:
+                result.append(current_section)
+                current_section = None
+                current_unit = None
+                seen_days.clear()
+            
+            if unit not in seen_units:
+                result.append({'name': unit})
+                seen_units.add(unit)
+            continue
+        
+        # Day row: has Date and Topic
+        if date and topic:
+            key = (date, unit, topic)
+            if key not in day_groups:
+                continue
+            
+            # Skip if we've already added this day
+            if key in seen_days:
+                continue
+            
+            day_data = day_groups[key]
+            
+            if unit != current_unit:
+                if current_section:
+                    result.append(current_section)
+                
+                current_unit = unit
+                current_section = {
+                    'name': unit,
+                    'days': []
+                }
+                seen_units.add(unit)
+                seen_days.clear()
+            
+            day_entry = {
+                'date': day_data['date'],
+                'topics': day_data['topic']
+            }
+            if day_data['assignments']:
+                day_entry['assignments'] = day_data['assignments']
+            if day_data.get('topic_slug'):
+                day_entry['topic_slug'] = day_data['topic_slug']
+            
+            current_section['days'].append(day_entry)
+            seen_days.add(key)
+    
+    if current_section:
+        result.append(current_section)
+
+    return result
+
 def main():
     # File paths and configuration
     calendar_url = "https://registrar.nd.edu/calendars/"
     schedule_file = "static/yaml/schedule.yaml"
     semester_info_file = "static/yaml/semester_info.yaml"
     output_file = "static/yaml/adjusted_schedule.yaml"
-    class_days = ['Tuesday', 'Thursday']
+    class_days = ['Monday', 'Wednesday']
 
-    # Load semester info from YAML
-    with open(semester_info_file, 'r') as f:
-        semester_info = yaml.safe_load(f)
+    # Load semester info from YAML (which may contain CSV URLs)
+    try:
+        # Try to import the helper function from yasb
+        import sys
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from yasb import load_semester_info_from_yaml_or_csv
+        semester_info = load_semester_info_from_yaml_or_csv(semester_info_file)
+    except ImportError:
+        # Fallback: load directly from YAML
+        with open(semester_info_file, 'r') as f:
+            semester_info = yaml.safe_load(f)
     term = semester_info.get("Term")
     year = int(semester_info.get("Year"))
 
-    # Load the existing schedule
-    with open(schedule_file, 'r') as f:
-        schedule = yaml.safe_load(f)
+    # Load the existing schedule (support both YAML and CSV)
+    if schedule_file.endswith('.csv'):
+        schedule = load_schedule_from_csv(schedule_file)
+    else:
+        with open(schedule_file, 'r') as f:
+            schedule = yaml.safe_load(f)
 
     # Scrape the academic calendar
     semester_start, break_dates = scrape_academic_calendar(calendar_url, term, year)

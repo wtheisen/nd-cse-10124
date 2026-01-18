@@ -1,0 +1,50 @@
+title:      "Homework {{ number_str }}: Detective Work (10 pts.)"
+icon:       fa-book
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-gavel"
+internal:
+external:
+    resources:  'csv:static/csv/resources.csv'
+body:       |
+
+    {% set assignment_name = "{{ assignment_name }}" %}
+    {% set assignment_display = "Homework " + "{{ number_str }}" %}
+    {% set assignment_resource = find_assignment_resource(page.external.get('resources', {}), assignment_display, '') %}
+    {% set notebook_link = '' %}
+    {% if assignment_resource %}
+    {% set notebook_link = assignment_resource.get('link', '') %}
+    {% end %}
+
+    ## Task 1: Notebook
+
+    Copy the following notebook and answer the included questions using the method of your choosing:
+
+    {% if notebook_link %}
+    <div class="alert alert-success" markdown="1">
+    [OPEN NOTEBOOK IN GOOGLE COLAB]({{ notebook_link }})
+    </div>
+    {% else %}
+    <div class="alert alert-success" markdown="1">
+    [OPEN NOTEBOOK IN GOOGLE COLAB]()
+    </div>
+    {% end %}
+
+    For your convenience the notebook is displayed below as HTML but you will likely
+    find it easier to copy the notebook from the google drive link above.
+
+    <iframe
+        class="theme-notebook-frame"
+        data-src-dark="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/{{ assignment_name }}/{{ assignment_name }}-dark.html"
+        data-src-light="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/{{ assignment_name }}/{{ assignment_name }}-light.html"
+        src="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/{{ assignment_name }}/{{ assignment_name }}-dark.html"
+        width="100%"
+        height="800"></iframe>
+
+    <pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+    ## Task 2: Assignment Submission Instructions
+
+    The final cell of the notebook will export and download an html file of your
+    notebook. Upload this to canvas for the assignment.
