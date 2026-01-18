@@ -34,7 +34,7 @@ body:       |
     For your convenience the document is displayed below but you will likely
     find it easier to copy the document from the google drive link above.
 
-    <iframe src="{{ document_link }}?embedded=true"></iframe>
+    <iframe width="100%" height="800" src="{{ document_link }}?embedded=true"></iframe>
 
     <pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
 
