@@ -20,7 +20,17 @@ static/homework_htmls/%.html: static/homeworks/%.ipynb
 	mkdir -p $(dir $@)
 	python3 -m nbconvert --to html --output-dir=$(dir $@) $<
 
-build:		$(HTML) $(HOMEWORK_HTML)
+# Generate homework/reading/lab YAML pages from schedule CSV
+generate:
+	python3 scripts/generate_homework_pages.py
+
+# Build: generate pages first, then convert and copy
+# Uses recursive make so YAML variable is re-evaluated after generation
+build: generate
+	$(MAKE) _build_html
+
+_build_html:
+	$(MAKE) $(HTML) $(HOMEWORK_HTML)
 	mkdir -p $(WWWROOT)/static
 	cp -frv pages/*.html		$(WWWROOT)/.
 	cp -frv static/*		$(WWWROOT)/static/.
@@ -35,3 +45,4 @@ push:
 
 clean:
 	rm -f $(HTML)
+	rm -f pages/homework_*.yaml pages/reading_*.yaml pages/lab_*.yaml

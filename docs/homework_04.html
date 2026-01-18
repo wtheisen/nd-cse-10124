@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="gruvbox-dark">
+    <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Homework 04 (10 pts.)</title>
+
+	<!-- Theme CSS (toggleable) -->
+	<link id="theme-style" href="static/css/gruvbox-dark.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<style>
+	body {
+	    padding: 10px;
+	}
+	.resource-list {
+	    list-style: none;
+	    padding-left: 0;
+	    margin-bottom: 1.25em;
+	}
+	.resource-credit {
+	    margin-left: 0.5em;
+	    font-size: 0.85em;
+	    color: #777;
+	    font-style: italic;
+	}
+	.resource-credit::before {
+	    content: "\2014";
+	    margin-right: 0.35em;
+	}
+#library-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 10px;
+    max-height: 540px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.library-card-wrapper {
+    flex: 1 1 calc(20% - 16px);
+    max-width: calc(20% - 16px);
+    min-width: 180px;
+    display: flex;
+    max-height: 100%;
+}
+    .theme-toggle-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 54px;
+        height: 28px;
+        margin-top: 8px;
+        margin-left: 12px;
+        padding: 0 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.18);
+        background-color: #f2f6ff;
+        cursor: pointer;
+        transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .theme-toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+    }
+    .theme-toggle-btn .theme-icon,
+    .theme-toggle-btn .theme-toggle-handle {
+        pointer-events: none;
+    }
+    .theme-toggle-btn .theme-icon {
+        font-size: 0.85em;
+        opacity: 0.5;
+        transition: opacity 0.25s ease;
+        position: relative;
+        z-index: 2;
+    }
+    .theme-toggle-btn .theme-icon--sun {
+        color: #f59e0b;
+        opacity: 1;
+    }
+    .theme-toggle-btn .theme-icon--moon {
+        color: #c084fc;
+    }
+    .theme-toggle-btn .theme-toggle-handle {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        transition: transform 0.25s ease, background-color 0.25s ease;
+        z-index: 1;
+    }
+    [data-theme="gruvbox-light"] .theme-toggle-btn {
+        background-color: #f2f6ff;
+        border-color: rgba(15, 23, 42, 0.18);
+    }
+    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-toggle-handle {
+        transform: translateX(0);
+        background-color: #ffffff;
+    }
+    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--sun {
+        opacity: 1;
+    }
+    [data-theme="gruvbox-light"] .theme-toggle-btn .theme-icon--moon {
+        opacity: 0.35;
+    }
+    [data-theme="gruvbox-dark"] .theme-toggle-btn {
+        background-color: #3c3836;
+        border-color: #665c54;
+        color: #ebdbb2;
+    }
+    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-toggle-handle {
+        transform: translateX(26px);
+        background-color: #1d2021;
+    }
+    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--sun {
+        opacity: 0.35;
+    }
+    [data-theme="gruvbox-dark"] .theme-toggle-btn .theme-icon--moon {
+        opacity: 1;
+    }
+	.library-card {
+	    display: flex;
+	    flex-direction: column;
+	    width: 100%;
+	    border-radius: 6px;
+	    border: 1px solid #ddd;
+	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	    overflow: hidden;
+	    background-color: #fff;
+	    color: #333;
+	}
+	.library-card-cover {
+	    aspect-ratio: 2 / 3;
+	    width: 100%;
+	    min-height: 220px;
+	    max-height: 320px;
+	    background-color: #f7f7f7;
+	    display: grid;
+	    place-items: center;
+	    overflow: hidden;
+	    padding: 6px;
+	}
+	.library-card-cover img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: contain;
+	    background-color: transparent;
+	}
+	.library-card-body {
+	    flex: 1 1 auto;
+	    display: flex;
+	    flex-direction: column;
+	}
+	.library-card-title {
+	    margin-top: 0;
+	    font-size: 0.95em;
+	    line-height: 1.35;
+	    min-height: 2.7em;
+	}
+	.library-card-meta {
+	    font-size: 0.82em;
+	    color: #555;
+	    margin-bottom: 6px;
+	}
+	.library-card-footer {
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    font-size: 0.78em;
+	}
+	[data-theme="gruvbox-dark"] .library-card {
+	    border-color: #504945;
+	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+	    background-color: #282828;
+	    color: #ebdbb2;
+	}
+	[data-theme="gruvbox-dark"] .library-card-cover {
+	    background-color: #32302f;
+	}
+	[data-theme="gruvbox-dark"] .library-card-body {
+	    color: #ebdbb2;
+	}
+	[data-theme="gruvbox-dark"] .library-card-footer {
+	    color: #d5c4a1;
+	}
+	[data-theme="gruvbox-dark"] .library-card-title,
+	[data-theme="gruvbox-dark"] .library-card-meta {
+	    color: #d5c4a1;
+	}
+	.embed-responsive {
+ 	    border-radius: 8px;
+ 	    border: 1px solid rgba(30, 41, 59, 0.18);
+ 	    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+ 	    overflow: hidden;
+ 	    margin-bottom: 18px;
+	}
+	.course-embed {
+	    background-color: #ffffff;
+	}
+	[data-theme="gruvbox-dark"] .embed-responsive {
+	    border-color: #665c54;
+	    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+	    background-color: rgba(40, 40, 40, 0.9);
+	}
+	[data-theme="gruvbox-dark"] .course-embed {
+	    background-color: rgba(40, 40, 40, 0.9);
+	}
+	</style>
+    </head>
+    <body>
+	<div class="container">
+
+	    <div class="row">
+		<div class="page-header">
+		    <button type="button" class="theme-toggle-btn pull-right" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
+			<span class="theme-icon theme-icon--sun"><i class="fa-solid fa-sun"></i></span>
+			<span class="theme-icon theme-icon--moon"><i class="fa-solid fa-moon"></i></span>
+			<span class="theme-toggle-handle"></span>
+		    </button>
+		    <ul class="nav nav-pills pull-right">
+			
+			<li><a href="index.html"><i class="fa fa-gavel"></i> <span class="visible-md-inline visible-lg-inline">Home</span></a></li>
+			
+		    </ul>
+		    <h1><i class="fa fa-book"></i> Homework 04 (10 pts.)</h1>
+		</div>
+	    </div>
+
+		
+
+
+
+
+
+
+<h2 id="task-1-notebook">Task 1: Notebook<a class="headerlink" href="#task-1-notebook" title="Permanent link">&para;</a></h2>
+<p>Copy the following notebook and answer the included questions using the method of your choosing:</p>
+
+<div class="alert alert-success">
+<p><a href="">OPEN NOTEBOOK IN GOOGLE COLAB</a></p>
+</div>
+
+
+<p>For your convenience the document is displayed below but you will likely
+find it easier to copy the document from the google drive link above.</p>
+<p><iframe
+    class="theme-notebook-frame"
+    data-src-dark="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/homework04/homework04-dark.html"
+    data-src-light="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/homework04/homework04-light.html"
+    src="https://williamtheisen.com/nd-cse-30124-homeworks/homeworks/homework04/homework04-dark.html"
+    width="100%"
+    height="800"></iframe>
+</p>
+<pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+<h2 id="task-2-assignment-submission-instructions">Task 2: Assignment Submission Instructions<a class="headerlink" href="#task-2-assignment-submission-instructions" title="Permanent link">&para;</a></h2>
+<p>Upload the document to canvas for the assignment as a PDF.</p>
+
+
+	    <div class="row">
+		<hr/>
+
+		<footer class="text-center">
+		    <p class="text-muted">
+		    <small>
+		    Built using
+		    <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>,
+		    <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a>, and
+		    <a href="http://www.python.org/">Python</a>.
+		    <br/>
+		    &copy; 2022 <a href="http://www.nd.edu">University of Notre Dame</a>
+		    </small>
+		    </p>
+		</footer>
+	    </div>
+
+	</div> <!-- /container -->
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
+	<script>
+	(function() {
+	    var STORAGE_KEY = 'ai-landing-theme';
+	    var prefix = '';
+	    var themes = {
+	        'gruvbox-dark': prefix + 'static/css/gruvbox-dark.css',
+	        'gruvbox-light': prefix + 'static/css/bluegold.css'
+	    };
+	    var linkEl = document.getElementById('theme-style');
+	    var toggleBtn = document.getElementById('theme-toggle');
+	    if (!linkEl || !toggleBtn) {
+	        return;
+	    }
+        function updateButton(theme) {
+            var isDark = theme === 'gruvbox-dark';
+            var label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+            toggleBtn.setAttribute('aria-label', label);
+            toggleBtn.setAttribute('title', label);
+            toggleBtn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+        }
+        function updateNotebookFrames(theme) {
+            var frames = document.querySelectorAll('iframe[data-src-dark][data-src-light]');
+            var attr = theme === 'gruvbox-light' ? 'data-src-light' : 'data-src-dark';
+            Array.prototype.forEach.call(frames, function(frame) {
+                var nextSrc = frame.getAttribute(attr);
+                if (nextSrc && frame.getAttribute('src') !== nextSrc) {
+                    frame.setAttribute('src', nextSrc);
+                }
+            });
+        }
+        function applyTheme(theme) {
+            var name = themes[theme] ? theme : 'gruvbox-dark';
+            linkEl.setAttribute('href', themes[name]);
+            document.documentElement.setAttribute('data-theme', name);
+            updateButton(name);
+            updateNotebookFrames(name);
+            return name;
+        }
+	    var savedTheme = (function() {
+	        try {
+	            return localStorage.getItem(STORAGE_KEY);
+	        } catch (err) {
+	            return null;
+	        }
+    })();
+        var currentTheme = applyTheme(savedTheme);
+        document.addEventListener('themechange', function(event) {
+            updateNotebookFrames(event.detail || currentTheme);
+        });
+        toggleBtn.addEventListener('click', function() {
+            var nextTheme = currentTheme === 'gruvbox-dark' ? 'gruvbox-light' : 'gruvbox-dark';
+            currentTheme = applyTheme(nextTheme);
+            document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
+            try {
+                localStorage.setItem(STORAGE_KEY, currentTheme);
+            } catch (err) {
+                /* ignore write errors */
+            }
+        });
+	})();
+	</script>
+    </body>
+</html>
+
