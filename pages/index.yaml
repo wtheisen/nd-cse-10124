@@ -1,4 +1,4 @@
-title:      Introduction to Artificial Intelligence
+title:      Building ChatGPT
 icon:       fa-rocket
 navigation:
     - name: "Logistics"
@@ -23,12 +23,14 @@ body:       |
 
     <div class="row" markdown="1">
 
-    **CSE 30124** is an elective course in the [Computer Science and
+    **CSE 10124** is an elective course in the [Computer Science and
     Engineering] program at the [University of Notre Dame]. This course
-    serves as an introduction and gateway to upper level machine learning
-    and artificial intelligence courses. In this course students will
-    learn the fundamentals of learning algorithms and the basics of common
-    python libraries for these algorithms such as scikit-learn and pytorch.
+    serves as an introduction to programming (in python) through the
+    semester long goal of building, from scratch, a large-language model (LLM)
+    similar to ChatGPT. Along the way students will learn the fundamentals 
+    of using generative ai, including topics such as: prompt engineering, 
+    meta-prompting, retrieval-augmented generation, context engineering, 
+    and agentic workflows.
 
     [Computer Science and Engineering]:     http://cse.nd.edu
     [University of Notre Dame]:             http://www.nd.edu
@@ -41,13 +43,15 @@ body:       |
 
     Upon successful completion of this course, students will be able to:
 
-    1. **Evaluate** which model is appropriate for a given problem.
+    1. **Write** basic python.
 
-    2. **Utilize** modern python libraries for ML and AI.
+    2. **Evaluate** which model is appropriate for a given problem.
 
-    3. **Implement** basic ML and AI models.
+    3. **Utilize** modern prompting techniqes.
 
-    4. **Assess** AI/ML implementations for common issues and biases.
+    4. **Implement** basic agentic workflows.
+
+    5. **Assess** state-of-the-art models for common issues and biases. 
 
     </div>
 
@@ -73,6 +77,7 @@ body:       |
         </div>
     </div>
 
+
     <div class="row">
         <div class="page-header">
             <h2 id="Requirements"><i class="fa fa-balance-scale"></i> Requirements</h2>
@@ -91,24 +96,20 @@ body:       |
             </thead>
             <tbody>
                 <tr>
-                    <td><span class="label label-primary">Reading</span> Readings</td>
-                    <td class="text-center">15 &times; 1</td>
-                </tr>
-                <tr>
-                    <td><span class="label label-caution">Homework</span> Individual Labs</td>
+                    <td><span class="label label-caution">Code</span> Code Copies</td>
                     <td class="text-center">5 &times; 5</td>
                 </tr>
                 <tr>
-                    <td><span class="label label-caution">Homework</span> Partner Homework Assignments</td>
-                    <td class="text-center">5 &times; 10</td>
+                    <td><span class="label label-caution">Homework</span> Homework Assignments</td>
+                    <td class="text-center">10 &times; 5</td>
                 </tr>
                 <tr>
                     <td><span class="label label-danger">Midterm</span> Midterm Exams (10 points for turning in exam practice packet)</td>
-                    <td class="text-center">2 &times; 65</td>
+                    <td class="text-center">2 &times; 70</td>
                 </tr>
                 <tr>
                     <td><span class="label label-danger">Exam</span> Final Exam (10 points for turning in exam practice packet)</td>
-                    <td class="text-center">1 &times; 80</td>
+                    <td class="text-center">1 &times; 85</td>
                 </tr>
                 <tr>
                     <td class="text-strong text-right">Total</td>
