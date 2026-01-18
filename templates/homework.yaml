@@ -1,4 +1,4 @@
-title:      "Homework {{ number_str }}: Detective Work (10 pts.)"
+title:      "Homework {{ number_str }} (10 pts.)"
 icon:       fa-book
 navigation:
   - name: "Home"
@@ -23,7 +23,7 @@ body:       |
 
     {% if notebook_link %}
     <div class="alert alert-success" markdown="1">
-    [OPEN NOTEBOOK IN GOOGLE COLAB]({{ notebook_link }})
+    [OPEN DOCUMENT IN GOOGLE DOCS]({{ notebook_link }})
     </div>
     {% else %}
     <div class="alert alert-success" markdown="1">
@@ -31,8 +31,8 @@ body:       |
     </div>
     {% end %}
 
-    For your convenience the notebook is displayed below as HTML but you will likely
-    find it easier to copy the notebook from the google drive link above.
+    For your convenience the document is displayed below but you will likely
+    find it easier to copy the document from the google drive link above.
 
     <iframe
         class="theme-notebook-frame"
@@ -46,5 +46,4 @@ body:       |
 
     ## Task 2: Assignment Submission Instructions
 
-    The final cell of the notebook will export and download an html file of your
-    notebook. Upload this to canvas for the assignment.
+    Upload the document to canvas for the assignment as a PDF.
