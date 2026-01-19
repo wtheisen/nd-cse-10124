@@ -172,47 +172,18 @@ function loadSemesterInfoFromCSV(text) {
 }
 
 module.exports = async function() {
-  // Read semester_info.yaml for CSV URLs
-  const yamlPath = path.join(process.cwd(), 'static', 'yaml', 'semester_info.yaml');
+  // Read config.json for CSV URLs and settings
+  const configPath = path.join(process.cwd(), 'config.json');
 
   let csvUrls = {};
   let cancelledDays = [];
 
   try {
-    const yamlContent = fs.readFileSync(yamlPath, 'utf8');
-    // Simple YAML parsing for our specific structure
-    const lines = yamlContent.split('\n');
-    let inCsvUrls = false;
-    let inCancelledDays = false;
-
-    for (const line of lines) {
-      if (line.startsWith('csv_urls:')) {
-        inCsvUrls = true;
-        inCancelledDays = false;
-        continue;
-      }
-      if (line.startsWith('cancelled_days:')) {
-        inCancelledDays = true;
-        inCsvUrls = false;
-        continue;
-      }
-      if (line.match(/^\S/) && !line.startsWith(' ') && !line.startsWith('-')) {
-        inCsvUrls = false;
-        inCancelledDays = false;
-      }
-
-      if (inCsvUrls && line.includes(':')) {
-        const match = line.match(/^\s+(\w+):\s*(.+)$/);
-        if (match) {
-          csvUrls[match[1]] = match[2].trim();
-        }
-      }
-      if (inCancelledDays && line.trim().startsWith('-')) {
-        cancelledDays.push(line.trim().substring(1).trim());
-      }
-    }
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    csvUrls = config.csv_urls || {};
+    cancelledDays = config.cancelled_days || [];
   } catch (err) {
-    console.error('Warning: Could not read semester_info.yaml:', err.message);
+    console.error('Warning: Could not read config.json:', err.message);
   }
 
   let semesterInfo = {

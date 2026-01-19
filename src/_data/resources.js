@@ -117,19 +117,16 @@ function loadResourcesFromCSV(text) {
 }
 
 module.exports = async function() {
-  // Read semester_info.yaml for CSV URL
-  const yamlPath = path.join(process.cwd(), 'static', 'yaml', 'semester_info.yaml');
+  // Read config.json for CSV URL
+  const configPath = path.join(process.cwd(), 'config.json');
 
   let resourcesUrl = '';
 
   try {
-    const yamlContent = fs.readFileSync(yamlPath, 'utf8');
-    const match = yamlContent.match(/resources:\s*(.+)/);
-    if (match) {
-      resourcesUrl = match[1].trim();
-    }
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    resourcesUrl = config.csv_urls?.resources || '';
   } catch (err) {
-    console.error('Warning: Could not read semester_info.yaml:', err.message);
+    console.error('Warning: Could not read config.json:', err.message);
   }
 
   // Try local CSV file first

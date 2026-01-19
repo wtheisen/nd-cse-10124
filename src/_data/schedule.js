@@ -151,19 +151,16 @@ function loadScheduleFromCSV(text) {
 }
 
 module.exports = async function() {
-  // Read semester_info.yaml for CSV URL
-  const yamlPath = path.join(process.cwd(), 'static', 'yaml', 'semester_info.yaml');
+  // Read config.json for CSV URL
+  const configPath = path.join(process.cwd(), 'config.json');
 
   let scheduleUrl = '';
 
   try {
-    const yamlContent = fs.readFileSync(yamlPath, 'utf8');
-    const match = yamlContent.match(/schedule:\s*(.+)/);
-    if (match) {
-      scheduleUrl = match[1].trim();
-    }
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    scheduleUrl = config.csv_urls?.schedule || '';
   } catch (err) {
-    console.error('Warning: Could not read semester_info.yaml:', err.message);
+    console.error('Warning: Could not read config.json:', err.message);
   }
 
   // Try local CSV file first
