@@ -61,11 +61,6 @@ module.exports = function(eleventyConfig) {
     if (!semesterInfo) return '<p>No semester info available</p>';
 
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const startMinutes = 10 * 60; // 10:00 AM
-    const endMinutes = 21 * 60;   // 9:00 PM
-    const totalMinutes = endMinutes - startMinutes; // 11 hours = 660 minutes
-    const pixelsPerHour = 60;
-    const totalHeight = (totalMinutes / 60) * pixelsPerHour; // 660px
 
     // Build TA color map dynamically based on order in data
     const taColorMap = {};
@@ -91,6 +86,9 @@ module.exports = function(eleventyConfig) {
 
     // Collect all events for each day
     const dayEvents = {};
+    let globalMinStart = 24 * 60;
+    let globalMaxEnd = 0;
+
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
       dayEvents[dayIdx] = [];
       const day = days[dayIdx];
@@ -109,6 +107,8 @@ module.exports = function(eleventyConfig) {
             start: parsed.start,
             end: parsed.end
           });
+          globalMinStart = Math.min(globalMinStart, parsed.start);
+          globalMaxEnd = Math.max(globalMaxEnd, parsed.end);
         }
       }
 
@@ -126,6 +126,8 @@ module.exports = function(eleventyConfig) {
             start: parsed.start,
             end: parsed.end
           });
+          globalMinStart = Math.min(globalMinStart, parsed.start);
+          globalMaxEnd = Math.max(globalMaxEnd, parsed.end);
         }
       }
 
@@ -144,10 +146,19 @@ module.exports = function(eleventyConfig) {
               start: parsed.start,
               end: parsed.end
             });
+            globalMinStart = Math.min(globalMinStart, parsed.start);
+            globalMaxEnd = Math.max(globalMaxEnd, parsed.end);
           }
         }
       }
     }
+
+    // Calculate time range - round to hour boundaries with padding
+    const startMinutes = Math.floor(globalMinStart / 60) * 60; // Round down to hour
+    const endMinutes = Math.ceil(globalMaxEnd / 60) * 60;       // Round up to hour
+    const totalMinutes = endMinutes - startMinutes;
+    const pixelsPerHour = 80; // Larger for better text visibility
+    const totalHeight = (totalMinutes / 60) * pixelsPerHour;
 
     // Find overlap groups - events that share any time
     function findOverlapGroups(events) {
@@ -227,7 +238,7 @@ module.exports = function(eleventyConfig) {
 <style>
 .oh-calendar {
   display: grid;
-  grid-template-columns: 100px repeat(7, 1fr);
+  grid-template-columns: 80px repeat(7, 1fr);
   border: 1px solid #ddd;
   font-size: 12px;
 }
@@ -268,12 +279,17 @@ module.exports = function(eleventyConfig) {
 .oh-event {
   position: absolute;
   box-sizing: border-box;
-  padding: 4px;
+  padding: 4px 6px;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(0,0,0,0.15);
   font-size: 11px;
   line-height: 1.3;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .oh-event strong {
   display: block;
