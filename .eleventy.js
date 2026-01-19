@@ -67,8 +67,8 @@ module.exports = function(eleventyConfig) {
     // Build TA color map dynamically based on order in data
     const taColorMap = {};
     const tas = semesterInfo.TAs || {};
-    const taIds = Object.keys(tas);
-    taIds.forEach((taId, index) => {
+    const taIdList = Object.keys(tas);
+    taIdList.forEach((taId, index) => {
       taColorMap[taId] = TA_COLOR_PALETTE[index % TA_COLOR_PALETTE.length];
     });
 
@@ -80,11 +80,6 @@ module.exports = function(eleventyConfig) {
         end: m + slotDuration,
         label: `${formatMinutesToTime(m)} - ${formatMinutesToTime(m + slotDuration)}`
       });
-    }
-
-    // Helper: check if a time range overlaps with a slot
-    function overlaps(slotStart, slotEnd, rangeStart, rangeEnd) {
-      return rangeStart < slotEnd && rangeEnd > slotStart;
     }
 
     // Helper: parse "10:00 AM - 11:30 AM|Location" format
@@ -101,14 +96,10 @@ module.exports = function(eleventyConfig) {
       return { start, end, time: timeRange, location };
     }
 
-    // Track which cells have been consumed by rowspan
-    const consumedCells = {};
-    const key = (slotIdx, dayIdx) => `${slotIdx}-${dayIdx}`;
-
-    // Pre-compute all events for each day/slot
-    const events = {}; // key -> array of events
-
+    // Collect all events for each day (not per-slot, but the full event)
+    const dayEvents = {}; // dayIdx -> array of events with start/end times
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
+      dayEvents[dayIdx] = [];
       const day = days[dayIdx];
 
       // Class times
@@ -116,21 +107,15 @@ module.exports = function(eleventyConfig) {
       if (classHours) {
         const parsed = parseOfficeHours(classHours + '|' + (semesterInfo.class_location || ''));
         if (parsed) {
-          for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-            const slot = timeSlots[slotIdx];
-            if (overlaps(slot.start, slot.end, parsed.start, parsed.end)) {
-              const k = key(slotIdx, dayIdx);
-              if (!events[k]) events[k] = [];
-              events[k].push({
-                type: 'lecture',
-                name: 'Lecture',
-                time: parsed.time,
-                location: parsed.location,
-                start: parsed.start,
-                end: parsed.end
-              });
-            }
-          }
+          dayEvents[dayIdx].push({
+            id: 'lecture',
+            type: 'lecture',
+            name: 'Lecture',
+            time: parsed.time,
+            location: parsed.location,
+            start: parsed.start,
+            end: parsed.end
+          });
         }
       }
 
@@ -139,48 +124,113 @@ module.exports = function(eleventyConfig) {
       if (instructor && instructor.office_hours && instructor.office_hours[day]) {
         const parsed = parseOfficeHours(instructor.office_hours[day]);
         if (parsed) {
-          for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-            const slot = timeSlots[slotIdx];
-            if (overlaps(slot.start, slot.end, parsed.start, parsed.end)) {
-              const k = key(slotIdx, dayIdx);
-              if (!events[k]) events[k] = [];
-              events[k].push({
-                type: 'instructor',
-                name: instructor.name || 'Instructor',
-                time: parsed.time,
-                location: parsed.location,
-                start: parsed.start,
-                end: parsed.end
-              });
-            }
-          }
+          dayEvents[dayIdx].push({
+            id: 'instructor',
+            type: 'instructor',
+            name: instructor.name || 'Instructor',
+            time: parsed.time,
+            location: parsed.location,
+            start: parsed.start,
+            end: parsed.end
+          });
         }
       }
 
       // TA office hours
-      const tas = semesterInfo.TAs || {};
-      for (const [taId, ta] of Object.entries(tas)) {
+      for (const [taId, ta] of Object.entries(semesterInfo.TAs || {})) {
         if (ta.office_hours && ta.office_hours[day]) {
           const parsed = parseOfficeHours(ta.office_hours[day]);
           if (parsed) {
-            for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-              const slot = timeSlots[slotIdx];
-              if (overlaps(slot.start, slot.end, parsed.start, parsed.end)) {
-                const k = key(slotIdx, dayIdx);
-                if (!events[k]) events[k] = [];
-                events[k].push({
-                  type: 'ta',
-                  taId: taId,
-                  name: ta.name || 'TA',
-                  time: parsed.time,
-                  location: parsed.location,
-                  start: parsed.start,
-                  end: parsed.end
-                });
-              }
-            }
+            dayEvents[dayIdx].push({
+              id: `ta-${taId}`,
+              type: 'ta',
+              taId: taId,
+              name: ta.name || 'TA',
+              time: parsed.time,
+              location: parsed.location,
+              start: parsed.start,
+              end: parsed.end
+            });
           }
         }
+      }
+    }
+
+    // For each day, compute "visual blocks" - contiguous slot ranges with the same set of active events
+    // A block changes when the set of active event IDs changes
+    const dayBlocks = {}; // dayIdx -> array of { startSlotIdx, endSlotIdx, events }
+
+    for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
+      dayBlocks[dayIdx] = [];
+      const events = dayEvents[dayIdx];
+
+      let currentBlock = null;
+      let currentEventIds = null;
+
+      for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
+        const slot = timeSlots[slotIdx];
+
+        // Find all events active during this slot
+        const activeEvents = events.filter(e => e.start < slot.end && e.end > slot.start);
+        const activeIds = activeEvents.map(e => e.id).sort().join(',');
+
+        if (activeIds !== currentEventIds) {
+          // Event set changed - save current block and start new one
+          if (currentBlock !== null) {
+            currentBlock.endSlotIdx = slotIdx;
+            dayBlocks[dayIdx].push(currentBlock);
+          }
+
+          currentBlock = {
+            startSlotIdx: slotIdx,
+            endSlotIdx: slotIdx + 1,
+            events: activeEvents
+          };
+          currentEventIds = activeIds;
+        } else if (currentBlock !== null) {
+          // Same events, extend the block
+          currentBlock.endSlotIdx = slotIdx + 1;
+        }
+      }
+
+      // Don't forget the last block
+      if (currentBlock !== null) {
+        dayBlocks[dayIdx].push(currentBlock);
+      }
+    }
+
+    // Track which cells have been consumed by rowspan
+    const consumedCells = {};
+    const key = (slotIdx, dayIdx) => `${slotIdx}-${dayIdx}`;
+
+    // Pre-compute block lookup: for each slot/day, which block does it belong to?
+    const slotBlock = {}; // key -> block or null
+    for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
+      for (const block of dayBlocks[dayIdx]) {
+        for (let slotIdx = block.startSlotIdx; slotIdx < block.endSlotIdx; slotIdx++) {
+          slotBlock[key(slotIdx, dayIdx)] = block;
+        }
+      }
+    }
+
+    // Helper: get background style for a set of events
+    function getBgStyle(events) {
+      const taIds = [...new Set(events.filter(e => e.type === 'ta').map(e => e.taId))];
+      const hasNonTa = events.some(e => e.type !== 'ta');
+
+      if (events.length === 0) {
+        return '';
+      } else if (!hasNonTa && taIds.length === 1) {
+        return `background-color: ${taColorMap[taIds[0]] || 'rgba(240,240,240,0.5)'};`;
+      } else if (!hasNonTa && taIds.length >= 2) {
+        // Gradient for multiple TAs
+        const colors = taIds.map(id => taColorMap[id] || 'rgba(240,240,240,0.5)');
+        const stops = colors.map((c, i) => `${c} ${Math.floor(100*i/colors.length)}% ${Math.floor(100*(i+1)/colors.length)}%`);
+        return `background-image: linear-gradient(90deg, ${stops.join(', ')});`;
+      } else if (events.some(e => e.type === 'lecture' || e.type === 'instructor')) {
+        return 'background-color: rgba(204, 229, 255, 0.5);';
+      } else {
+        return 'background-color: rgba(245, 245, 245, 0.7);';
       }
     }
 
@@ -215,45 +265,23 @@ module.exports = function(eleventyConfig) {
         // Skip if consumed by previous rowspan
         if (consumedCells[k]) continue;
 
-        const cellEvents = events[k] || [];
+        const block = slotBlock[k];
 
-        if (cellEvents.length > 0) {
-          // Find the minimum end time to determine rowspan
-          const slotStart = slot.start;
-          let minEnd = Math.min(...cellEvents.map(e => e.end));
-          // Calculate rowspan based on how many 30-min slots until end
-          let rowspan = Math.ceil((minEnd - slotStart) / slotDuration);
-          rowspan = Math.max(1, rowspan);
+        if (block && block.events.length > 0 && block.startSlotIdx === slotIdx) {
+          // This is the start of a block with events - render the cell
+          const rowspan = block.endSlotIdx - block.startSlotIdx;
+          const bgStyle = getBgStyle(block.events);
 
           // Mark subsequent cells as consumed
           for (let r = 1; r < rowspan; r++) {
             consumedCells[key(slotIdx + r, dayIdx)] = true;
           }
 
-          // Determine background color
-          let bgStyle = '';
-          const taIds = [...new Set(cellEvents.filter(e => e.type === 'ta').map(e => e.taId))];
-          const hasNonTa = cellEvents.some(e => e.type !== 'ta');
-
-          if (!hasNonTa && taIds.length === 1) {
-            bgStyle = `background-color: ${taColorMap[taIds[0]] || 'rgba(240,240,240,0.5)'};`;
-          } else if (!hasNonTa && taIds.length >= 2) {
-            // Gradient for multiple TAs
-            const colors = taIds.map(id => taColorMap[id] || 'rgba(240,240,240,0.5)');
-            const stops = colors.map((c, i) => `${c} ${Math.floor(100*i/colors.length)}% ${Math.floor(100*(i+1)/colors.length)}%`);
-            bgStyle = `background-image: linear-gradient(90deg, ${stops.join(', ')});`;
-          } else if (cellEvents.some(e => e.type === 'lecture' || e.type === 'instructor')) {
-            bgStyle = 'background-color: rgba(204, 229, 255, 0.5);';
-          } else {
-            bgStyle = 'background-color: rgba(245, 245, 245, 0.7);';
-          }
-
           html += `<td rowspan="${rowspan}" style="text-align: center; vertical-align: middle; padding: 6px; ${bgStyle} border: 1px solid #ddd; border-top: 1px solid #ddd;">`;
 
-          // Deduplicate by name for display
+          // Display each unique person/event
           const displayedNames = new Set();
-          for (let i = 0; i < cellEvents.length; i++) {
-            const evt = cellEvents[i];
+          for (const evt of block.events) {
             if (displayedNames.has(evt.name)) continue;
             displayedNames.add(evt.name);
 
@@ -267,29 +295,30 @@ module.exports = function(eleventyConfig) {
             }
           }
           html += '</td>';
-        } else {
-          // Empty cell - try to span 4 rows if at hour start and all slots in the hour are empty
-          if (isHourStart) {
-            let canSpanHour = true;
-            for (let r = 1; r < 4 && slotIdx + r < timeSlots.length; r++) {
-              const checkKey = key(slotIdx + r, dayIdx);
-              if (events[checkKey] && events[checkKey].length > 0) {
-                canSpanHour = false;
-                break;
-              }
+        } else if (!block || block.events.length === 0) {
+          // Empty slot - try to merge empty cells
+          // Find how many consecutive empty slots we have
+          let emptyCount = 1;
+          for (let r = slotIdx + 1; r < timeSlots.length; r++) {
+            const nextBlock = slotBlock[key(r, dayIdx)];
+            if (nextBlock && nextBlock.events.length > 0) break;
+            emptyCount++;
+          }
+
+          // For cleaner display, try to align with hour boundaries
+          if (isHourStart && emptyCount >= 4) {
+            // Span the full hour if possible
+            const hourSlots = Math.min(4, emptyCount);
+            for (let r = 1; r < hourSlots; r++) {
+              consumedCells[key(slotIdx + r, dayIdx)] = true;
             }
-            if (canSpanHour && slotIdx + 3 < timeSlots.length) {
-              for (let r = 1; r < 4; r++) {
-                consumedCells[key(slotIdx + r, dayIdx)] = true;
-              }
-              html += '<td rowspan="4" style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
-            } else {
-              html += '<td style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
-            }
-          } else if (!consumedCells[k]) {
+            html += `<td rowspan="${hourSlots}" style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>`;
+          } else {
+            // Just render single empty cell
             html += '<td style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
           }
         }
+        // If block exists but this isn't the start, we skip (handled by consumed check)
       }
 
       html += '</tr>';
