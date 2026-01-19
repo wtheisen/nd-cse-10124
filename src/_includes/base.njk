@@ -7,10 +7,10 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Homework 05 (10 pts.)</title>
+	<title>{{ title }}</title>
 
 	<!-- Theme CSS (toggleable) -->
-	<link id="theme-style" href="static/css/gruvbox-dark.css" rel="stylesheet">
+	<link id="theme-style" href="{{ prefix | default('') }}static/css/gruvbox-dark.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -233,42 +233,15 @@
 			<span class="theme-toggle-handle"></span>
 		    </button>
 		    <ul class="nav nav-pills pull-right">
-			
-			<li><a href="index.html"><i class="fa fa-gavel"></i> <span class="visible-md-inline visible-lg-inline">Home</span></a></li>
-			
+			{% for item in navigation %}
+			<li><a href="{{ item.link }}"><i class="fa {{ item.icon }}"></i> <span class="visible-md-inline visible-lg-inline">{{ item.name }}</span></a></li>
+			{% endfor %}
 		    </ul>
-		    <h1><i class="fa fa-book"></i> Homework 05 (10 pts.)</h1>
+		    <h1><i class="fa {{ icon }}"></i> {{ title }}</h1>
 		</div>
 	    </div>
 
-		
-
-
-
-
-
-
-<h2>Task 1: Notebook</h2>
-
-<p>Copy the following notebook and answer the included questions using the method of your choosing:</p>
-
-
-
-<p>For your convenience the document is displayed below but you will likely
-find it easier to copy the document from the google drive link above.</p>
-
-
-<div class="alert alert-warning">
-<p>Document link not yet available. Please check back later.</p>
-</div>
-
-
-<pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
-
-<h2>Task 2: Assignment Submission Instructions</h2>
-
-<p>Upload the document to canvas for the assignment as a PDF.</p>
-
+		{{ content | safe }}
 
 	    <div class="row">
 		<hr/>
@@ -295,11 +268,13 @@ find it easier to copy the document from the google drive link above.</p>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	{% if extraScript %}
+	<script src="{{ extraScript }}"></script>
+	{% endif %}
 	<script>
 	(function() {
 	    var STORAGE_KEY = 'ai-landing-theme';
-	    var prefix = '';
+	    var prefix = '{{ prefix | default("") }}';
 	    var themes = {
 	        'gruvbox-dark': prefix + 'static/css/gruvbox-dark.css',
 	        'gruvbox-light': prefix + 'static/css/bluegold.css'

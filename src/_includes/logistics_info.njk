@@ -1,0 +1,174 @@
+{# Logistics info partial - displays course logistics, instructor, and TAs #}
+{# Expects: semesterInfo from global data #}
+
+    <div class="row">
+        <div class="page-header">
+            <h2 id="logistics"><i class="fa fa-cogs"></i> Logistics</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Class Information</h3>
+
+                    <dl>
+                        <dt><i class="fa fa-clock-o"></i> Lecture</dt>
+                        <dd>
+                            {% set class_times = semesterInfo.class_times if semesterInfo.class_times else {} %}
+                            {% if class_times | length %}
+                                {% set days_list = [] %}
+                                {% set times_list = [] %}
+                                {% for day, time in class_times %}
+                                    {% if day == 'Monday' %}
+                                        {% set days_list = (days_list.push('M'), days_list) %}
+                                    {% elif day == 'Tuesday' %}
+                                        {% set days_list = (days_list.push('T'), days_list) %}
+                                    {% elif day == 'Wednesday' %}
+                                        {% set days_list = (days_list.push('W'), days_list) %}
+                                    {% elif day == 'Thursday' %}
+                                        {% set days_list = (days_list.push('TR'), days_list) %}
+                                    {% elif day == 'Friday' %}
+                                        {% set days_list = (days_list.push('F'), days_list) %}
+                                    {% else %}
+                                        {% set days_list = (days_list.push(day | truncate(1, true, "")), days_list) %}
+                                    {% endif %}
+                                    {% set times_list = (times_list.push(time), times_list) %}
+                                {% endfor %}
+                                <strong>{{ days_list | join(' / ') }}</strong>
+                                {% if times_list | length %}
+                                    {{ times_list[0] }}
+                                {% endif %}
+                            {% else %}
+                                <strong>M / W</strong> 3:30 PM - 4:45 PM
+                            {% endif %}
+                        </dd>
+
+                        <dt><i class="fa fa-home"></i> Location</dt>
+                        <dd>{{ semesterInfo.class_location if semesterInfo.class_location else 'TBD' }}</dd>
+
+                        <dt><i class="fa fa-slack"></i> Slack</dt>
+                        <dd>
+                            {% set term_code = semesterInfo | termCode %}
+                            <a href="https://nd-cse.slack.com/messages/cse-30124-{{ term_code }}/">#cse-30124-{{ term_code }}</a>
+                        </dd>
+
+                        <dt><i class="fa fa-github"></i> GitHub</dt>
+                        <dd>
+                            {% set instructor = semesterInfo.Instructor %}
+                            {% if instructor and instructor.github %}
+                                <a href="https://www.github.com/{{ instructor.github }}/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
+                            {% else %}
+                                <a href="https://www.github.com/wtheisen/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
+                            {% endif %}
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Instructor</h3>
+
+                    <dl>
+                        {% set instructor = semesterInfo.Instructor %}
+                        {% if instructor %}
+                            <dt><i class="fa fa-user"></i> Instructor</dt>
+                            <dd>
+                                {% if instructor.name %}
+                                    {% if instructor.github %}
+                                        <a href="http://www.williamtheisen.com">{{ instructor.name }}</a>
+                                    {% else %}
+                                        {{ instructor.name }}
+                                    {% endif %}
+                                    (<a href="mailto:{{ instructor.netid }}@nd.edu">{{ instructor.netid }}@nd.edu</a>)
+                                {% else %}
+                                    <a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)
+                                {% endif %}
+                            </dd>
+                            <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
+
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd>
+                                {% if instructor.office_hours %}
+                                    {% set oh_count = 0 %}
+                                    {% for day, oh_info in instructor.office_hours %}
+                                        {% if oh_info %}
+                                            {% set oh_time = oh_info | parseTime %}
+                                            {% set day_abbrev = day | dayAbbrev %}
+                                            {% if oh_count == 0 %}
+                                                <strong>{{ day_abbrev }}</strong> {{ oh_time }}
+                                            {% else %}
+                                                , {{ day_abbrev }} {{ oh_time }}
+                                            {% endif %}
+                                            {% set oh_count = oh_count + 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if oh_count > 0 %}
+                                        , and by <strong>appointment</strong>
+                                    {% else %}
+                                        By <strong>appointment</strong>
+                                    {% endif %}
+                                {% else %}
+                                    By <strong>appointment</strong>
+                                {% endif %}
+                            </dd>
+
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>
+                                {% if instructor.office_hours %}
+                                    {% set found_location = false %}
+                                    {% for day, oh_info in instructor.office_hours %}
+                                        {% if oh_info and '|' in oh_info and not found_location %}
+                                            {{ oh_info | parseLocation }}
+                                            {% set found_location = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if not found_location %}
+                                        350 Fitz
+                                    {% endif %}
+                                {% else %}
+                                    350 Fitz
+                                {% endif %}
+                            </dd>
+                        {% else %}
+                            <dt><i class="fa fa-user"></i> Instructor</dt>
+                            <dd><a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)</dd>
+                            <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
+
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd><strong>T/TR</strong> 2:00 PM - 4:00 PM, and by <strong>appointment</strong></dd>
+
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>350 Fitz</dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Teaching Assistants</h3>
+
+            <div class="row">
+                {% set ta_count = 0 %}
+                {% for ta_id, ta_data in semesterInfo.TAs %}
+                    <div class="col-md-4">
+                        <dl>
+                            <dt><i class="fa fa-user"></i> {{ ta_data.level if ta_data.level else 'Teaching' }} Teaching Assistant</dt>
+                            <dd>{{ ta_data.name if ta_data.name else 'TBD' }} (<a href="mailto:{{ ta_data.netid if ta_data.netid else '' }}@nd.edu">{{ ta_data.netid if ta_data.netid else '' }}@nd.edu</a>)</dd>
+                            <!--
+                            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                            <dd>{{ ta_data.office_hours if ta_data.office_hours else 'TBD' }}</dd>
+                            <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                            <dd>{{ ta_data.oh_location if ta_data.oh_location else 'TBD' }}</dd>
+                            //-->
+                        </dl>
+                    </div>
+                    {% set ta_count = ta_count + 1 %}
+                    {% if ta_count % 3 == 0 %}
+                        <div class="row"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>

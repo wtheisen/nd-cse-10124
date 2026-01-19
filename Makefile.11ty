@@ -1,0 +1,41 @@
+# Makefile for 11ty-based site build
+# Run 'make -f Makefile.11ty' or rename this file to Makefile
+
+.PHONY: all build serve clean install help
+
+# Default target
+all: build
+
+# Install Node.js dependencies
+install:
+	npm install
+
+# Build the site with 11ty
+build:
+	npm run build
+
+# Start development server with live reload
+serve:
+	npm run serve
+
+# Watch for changes and rebuild
+watch:
+	npm run watch
+
+# Clean the output directory
+clean:
+	rm -rf docs/*
+
+# Debug build with verbose output
+debug:
+	npm run debug
+
+# Show help
+help:
+	@echo "Available targets:"
+	@echo "  make install  - Install Node.js dependencies"
+	@echo "  make build    - Build the site (output to docs/)"
+	@echo "  make serve    - Start dev server with live reload"
+	@echo "  make watch    - Watch for changes and rebuild"
+	@echo "  make clean    - Remove built files"
+	@echo "  make debug    - Build with verbose debug output"

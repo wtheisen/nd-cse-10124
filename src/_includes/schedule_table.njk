@@ -1,0 +1,180 @@
+{# Schedule table partial - displays the course schedule #}
+{# Expects: schedule, resources, semesterInfo from global data #}
+
+    <div class="row">
+        <div class="page-header">
+            <h2 id="schedule"><i class="fa fa-calendar"></i> Schedule</h2>
+            <p>Click on the
+                <i class="fa-solid fa-circle-info"></i>
+                <i class="fa-solid fa-caret-right"></i>
+                next to a topic for additional resources.
+
+                <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                indicates the required resource for the topic.
+            </p>
+        </div>
+    </div>
+
+    <style>
+        table.schedule td.unit {
+            background-color: #fff;
+            border-right: 2px solid #ddd;
+            text-align: right;
+            width: 175px;
+            vertical-align: middle;
+        }
+
+        table.schedule tbody tr.topic-row:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.schedule tbody tr.topic-row:nth-of-type(odd) {
+            background-color: #ffffff;
+        }
+
+        table.schedule tbody tr.resource-row {
+            background-color: #ffffff !important;
+        }
+
+        tr.resource-row ul {
+            list-style-position: inside;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        tr.resource-row li {
+            padding-left: 0;
+            margin-left: 0;
+        }
+    </style>
+
+    <div class="row">
+        <table class="table condensed schedule">
+            <thead>
+                <tr>
+                    <th class="text-center">Unit</th>
+                    <th class="text-center" style="width: 100px;">Date</th>
+                    <th class="text-center">Topics</th>
+                    <th class="text-center">Assignments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for theme in schedule %}
+                    {% if not theme.days %}
+                        <tr class="topic-row">
+                        <td colspan="4" class="text-center text-strong" style="border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; padding: 4px;">{{ theme.name }}</td>
+                        </tr>
+                    {% else %}
+
+                    {% for day in theme.days %}
+                        {% set dayIndex = loop.index0 %}
+
+                        <tr class="topic-row">
+                            {% if dayIndex == 0 %}
+                                {% set unit_id = theme.name | replace(" ", "_") %}
+
+                                <td id="unit-cell-{{ unit_id }}" rowspan="{{ theme.days | length }}" class="text-strong text-primary text-center unit">{{ theme.name }}</td>
+                            {% endif %}
+
+                            <td class="text-center text-strong"><tt>{{ day.date }}</tt></td>
+                            <td class="text-strong">
+                            {% set lecture_id = day.topics | lectureIdFor %}
+                            {% if not lecture_id %}
+                                {% set lecture_id = unit_id + '-' + day.date | replace(" ", "_") | replace("/", "-") %}
+                            {% endif %}
+                            {% set day_resources = resources[lecture_id] if resources[lecture_id] else [] %}
+
+                            {% if day.topics %}
+                                {% set cancelled_days = semesterInfo.cancelled_days if semesterInfo.cancelled_days else [] %}
+                                {% set topic = day.topics %}
+                                {% set is_cancelled = topic | isCancelled(cancelled_days) %}
+
+                                {% if is_cancelled %}
+                                    <i class="text-muted">{{ topic }}</i>
+                                {% elif 'exam' in day.topics | lower %}
+                                    <i class="text-danger">{{ day.topics }}</i>
+                                {% else %}
+                                    <span onclick="toggleResources('{{ lecture_id }}','{{ unit_id }}')" style="cursor: pointer;">
+                                        {{ day.topics }}
+                                        {% if day_resources | length %}
+                                            <i class="fa-solid fa-circle-info"></i>
+                                            <i class="fa-solid fa-caret-right caret-icon" id="{{ lecture_id }}"></i>
+                                        {% endif %}
+                                    </span>
+                                {% endif %}
+                            {% else %}
+                                <i class="text-muted">Intro to AI</i>
+                            {% endif %}
+
+                            {% if day.items %}
+                            {% for item in day.items %}
+                                {% set item_label = 'default' %}
+                                {% if 'exam' in item.name | lower %}
+                                    {% set item_label = 'danger' %}
+                                {% elif item.name | lower | startswith('panopto') %}
+                                    {% set item_label = 'success' %}
+                                {% elif item.name | lower | startswith('blogpost') %}
+                                    {% set item_label = 'primary' %}
+                                {% endif %}
+
+                                {% if item.link %}
+                                    <a class="label label-{{ item_label }}" href="{{ item.link }}">{{ item.name }}</a>
+                                {% else %}
+                                    <span class="label label-{{ item_label }}">{{ item.name }}</span>
+                                {% endif %}
+                            {% endfor %}
+                            {% endif %}
+
+                            </td>
+                            <td class="text-strong text-center">
+
+                            {% if day.assignments %}
+                            {% for assignment in day.assignments %}
+                                {% set assignment_id = assignment | assignmentId %}
+                                {% set assignment_label = assignment_id | assignmentLabel %}
+
+                                {% set assignment_resource = resources | findAssignmentResource(assignment, lecture_id) %}
+                                {% set is_lab_or_homework_or_reading = assignment_id | startswith('lab_') or assignment_id | startswith('homework_') or assignment_id | startswith('reading_') %}
+
+                                {% if assignment_resource and assignment_resource.link and not is_lab_or_homework_or_reading %}
+                                    {% set assignment_type = (assignment_resource.type if assignment_resource.type else '') | lower %}
+                                    {% if assignment_label == 'caution' %}
+                                        {% if 'exam' in assignment_type %}
+                                            {% set assignment_label = 'danger' %}
+                                        {% elif 'practice' in assignment_type or 'solution' in assignment_type %}
+                                            {% set assignment_label = 'success' %}
+                                        {% elif assignment_type | startswith('reading') %}
+                                            {% set assignment_label = 'primary' %}
+                                        {% elif 'primer' in assignment_type %}
+                                            {% set assignment_label = 'success' %}
+                                        {% elif 'homework' in assignment_type or 'assignment' in assignment_type or 'project' in assignment_type %}
+                                            {% set assignment_label = 'caution' %}
+                                        {% endif %}
+                                    {% endif %}
+                                    <a href="{{ assignment_resource.link }}" class="label label-{{ assignment_label }}">{{ assignment }}</a>
+                                {% else %}
+                                    {% if 'solutions' in assignment_id or 'practice' in assignment_id or 'exam' in assignment_id %}
+                                        <a href="static/pdf/{{ assignment_id }}.pdf" class="label label-{{ assignment_label }}">{{ assignment }}</a>
+                                    {% else %}
+                                        <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            </td>
+                        </tr>
+                        {% if day_resources | length %}
+                            <tr id="resources-{{ lecture_id }}" class="resource-row" style="display: none;">
+                                <td colspan="3">
+                                    {% set resourcesForSection = day_resources %}
+                                    {% include "resource_sections.njk" %}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    </div>

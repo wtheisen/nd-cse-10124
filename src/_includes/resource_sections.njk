@@ -1,0 +1,156 @@
+{# Resource sections partial - displays resources grouped by type #}
+{# Expects: resources - array of resource objects #}
+
+<div class="row">
+    <div class="col-md-4">
+        <h4><i class="fa-solid fa-book"></i> Readings</h4>
+        <ul class="resource-list">
+        {% for r in resources %}
+            {% if r.type == 'reading' %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
+        <ul class="resource-list">
+        {% for r in resources %}
+            {% if r.type == 'video' %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
+        <ul class="resource-list">
+        {% for r in resources %}
+            {% if r.type == 'notebook' %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{# Filter blogposts and papers #}
+{% set blogposts = [] %}
+{% set papers = [] %}
+{% for r in resources %}
+    {% if r.type == 'blogpost' %}
+        {% set blogposts = (blogposts.push(r), blogposts) %}
+    {% endif %}
+    {% if r.type == 'paper' %}
+        {% set papers = (papers.push(r), papers) %}
+    {% endif %}
+{% endfor %}
+
+<div class="row">
+    {% if blogposts.length and papers.length %}
+        <div class="col-md-4">
+            <h4><i class="fa-solid fa-share-alt"></i> Blogposts</h4>
+            <ul class="resource-list">
+            {% for r in blogposts %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <h4><i class="fa-solid fa-file-pdf"></i> Papers</h4>
+            <ul class="resource-list">
+            {% for r in papers %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% elif blogposts.length %}
+        <div class="col-md-12">
+            <h4><i class="fa-solid fa-share-alt"></i> Blogposts</h4>
+            <ul class="resource-list">
+            {% for r in blogposts %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% elif papers.length %}
+        <div class="col-md-12">
+            <h4><i class="fa-solid fa-file-pdf"></i> Papers</h4>
+            <ul class="resource-list">
+            {% for r in papers %}
+                <li>
+                    {% if r.primary %}
+                        <i class="fa-solid fa-star" style="color: #f0ad4e;"></i>
+                    {% else %}
+                        <span style="display:inline-block; width: 1em;">&bull;</span>
+                    {% endif %}
+                    <a href="{{ r.link }}">{{ r.name }}</a>
+                    {% if r.student %}
+                        <span class="resource-credit">{{ r.student }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>

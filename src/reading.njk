@@ -1,0 +1,186 @@
+---
+pagination:
+  data: readings
+  size: 1
+  alias: reading
+permalink: "reading_{{ reading.numberStr }}.html"
+layout: base.njk
+tags: reading
+eleventyComputed:
+  title: "{{ reading.title }}"
+icon: fa-book
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-gavel"
+---
+
+{% set reading_number = reading.numberStr %}
+{% set reading_display = reading.readingDisplay %}
+{% set assignment_resource = resources | findAssignmentResource(reading_display, '') %}
+{% set quiz_link = '' %}
+{% if assignment_resource %}
+    {% set quiz_link = assignment_resource.link %}
+{% endif %}
+
+{% if reading_number == "01" %}
+    {% set term_code = semesterInfo | termCode %}
+    {% set gh_homework_link = semesterInfo.gh_homework_link if semesterInfo.gh_homework_link else '' %}
+
+    <p><strong>Welcome</strong> to <a href="index.html">CSE 30124 Introduction to Artifical Intelligence</a>, which (as the syllabus
+    states) is a broad introduction to the field of artificial intelligence. We
+    will begin the semester with a brief history of the field and review of relevant
+    mathematical concepts that form the foundation of AI. As the semester continues
+    we will dive into Machine and Deep Learning and then at the very end loop back
+    around to where we started.</p>
+
+    <div class="alert alert-info">
+
+    <h4><i class="fa fa-bookmark"></i> TL;DR</h4>
+
+    <p>For this week, you should familiarize yourself with using <a href="https://nd-cse.slack.com">Slack</a>, setup
+    your <a href="https://github.com">GitHub</a> assignments repository, decide how you will run the notebook
+    software used in this course and then submit your first reading quiz.</p>
+
+    </div>
+
+    <h2>Course Overview</h2>
+
+    <p>Artificial Intelligence is an extremely broad field and while no doubt all of
+    you will be familiar with some aspects of it, likely the GPT family, these
+    tools are only a small subset of what the field encompasses as a whole.</p>
+
+    <div class="thumbnail">
+        <img src="static/svg/AI_Layers.svg">
+    </div>
+
+    <p>We will begin the course at the top of the circle and work our way down.
+    However at the end of the semester and the bottom of the circles we will
+    find that we start to wrap back around again to the top.</p>
+
+    <h2>Task 1: Slack</h2>
+
+    <p>For communication outside of our meeting time, we will be using <a href="https://nd-cse.slack.com">Slack</a>,
+    specifically the <code>#cse-30124-{{ term_code }}</code> channel:</p>
+
+    <blockquote>
+    <a href="https://nd-cse.slack.com/messages/{{ term_code }}-cse-30124">https://nd-cse.slack.com/messages/{{ term_code }}-cse-30124</a>
+    </blockquote>
+
+    <p>There is a class mailing list, but most day-to-day communication
+    (including office hours and homework help) should take place on Slack.</p>
+
+    <div class="alert alert-warning">
+    <p>Be aware of the following:</p><br>
+
+    <ul>
+    <li>You will need to signup and create a Slack account if you don't already
+      have one.</li>
+
+    <li>You can use the web interface or download the Slack desktop client
+      (there are also mobile applications as well).</li>
+
+    <li>Feel free to join any other channels that may interest you such as
+      <code>#commons</code> or <code>#jobs</code>.</li>
+    </ul>
+
+    </div>
+
+    <h2>Task 2: Canvas Homework Group</h2>
+
+    <p>All of your assignments (labs and homeworks) will be submitted via Canvas as an html file.</p>
+
+    <ol>
+    <li>(Optional) Find a partner to work with.</li>
+
+    <li><strong>Sign-in</strong> to Canvas and navigate to the course page.</li>
+    </ol>
+
+    <div class="thumbnail">
+    <img src="static/img/group_join_1.png" class="img-responsive"/>
+    </div>
+
+    <ol start="3">
+    <li><strong>Navigate</strong> to the People tab, and then the Intro to AI Groups tab.</li>
+    </ol>
+
+    <div class="thumbnail">
+    <img src="static/img/group_join_2.png" class="img-responsive"/>
+    </div>
+
+    <ol start="4">
+    <li><strong>Join</strong> one of the avaible teams with your partner.</li>
+
+    <li>Now when you or your partner submit a homework assignment, it will be submitted for both of you!</li>
+
+    <li><strong>Optionally:</strong> Message the professor or one of your TAs to update your team name!</li>
+    </ol>
+
+    <h2>Task 3: Notebooks</h2>
+
+    <ul>
+    <li><a href="https://colab.research.google.com/notebooks/basic_features_overview.ipynb">Google Colab</a></li>
+    <li><a href="https://realpython.com/jupyter-notebook-introduction/">Jupyter Notebooks</a></li>
+    <li><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">VSCode Notebooks</a></li>
+    <li><a href="https://www.kaggle.com/code/alexisbcook/creating-your-own-notebooks">Kaggle Notebooks</a></li>
+    </ul>
+
+    <p>Please at least skim all four, but for the purposes of this course you just
+    need to get one of the methods working to run your notebooks. Notebooks
+    can be run locally through something like VSCode, and this is what I
+    recommend and use. If you have other methods, please feel free to reach out to
+    your me to discuss them.</p>
+
+    <h2>Task 4: Reading</h2>
+
+    <pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+    <h3>Syllabus: <a href="index.html">CSE 30124 Introduction to Artificial Intelligence</a></h3>
+
+    <p>Most weeks you will have a reading assignment followed by a brief quiz that will cover the two upcoming lectures. Each of the two will have a primary reading and then a link to a number of additional resources that I encourage you to explore if you're interested. Once completing the readings, use the link below to access the canvas quiz. Quizzes are due at 3:00 PM on the day of the first lecture for the topic.</p>
+
+    <div class="alert alert-info">
+    <strong>Note</strong>: We will be a little lenient on this first reading quiz.
+    </div>
+
+    <div class="alert alert-info">
+    <strong>Note</strong>: Most of the readings are significantly more in depth than what you will need to answer the quizzes. It's completely fine if you skim portions (especially the ones full of equations (yuck)), these are merely meant to prepare you for the lectures so you at least have some familiarity with the material (and they allow me to shift some of the exam points to the quizzes, which are hopefully less stressful).
+    </div>
+
+{% endif %}
+
+{# Topic sections with resources #}
+{% if reading.topics | length %}
+<h2>Topics</h2>
+{% for topic in reading.topics %}
+    {% set topic_id = topic | lectureIdFor %}
+    {% set topic_resources = resources[topic_id] if resources[topic_id] else [] %}
+
+    <h3>{{ topic }}</h3>
+
+    {% if topic_resources | length %}
+        {% set resourcesForSection = topic_resources %}
+        {% include "resource_sections.njk" %}
+    {% else %}
+        <p><em>No resources available for this topic yet.</em></p>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if reading_number == "01" %}
+<h2>Task 5: Quiz</h2>
+{% else %}
+<h2>Reading Quiz {{ reading_number }}</h2>
+{% endif %}
+
+<p>Please respond to the quiz below{% if reading_number != "01" %}, you will need to be signed into your ND email in order to respond{% endif %}. You may edit your responses after each submission, so there's really no reason you shouldn't get full credit on these!</p>
+
+{% if quiz_link %}
+<div class="alert alert-success">
+<a href="{{ quiz_link }}">Access the quiz here</a>
+</div>
+{% else %}
+<div class="alert alert-warning">
+<p>Quiz link not yet available. Please check back later.</p>
+</div>
+{% endif %}

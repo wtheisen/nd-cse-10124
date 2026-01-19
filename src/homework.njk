@@ -1,0 +1,53 @@
+---
+pagination:
+  data: homeworks
+  size: 1
+  alias: hw
+permalink: "homework_{{ hw.numberStr }}.html"
+layout: base.njk
+tags: homework
+eleventyComputed:
+  title: "Homework {{ hw.numberStr }} (10 pts.)"
+icon: fa-book
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-gavel"
+---
+
+{% set assignment_name = hw.assignmentName %}
+{% set assignment_display = hw.assignmentDisplay %}
+{% set assignment_resource = resources | findAssignmentResource(assignment_display, '') %}
+{% set document_link = '' %}
+{% if assignment_resource %}
+    {% set document_link = assignment_resource.link %}
+{% endif %}
+
+<h2>Task 1: Notebook</h2>
+
+<p>Copy the following notebook and answer the included questions using the method of your choosing:</p>
+
+{% if document_link %}
+<div class="alert alert-success">
+<a href="{{ document_link }}">OPEN DOCUMENT IN GOOGLE DOCS</a>
+</div>
+{% endif %}
+
+<p>For your convenience the document is displayed below but you will likely
+find it easier to copy the document from the google drive link above.</p>
+
+{% if document_link %}
+<div class="embed-responsive embed-responsive-4by3">
+<iframe class="embed-responsive-item course-embed" width="100%" height="800" src="{{ document_link }}?embedded=true"></iframe>
+</div>
+{% else %}
+<div class="alert alert-warning">
+<p>Document link not yet available. Please check back later.</p>
+</div>
+{% endif %}
+
+<pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+<h2>Task 2: Assignment Submission Instructions</h2>
+
+<p>Upload the document to canvas for the assignment as a PDF.</p>

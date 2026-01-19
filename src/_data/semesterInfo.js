@@ -1,0 +1,243 @@
+const fs = require('fs');
+const path = require('path');
+const { parse } = require('csv-parse/sync');
+
+/**
+ * Load semester info from CSV URL or local YAML file
+ * Fetches instructor, TAs, and course info from Google Sheets
+ */
+
+// Helper functions
+function normalizeHeaders(headers) {
+  return headers.map(h => h.trim().toLowerCase().replace(/ /g, '_'));
+}
+
+function bestOf(row, ...candidates) {
+  for (const c of candidates) {
+    if (row[c] && row[c].trim()) {
+      return row[c].trim();
+    }
+  }
+  return '';
+}
+
+function parseOfficeHours(ohStr, location = '') {
+  if (!ohStr) return {};
+  const result = {};
+
+  // Split by commas or semicolons
+  const entries = ohStr.includes(',') ? ohStr.split(',') : ohStr.replace(/\n/g, ';').split(';');
+
+  for (let entry of entries) {
+    entry = entry.trim();
+    if (!entry) continue;
+
+    // Check format: "Day: Time | Location" or "Day Time"
+    const firstSpaceIdx = entry.indexOf(' ');
+    const firstColonIdx = entry.indexOf(':');
+
+    if (firstColonIdx !== -1 && (firstSpaceIdx === -1 || firstColonIdx < firstSpaceIdx)) {
+      // Colon-separated: "Monday: 9:00 AM - 11:00 AM | Location"
+      const parts = entry.split(':', 1);
+      const day = parts[0].trim();
+      const rest = entry.substring(entry.indexOf(':') + 1).trim();
+
+      if (rest.includes('|')) {
+        const [time, loc] = rest.split('|', 2);
+        result[day] = `${time.trim()} | ${loc.trim()}`;
+      } else {
+        result[day] = location ? `${rest} | ${location}` : rest;
+      }
+    } else {
+      // Space-separated: "Monday 9:00 AM - 11:00 AM"
+      const parts = entry.split(' ', 1);
+      if (parts.length >= 1) {
+        const day = parts[0].trim();
+        const time = entry.substring(entry.indexOf(' ') + 1).trim();
+        result[day] = location ? `${time} | ${location}` : time;
+      }
+    }
+  }
+  return result;
+}
+
+async function fetchCSV(url) {
+  const response = await fetch(url, {
+    headers: { 'User-Agent': 'nd-cse-site-bot/1.0' }
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch CSV: ${response.status}`);
+  }
+  let text = await response.text();
+  // Handle UTF-8 BOM
+  if (text.charCodeAt(0) === 0xFEFF) {
+    text = text.slice(1);
+  }
+  return text;
+}
+
+function loadSemesterInfoFromCSV(text) {
+  const records = parse(text, {
+    columns: (headers) => normalizeHeaders(headers),
+    skip_empty_lines: true,
+    trim: true
+  });
+
+  let instructor = null;
+  const tasDict = {};
+  let courseInfoRow = null;
+
+  for (const row of records) {
+    const infoType = bestOf(row, 'info_type', 'type', 'role', 'row_type');
+    const hasTerm = !!bestOf(row, 'term');
+    const hasNetid = !!bestOf(row, 'netid', 'id');
+    const hasName = !!bestOf(row, 'name');
+
+    // Identify row type
+    if (['class', 'course', 'course_info', 'info'].includes(infoType.toLowerCase())) {
+      courseInfoRow = row;
+    } else if (['person', 'people', 'staff'].includes(infoType.toLowerCase()) || (!hasTerm && (hasNetid || hasName))) {
+      // Person row
+      const netid = bestOf(row, 'netid', 'id');
+      const name = bestOf(row, 'name');
+      const level = bestOf(row, 'level');
+      const location = bestOf(row, 'location');
+      const times = bestOf(row, 'times', 'office_hours', 'oh');
+      const github = bestOf(row, 'github');
+
+      if (!netid) continue;
+
+      const personData = {
+        name,
+        netid,
+        level,
+        office_hours: times ? parseOfficeHours(times, location) : {}
+      };
+      if (github) personData.github = github;
+
+      if (!instructor) {
+        instructor = personData;
+      } else {
+        tasDict[netid] = personData;
+      }
+    } else if (hasTerm) {
+      courseInfoRow = row;
+    }
+  }
+
+  // Parse class times
+  const classTimesStr = courseInfoRow ? bestOf(courseInfoRow, 'class_times', 'times', 'time') : '';
+  const classTimes = {};
+  if (classTimesStr) {
+    const entries = classTimesStr.includes(',') ? classTimesStr.split(',') : classTimesStr.replace(/\n/g, ';').split(';');
+    for (let entry of entries) {
+      entry = entry.trim();
+      if (!entry) continue;
+
+      const firstSpaceIdx = entry.indexOf(' ');
+      const firstColonIdx = entry.indexOf(':');
+
+      if (firstColonIdx !== -1 && (firstSpaceIdx === -1 || firstColonIdx < firstSpaceIdx)) {
+        const day = entry.split(':')[0].trim();
+        const time = entry.substring(entry.indexOf(':') + 1).trim();
+        classTimes[day] = time;
+      } else {
+        const parts = entry.split(' ', 1);
+        if (parts.length >= 1) {
+          const day = parts[0].trim();
+          const time = entry.substring(entry.indexOf(' ') + 1).trim();
+          classTimes[day] = time;
+        }
+      }
+    }
+  }
+
+  const courseInfo = {
+    Term: courseInfoRow ? bestOf(courseInfoRow, 'term') : '',
+    Year: courseInfoRow ? bestOf(courseInfoRow, 'year') : '',
+    class_location: courseInfoRow ? bestOf(courseInfoRow, 'class_location', 'location') : '',
+    class_times: classTimes
+  };
+
+  const ghHomeworkLink = courseInfoRow ? bestOf(courseInfoRow, 'gh_homework_link', 'github_homework_link', 'homework_link') : '';
+  if (ghHomeworkLink) {
+    courseInfo.gh_homework_link = ghHomeworkLink;
+  }
+
+  return {
+    Instructor: instructor,
+    TAs: tasDict,
+    ...courseInfo
+  };
+}
+
+module.exports = async function() {
+  // Read semester_info.yaml for CSV URLs
+  const yamlPath = path.join(process.cwd(), 'static', 'yaml', 'semester_info.yaml');
+
+  let csvUrls = {};
+  let cancelledDays = [];
+
+  try {
+    const yamlContent = fs.readFileSync(yamlPath, 'utf8');
+    // Simple YAML parsing for our specific structure
+    const lines = yamlContent.split('\n');
+    let inCsvUrls = false;
+    let inCancelledDays = false;
+
+    for (const line of lines) {
+      if (line.startsWith('csv_urls:')) {
+        inCsvUrls = true;
+        inCancelledDays = false;
+        continue;
+      }
+      if (line.startsWith('cancelled_days:')) {
+        inCancelledDays = true;
+        inCsvUrls = false;
+        continue;
+      }
+      if (line.match(/^\S/) && !line.startsWith(' ') && !line.startsWith('-')) {
+        inCsvUrls = false;
+        inCancelledDays = false;
+      }
+
+      if (inCsvUrls && line.includes(':')) {
+        const match = line.match(/^\s+(\w+):\s*(.+)$/);
+        if (match) {
+          csvUrls[match[1]] = match[2].trim();
+        }
+      }
+      if (inCancelledDays && line.trim().startsWith('-')) {
+        cancelledDays.push(line.trim().substring(1).trim());
+      }
+    }
+  } catch (err) {
+    console.error('Warning: Could not read semester_info.yaml:', err.message);
+  }
+
+  let semesterInfo = {
+    Instructor: null,
+    TAs: {},
+    Term: '',
+    Year: '',
+    class_location: '',
+    class_times: {},
+    cancelled_days: cancelledDays
+  };
+
+  // Fetch from CSV if URL available
+  if (csvUrls.info) {
+    try {
+      const csvText = await fetchCSV(csvUrls.info);
+      semesterInfo = loadSemesterInfoFromCSV(csvText);
+      semesterInfo.cancelled_days = cancelledDays;
+    } catch (err) {
+      console.error('Warning: Could not fetch semester info CSV:', err.message);
+    }
+  }
+
+  // Add CSV URLs for reference
+  semesterInfo.csv_urls = csvUrls;
+
+  return semesterInfo;
+};

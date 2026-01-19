@@ -1,0 +1,28 @@
+{
+  "name": "nd-cse-10124",
+  "version": "1.0.0",
+  "description": "CSE 10124 - Building ChatGPT course website",
+  "main": ".eleventy.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "watch": "npx @11ty/eleventy --watch",
+    "debug": "DEBUG=Eleventy* npx @11ty/eleventy"
+  },
+  "keywords": [
+    "eleventy",
+    "course-website",
+    "static-site"
+  ],
+  "author": "Bill Theisen",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "markdown-it": "^14.1.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-anchor": "^9.2.0"
+  }
+}

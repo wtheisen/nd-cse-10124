@@ -1,0 +1,58 @@
+---
+pagination:
+  data: labs
+  size: 1
+  alias: lab
+permalink: "lab_{{ lab.numberStr }}.html"
+layout: base.njk
+tags: lab
+eleventyComputed:
+  title: "Lab {{ lab.numberStr }}: Accessing Case Files and Evidence (5 pts.)"
+icon: fa-book
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-gavel"
+---
+
+{% set assignment_name = lab.assignmentName %}
+{% set assignment_display = lab.assignmentDisplay %}
+{% set assignment_resource = resources | findAssignmentResource(assignment_display, '') %}
+{% set notebook_link = '' %}
+{% if assignment_resource %}
+    {% set notebook_link = assignment_resource.link %}
+{% endif %}
+
+<h2>Task 1: Notebook</h2>
+
+<p>Copy the following notebook and answer the included questions using the method of your choosing:</p>
+
+{% if notebook_link %}
+<div class="alert alert-success">
+<a href="{{ notebook_link }}">OPEN NOTEBOOK IN GOOGLE COLAB</a>
+</div>
+{% else %}
+<div class="alert alert-warning">
+<p>Notebook link not yet available. Please check back later.</p>
+</div>
+{% endif %}
+
+<p>For your convenience the notebook is displayed below as HTML but you will likely
+find it easier to copy the notebook from the Google Colab link above.</p>
+
+<div class="embed-responsive embed-responsive-4by3">
+<iframe
+    class="embed-responsive-item theme-notebook-frame"
+    data-src-dark="https://williamtheisen.com/nd-cse-30124-homeworks/labs/{{ assignment_name }}/{{ assignment_name }}-dark.html"
+    data-src-light="https://williamtheisen.com/nd-cse-30124-homeworks/labs/{{ assignment_name }}/{{ assignment_name }}-light.html"
+    src="https://williamtheisen.com/nd-cse-30124-homeworks/labs/{{ assignment_name }}/{{ assignment_name }}-dark.html"
+    width="100%"
+    height="800"></iframe>
+</div>
+
+<pre style="display: none;" id="dr-container" class="codehilite"><code id="dredd-response"></code></pre>
+
+<h2>Task 2: Assignment Submission Instructions</h2>
+
+<p>The final cell of the notebook will export and download a .html file of your
+notebook. Upload this to canvas for the assignment.</p>
