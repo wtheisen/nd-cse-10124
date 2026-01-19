@@ -190,8 +190,8 @@ module.exports = function(eleventyConfig) {
     const timeColWidth = '60px';
     const colWidths = [timeColWidth];
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      // Days with events get 2fr, empty days get 1fr
-      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '1fr');
+      // Days with events get 1.5fr, empty days get 1fr
+      colWidths.push(dayEventCounts[dayIdx] > 0 ? '1.5fr' : '1fr');
     }
 
     // Calculate row heights
