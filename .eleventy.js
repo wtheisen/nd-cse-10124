@@ -185,13 +185,13 @@ module.exports = function(eleventyConfig) {
       }
     }
 
-    // Calculate column widths - days with events get more width
-    const minWidth = 60;    // px for empty days
-    const eventWidth = 150; // px for days with events
-    const timeColWidth = 70; // px for time column
+    // Calculate column widths - use flexible units for full width
+    // Time column is fixed, day columns use fr units (larger for days with events)
+    const timeColWidth = '60px';
     const colWidths = [timeColWidth];
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      colWidths.push(dayEventCounts[dayIdx] > 0 ? eventWidth : minWidth);
+      // Days with events get 2fr, empty days get 1fr
+      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '1fr');
     }
 
     // Calculate row heights
@@ -330,7 +330,7 @@ module.exports = function(eleventyConfig) {
     }
 
     // Build grid-template-columns value
-    const gridCols = colWidths.map(w => `${w}px`).join(' ');
+    const gridCols = colWidths.join(' ');
 
     // Build HTML with CSS Grid
     let html = `
@@ -338,6 +338,7 @@ module.exports = function(eleventyConfig) {
 .oh-calendar {
   display: grid;
   grid-template-columns: ${gridCols};
+  width: 100%;
   font-size: 12px;
   border: 1px solid #ddd;
 }
