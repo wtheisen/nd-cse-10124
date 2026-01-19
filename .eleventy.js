@@ -56,13 +56,16 @@ module.exports = function(eleventyConfig) {
   }
 
   // Office hours calendar filter - generates the HTML for the calendar
+  // Uses CSS Grid with absolute positioning for clean overlap handling
   eleventyConfig.addFilter("officeHoursCalendar", function(semesterInfo) {
     if (!semesterInfo) return '<p>No semester info available</p>';
 
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const startMinutes = 10 * 60; // 10:00 AM
     const endMinutes = 21 * 60;   // 9:00 PM
-    const slotDuration = 15;      // 15 minutes per slot
+    const totalMinutes = endMinutes - startMinutes; // 11 hours = 660 minutes
+    const pixelsPerHour = 60;
+    const totalHeight = (totalMinutes / 60) * pixelsPerHour; // 660px
 
     // Build TA color map dynamically based on order in data
     const taColorMap = {};
@@ -71,16 +74,6 @@ module.exports = function(eleventyConfig) {
     taIdList.forEach((taId, index) => {
       taColorMap[taId] = TA_COLOR_PALETTE[index % TA_COLOR_PALETTE.length];
     });
-
-    // Build time slots
-    const timeSlots = [];
-    for (let m = startMinutes; m < endMinutes; m += slotDuration) {
-      timeSlots.push({
-        start: m,
-        end: m + slotDuration,
-        label: `${formatMinutesToTime(m)} - ${formatMinutesToTime(m + slotDuration)}`
-      });
-    }
 
     // Helper: parse "10:00 AM - 11:30 AM|Location" format
     function parseOfficeHours(ohStr) {
@@ -96,8 +89,8 @@ module.exports = function(eleventyConfig) {
       return { start, end, time: timeRange, location };
     }
 
-    // Collect all events for each day (not per-slot, but the full event)
-    const dayEvents = {}; // dayIdx -> array of events with start/end times
+    // Collect all events for each day
+    const dayEvents = {};
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
       dayEvents[dayIdx] = [];
       const day = days[dayIdx];
@@ -156,175 +149,192 @@ module.exports = function(eleventyConfig) {
       }
     }
 
-    // For each day, compute "visual blocks" - contiguous slot ranges with the same set of active events
-    // A block changes when the set of active event IDs changes
-    const dayBlocks = {}; // dayIdx -> array of { startSlotIdx, endSlotIdx, events }
+    // Find overlap groups - events that share any time
+    function findOverlapGroups(events) {
+      if (events.length === 0) return [];
 
+      // Sort by start time
+      const sorted = [...events].sort((a, b) => a.start - b.start);
+
+      const groups = [];
+      let currentGroup = [];
+      let groupEnd = 0;
+
+      for (const event of sorted) {
+        if (event.start >= groupEnd && currentGroup.length > 0) {
+          // No overlap with current group - start new group
+          groups.push(currentGroup);
+          currentGroup = [];
+          groupEnd = 0;
+        }
+        currentGroup.push(event);
+        groupEnd = Math.max(groupEnd, event.end);
+      }
+
+      if (currentGroup.length > 0) {
+        groups.push(currentGroup);
+      }
+
+      return groups;
+    }
+
+    // Assign columns within an overlap group
+    function assignColumns(group) {
+      // Sort by start time, then by duration (longer first)
+      group.sort((a, b) => a.start - b.start || (b.end - b.start) - (a.end - a.start));
+
+      const columnEnds = []; // Track when each column becomes free
+
+      for (const event of group) {
+        // Find first column where event fits
+        let col = columnEnds.findIndex(endTime => event.start >= endTime);
+        if (col === -1) {
+          col = columnEnds.length;
+          columnEnds.push(0);
+        }
+        event.column = col;
+        columnEnds[col] = event.end;
+      }
+
+      // Set total columns for width calculation
+      const totalCols = columnEnds.length;
+      group.forEach(e => e.totalColumns = totalCols);
+    }
+
+    // Process each day's events
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      dayBlocks[dayIdx] = [];
       const events = dayEvents[dayIdx];
-
-      let currentBlock = null;
-      let currentEventIds = null;
-
-      for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-        const slot = timeSlots[slotIdx];
-
-        // Find all events active during this slot
-        const activeEvents = events.filter(e => e.start < slot.end && e.end > slot.start);
-        const activeIds = activeEvents.map(e => e.id).sort().join(',');
-
-        if (activeIds !== currentEventIds) {
-          // Event set changed - save current block and start new one
-          if (currentBlock !== null) {
-            currentBlock.endSlotIdx = slotIdx;
-            dayBlocks[dayIdx].push(currentBlock);
-          }
-
-          currentBlock = {
-            startSlotIdx: slotIdx,
-            endSlotIdx: slotIdx + 1,
-            events: activeEvents
-          };
-          currentEventIds = activeIds;
-        } else if (currentBlock !== null) {
-          // Same events, extend the block
-          currentBlock.endSlotIdx = slotIdx + 1;
-        }
-      }
-
-      // Don't forget the last block
-      if (currentBlock !== null) {
-        dayBlocks[dayIdx].push(currentBlock);
+      const groups = findOverlapGroups(events);
+      for (const group of groups) {
+        assignColumns(group);
       }
     }
 
-    // Track which cells have been consumed by rowspan
-    const consumedCells = {};
-    const key = (slotIdx, dayIdx) => `${slotIdx}-${dayIdx}`;
-
-    // Pre-compute block lookup: for each slot/day, which block does it belong to?
-    const slotBlock = {}; // key -> block or null
-    for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      for (const block of dayBlocks[dayIdx]) {
-        for (let slotIdx = block.startSlotIdx; slotIdx < block.endSlotIdx; slotIdx++) {
-          slotBlock[key(slotIdx, dayIdx)] = block;
-        }
+    // Helper: get background color for an event
+    function getEventBgColor(event) {
+      if (event.type === 'lecture') {
+        return 'rgba(204, 229, 255, 0.9)';
+      } else if (event.type === 'instructor') {
+        return 'rgba(204, 229, 255, 0.9)';
+      } else if (event.type === 'ta') {
+        return taColorMap[event.taId] || 'rgba(240, 240, 240, 0.9)';
       }
+      return 'rgba(245, 245, 245, 0.9)';
     }
 
-    // Helper: get background style for a set of events
-    function getBgStyle(events) {
-      const taIds = [...new Set(events.filter(e => e.type === 'ta').map(e => e.taId))];
-      const hasNonTa = events.some(e => e.type !== 'ta');
-
-      if (events.length === 0) {
-        return '';
-      } else if (!hasNonTa && taIds.length === 1) {
-        return `background-color: ${taColorMap[taIds[0]] || 'rgba(240,240,240,0.5)'};`;
-      } else if (!hasNonTa && taIds.length >= 2) {
-        // Gradient for multiple TAs
-        const colors = taIds.map(id => taColorMap[id] || 'rgba(240,240,240,0.5)');
-        const stops = colors.map((c, i) => `${c} ${Math.floor(100*i/colors.length)}% ${Math.floor(100*(i+1)/colors.length)}%`);
-        return `background-image: linear-gradient(90deg, ${stops.join(', ')});`;
-      } else if (events.some(e => e.type === 'lecture' || e.type === 'instructor')) {
-        return 'background-color: rgba(204, 229, 255, 0.5);';
-      } else {
-        return 'background-color: rgba(245, 245, 245, 0.7);';
-      }
-    }
-
-    // Build HTML
-    let html = '<div class="row">';
-    html += '<table cellpadding="5" cellspacing="0" style="table-layout: fixed; width: 100%; border-collapse: collapse; border: 1px solid #ddd;">';
+    // Build HTML with CSS Grid layout
+    let html = `
+<style>
+.oh-calendar {
+  display: grid;
+  grid-template-columns: 100px repeat(7, 1fr);
+  border: 1px solid #ddd;
+  font-size: 12px;
+}
+.oh-header {
+  background: #f5f5f5;
+  padding: 8px 4px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+.oh-header:first-child {
+  border-left: none;
+}
+.oh-times {
+  border-right: 1px solid #ddd;
+}
+.oh-hour {
+  height: ${pixelsPerHour}px;
+  padding: 4px;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  font-size: 11px;
+  color: #666;
+}
+.oh-day {
+  position: relative;
+  height: ${totalHeight}px;
+  border-left: 1px solid #ddd;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent ${pixelsPerHour - 1}px,
+    #eee ${pixelsPerHour - 1}px,
+    #eee ${pixelsPerHour}px
+  );
+}
+.oh-event {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-size: 11px;
+  line-height: 1.3;
+}
+.oh-event strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+.oh-event small {
+  display: block;
+  color: #555;
+  font-size: 10px;
+}
+</style>
+<div class="oh-calendar">
+`;
 
     // Header row
-    html += '<tr><th style="width: 150px;"></th>';
+    html += '<div class="oh-header"></div>';
     for (const day of days) {
-      html += `<th style="width: calc((100% - 150px) / 7); text-align: center;">${day}</th>`;
+      html += `<div class="oh-header">${day}</div>`;
     }
-    html += '</tr>';
 
-    // Time slot rows
-    for (let slotIdx = 0; slotIdx < timeSlots.length; slotIdx++) {
-      const slot = timeSlots[slotIdx];
-      const isHourStart = slot.start % 60 === 0;
+    // Time labels column
+    html += '<div class="oh-times">';
+    for (let m = startMinutes; m < endMinutes; m += 60) {
+      html += `<div class="oh-hour">${formatMinutesToTime(m)}</div>`;
+    }
+    html += '</div>';
 
-      html += '<tr>';
+    // Day columns with positioned events
+    for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
+      html += '<div class="oh-day">';
 
-      // Time label cell (spans 4 rows for each hour with 15-min slots)
-      if (isHourStart) {
-        const hourLabel = `${formatMinutesToTime(slot.start)} - ${formatMinutesToTime(slot.start + 60)}`;
-        html += `<td rowspan="4" style="text-align: left; padding: 8px; border-top: 1px solid #ddd;">${hourLabel}</td>`;
-      }
+      const events = dayEvents[dayIdx];
+      for (const event of events) {
+        // Calculate position as percentage of total height
+        const topMinutes = Math.max(0, event.start - startMinutes);
+        const bottomMinutes = Math.min(totalMinutes, event.end - startMinutes);
+        const topPercent = (topMinutes / totalMinutes) * 100;
+        const heightPercent = ((bottomMinutes - topMinutes) / totalMinutes) * 100;
 
-      // Day cells
-      for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-        const k = key(slotIdx, dayIdx);
+        // Calculate horizontal position based on column assignment
+        const column = event.column || 0;
+        const totalColumns = event.totalColumns || 1;
+        const widthPercent = (100 / totalColumns) - 1; // -1 for small gaps
+        const leftPercent = (column / totalColumns) * 100 + 0.5; // +0.5 for padding
 
-        // Skip if consumed by previous rowspan
-        if (consumedCells[k]) continue;
+        const bgColor = getEventBgColor(event);
 
-        const block = slotBlock[k];
-
-        if (block && block.events.length > 0 && block.startSlotIdx === slotIdx) {
-          // This is the start of a block with events - render the cell
-          const rowspan = block.endSlotIdx - block.startSlotIdx;
-          const bgStyle = getBgStyle(block.events);
-
-          // Mark subsequent cells as consumed
-          for (let r = 1; r < rowspan; r++) {
-            consumedCells[key(slotIdx + r, dayIdx)] = true;
-          }
-
-          html += `<td rowspan="${rowspan}" style="text-align: center; vertical-align: middle; padding: 6px; ${bgStyle} border: 1px solid #ddd; border-top: 1px solid #ddd;">`;
-
-          // Display each unique person/event
-          const displayedNames = new Set();
-          for (const evt of block.events) {
-            if (displayedNames.has(evt.name)) continue;
-            displayedNames.add(evt.name);
-
-            if (displayedNames.size > 1) {
-              html += '<hr style="margin: 4px 0; border-color: rgba(0,0,0,0.2);">';
-            }
-            html += `<div><strong>${evt.name}</strong></div>`;
-            html += `<div><small>${evt.time}</small></div>`;
-            if (evt.location) {
-              html += `<div><small>${evt.location}</small></div>`;
-            }
-          }
-          html += '</td>';
-        } else if (!block || block.events.length === 0) {
-          // Empty slot - try to merge empty cells
-          // Find how many consecutive empty slots we have
-          let emptyCount = 1;
-          for (let r = slotIdx + 1; r < timeSlots.length; r++) {
-            const nextBlock = slotBlock[key(r, dayIdx)];
-            if (nextBlock && nextBlock.events.length > 0) break;
-            emptyCount++;
-          }
-
-          // For cleaner display, try to align with hour boundaries
-          if (isHourStart && emptyCount >= 4) {
-            // Span the full hour if possible
-            const hourSlots = Math.min(4, emptyCount);
-            for (let r = 1; r < hourSlots; r++) {
-              consumedCells[key(slotIdx + r, dayIdx)] = true;
-            }
-            html += `<td rowspan="${hourSlots}" style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>`;
-          } else {
-            // Just render single empty cell
-            html += '<td style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
-          }
+        html += `<div class="oh-event" style="top: ${topPercent.toFixed(2)}%; height: ${heightPercent.toFixed(2)}%; left: ${leftPercent.toFixed(2)}%; width: ${widthPercent.toFixed(2)}%; background-color: ${bgColor};">`;
+        html += `<strong>${event.name}</strong>`;
+        html += `<small>${event.time}</small>`;
+        if (event.location) {
+          html += `<small>${event.location}</small>`;
         }
-        // If block exists but this isn't the start, we skip (handled by consumed check)
+        html += '</div>';
       }
 
-      html += '</tr>';
+      html += '</div>';
     }
 
-    html += '</table></div>';
+    html += '</div>';
     return html;
   });
 
