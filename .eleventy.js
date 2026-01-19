@@ -190,8 +190,8 @@ module.exports = function(eleventyConfig) {
     const timeColWidth = '60px';
     const colWidths = [timeColWidth];
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      // Days with events get 2fr, empty days get 0.5fr
-      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '0.5fr');
+      // Days with events get 2fr, empty days get 1fr
+      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '1fr');
     }
 
     // Calculate row heights
@@ -390,6 +390,7 @@ module.exports = function(eleventyConfig) {
   z-index: 100 !important;
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background-color: rgba(255,255,255,1) !important;
 }
 .oh-event strong {
   display: block;
