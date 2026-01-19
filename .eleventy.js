@@ -190,8 +190,8 @@ module.exports = function(eleventyConfig) {
     const timeColWidth = '60px';
     const colWidths = [timeColWidth];
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      // Days with events get 2fr, empty days get 1fr
-      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '1fr');
+      // Days with events get 2fr, empty days get 0.5fr
+      colWidths.push(dayEventCounts[dayIdx] > 0 ? '2fr' : '0.5fr');
     }
 
     // Calculate row heights
@@ -358,14 +358,14 @@ module.exports = function(eleventyConfig) {
 }
 .oh-time-row {
   font-size: 11px;
+  font-weight: bold;
   color: #666;
-  text-align: right;
-  padding-right: 8px;
+  text-align: center;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
   display: flex;
-  align-items: flex-start;
-  padding-top: 2px;
+  align-items: center;
+  justify-content: center;
 }
 .oh-day {
   position: relative;
