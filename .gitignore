@@ -1,14 +1,14 @@
-pages/*.html
+# Old build system artifacts
 *.pyc
 *.swp
-*_solutions.ipynb
 .DS_Store
+
+# Course content
+*_solutions.ipynb
 alphabet
 MNIST
 */solutions/*.png
 static/solutions
-scripts/yasb.py
-Makefile
 static/csv/*
 
 # Node.js / 11ty
