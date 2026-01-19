@@ -207,16 +207,20 @@ module.exports = function(eleventyConfig) {
     }
     const totalHeight = cumulativeHeight;
 
-    // Helper: get background color for an event
-    function getEventBgColor(event) {
-      if (event.type === 'lecture') {
-        return 'rgba(204, 229, 255, 0.9)';
-      } else if (event.type === 'instructor') {
-        return 'rgba(204, 229, 255, 0.9)';
+    // Helper: get background color RGB values for an event (returns "R, G, B" string)
+    function getEventColorRGB(event) {
+      if (event.type === 'lecture' || event.type === 'instructor') {
+        return '204, 229, 255';
       } else if (event.type === 'ta') {
-        return taColorMap[event.taId] || 'rgba(240, 240, 240, 0.9)';
+        // Extract RGB from taColorMap (format: "rgba(R, G, B, alpha)")
+        const color = taColorMap[event.taId] || 'rgba(240, 240, 240, 0.9)';
+        const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        if (match) {
+          return `${match[1]}, ${match[2]}, ${match[3]}`;
+        }
+        return '240, 240, 240';
       }
-      return 'rgba(245, 245, 245, 0.9)';
+      return '245, 245, 245';
     }
 
     // Helper: check if two events overlap in time
@@ -390,7 +394,7 @@ module.exports = function(eleventyConfig) {
   z-index: 100 !important;
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  background-color: rgba(255,255,255,1) !important;
+  background-color: rgba(var(--event-rgb), 1) !important;
 }
 .oh-event strong {
   display: block;
@@ -440,7 +444,7 @@ module.exports = function(eleventyConfig) {
       const events = dayEvents[dayIdx];
       for (const event of events) {
         const pos = getEventPosition(event);
-        const bgColor = getEventBgColor(event);
+        const colorRGB = getEventColorRGB(event);
 
         // Use stacking instead of column-based positioning
         const stackIndex = event.stackIndex || 0;
@@ -448,7 +452,7 @@ module.exports = function(eleventyConfig) {
         const zIndex = stackIndex + 1;
         const leftOffset = stackSize > 1 ? stackIndex * 4 : 0; // slight offset to show stacking
 
-        html += `    <div class="oh-event" style="background-color: ${bgColor}; top: ${pos.top}px; height: ${pos.height}px; left: ${leftOffset}px; right: 0; z-index: ${zIndex};">\n`;
+        html += `    <div class="oh-event" style="--event-rgb: ${colorRGB}; background-color: rgba(${colorRGB}, 0.5); top: ${pos.top}px; height: ${pos.height}px; left: ${leftOffset}px; right: 0; z-index: ${zIndex};">\n`;
         html += `      <strong>${event.name}</strong>\n`;
         html += `      <small>${event.time}</small>\n`;
         if (event.location) {
