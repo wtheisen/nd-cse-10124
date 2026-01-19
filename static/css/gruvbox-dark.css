@@ -416,3 +416,11 @@ footer p {
 [data-theme="gruvbox-dark"] .text-muted {
   color: #a89984 !important;
 }
+
+/* Schedule table row striping */
+.topic-row-even {
+  background-color: #3a3432 !important;
+}
+.topic-row-odd {
+  background-color: #2e2a28 !important;
+}

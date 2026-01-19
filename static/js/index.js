@@ -18,25 +18,15 @@ function toggleResources(id, unit) {
     }
 }
 
-function getTopicRowColors() {
-    const theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'gruvbox-dark') {
-        return ['#3a3432', '#2e2a28'];
-    }
-    // Light theme (bluegold) uses neutral gray/white striping
-    return ['#f9f9f9', '#ffffff'];
-}
-
 function fixAlternatingRows() {
     let topicRows = document.querySelectorAll(".topic-row");
-    const [evenColor, oddColor] = getTopicRowColors();
     let altIndex = 0;
     topicRows.forEach(row => {
+        row.classList.remove('topic-row-even', 'topic-row-odd');
         if (row.querySelector('td[colspan="4"]')) {
-            row.style.backgroundColor = '';
             return;
         }
-        row.style.backgroundColor = altIndex % 2 === 0 ? evenColor : oddColor;
+        row.classList.add(altIndex % 2 === 0 ? 'topic-row-even' : 'topic-row-odd');
         altIndex += 1;
     });
 }

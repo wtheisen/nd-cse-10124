@@ -6980,3 +6980,11 @@ h5:hover a.headerlink:hover,
 h6:hover a.headerlink:hover{
     opacity:0.9;
 }
+
+/* Schedule table row striping */
+.topic-row-even {
+  background-color: #f9f9f9;
+}
+.topic-row-odd {
+  background-color: #ffffff;
+}
