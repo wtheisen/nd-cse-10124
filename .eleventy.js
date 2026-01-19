@@ -56,7 +56,7 @@ module.exports = function(eleventyConfig) {
   }
 
   // Office hours calendar filter - generates the HTML for the calendar
-  // Uses HTML table with variable row/column sizes for better space usage
+  // Uses CSS Grid with absolute positioning to handle overlapping events correctly
   eleventyConfig.addFilter("officeHoursCalendar", function(semesterInfo) {
     if (!semesterInfo) return '<p>No semester info available</p>';
 
@@ -198,6 +198,15 @@ module.exports = function(eleventyConfig) {
     const emptyRowHeight = 25;  // px - just enough for time label
     const eventRowHeight = 80;  // px - room for event content
 
+    // Build cumulative height lookup - map each hour to its pixel offset from top
+    let cumulativeHeight = 0;
+    const hourTopOffset = {};
+    for (const hour of hours) {
+      hourTopOffset[hour] = cumulativeHeight;
+      cumulativeHeight += hourHasEvents[hour] ? eventRowHeight : emptyRowHeight;
+    }
+    const totalHeight = cumulativeHeight;
+
     // Helper: get background color for an event
     function getEventBgColor(event) {
       if (event.type === 'lecture') {
@@ -210,86 +219,170 @@ module.exports = function(eleventyConfig) {
       return 'rgba(245, 245, 245, 0.9)';
     }
 
-    // Build event grid: for each hour/day, track which events start, continue, or overlap
-    // eventGrid[hour][dayIdx] = { events: [], rowspan: {} }
-    const eventGrid = {};
-    for (const hour of hours) {
-      eventGrid[hour] = {};
-      for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-        eventGrid[hour][dayIdx] = { events: [], occupied: false };
+    // Helper: check if two events overlap in time
+    function eventsOverlap(a, b) {
+      return a.start < b.end && a.end > b.start;
+    }
+
+    // Find groups of overlapping events for a day
+    function findOverlapGroups(events) {
+      if (events.length === 0) return [];
+
+      // Sort by start time, then by end time
+      const sorted = [...events].sort((a, b) => {
+        if (a.start !== b.start) return a.start - b.start;
+        return a.end - b.end;
+      });
+
+      const groups = [];
+      let currentGroup = [sorted[0]];
+
+      for (let i = 1; i < sorted.length; i++) {
+        const event = sorted[i];
+        // Check if this event overlaps with any event in current group
+        const overlapsGroup = currentGroup.some(e => eventsOverlap(e, event));
+
+        if (overlapsGroup) {
+          currentGroup.push(event);
+        } else {
+          groups.push(currentGroup);
+          currentGroup = [event];
+        }
+      }
+      groups.push(currentGroup);
+
+      return groups;
+    }
+
+    // Assign column positions to events within an overlap group
+    function assignColumns(group) {
+      if (group.length === 0) return;
+
+      // Sort by start time
+      const sorted = [...group].sort((a, b) => a.start - b.start);
+
+      // Track end times for each column
+      const columnEnds = [];
+
+      for (const event of sorted) {
+        // Find the first column where this event can fit
+        let col = 0;
+        while (col < columnEnds.length && columnEnds[col] > event.start) {
+          col++;
+        }
+
+        event.column = col;
+        columnEnds[col] = event.end;
+      }
+
+      // Calculate total columns in group
+      const totalColumns = columnEnds.length;
+      for (const event of group) {
+        event.totalColumns = totalColumns;
       }
     }
 
-    // Place events in the grid and calculate rowspans
+    // Calculate pixel position for an event
+    function getEventPosition(event) {
+      const eventStartHour = Math.floor(event.start / 60);
+      const eventEndHour = Math.ceil(event.end / 60);
+
+      // Find the first hour in our range that contains the event start
+      let topHour = hours.find(h => h >= eventStartHour);
+      if (topHour === undefined) topHour = hours[0];
+
+      // Calculate top position
+      let top = hourTopOffset[topHour] || 0;
+
+      // Add offset for minutes within the starting hour
+      const minutesIntoHour = event.start - (topHour * 60);
+      if (minutesIntoHour > 0) {
+        const hourHeight = hourHasEvents[topHour] ? eventRowHeight : emptyRowHeight;
+        top += (minutesIntoHour / 60) * hourHeight;
+      }
+
+      // Calculate height by summing heights of hours the event spans
+      let height = 0;
+      for (const hour of hours) {
+        const hourStart = hour * 60;
+        const hourEnd = (hour + 1) * 60;
+        const hourHeight = hourHasEvents[hour] ? eventRowHeight : emptyRowHeight;
+
+        if (event.start < hourEnd && event.end > hourStart) {
+          // Event overlaps this hour
+          const overlapStart = Math.max(event.start, hourStart);
+          const overlapEnd = Math.min(event.end, hourEnd);
+          const overlapMinutes = overlapEnd - overlapStart;
+          height += (overlapMinutes / 60) * hourHeight;
+        }
+      }
+
+      return { top, height: Math.max(height, 20) }; // Minimum height of 20px
+    }
+
+    // Process each day's events to assign columns
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-      for (const event of dayEvents[dayIdx]) {
-        const startHourIdx = Math.floor(event.start / 60);
-        const endHourIdx = Math.ceil(event.end / 60);
-
-        // Calculate how many rows this event spans
-        let rowspan = 0;
-        for (const hour of hours) {
-          if (hour >= startHourIdx && hour < endHourIdx) {
-            rowspan++;
-          }
-        }
-
-        // Add event to its starting hour
-        const startingHour = hours.find(h => h >= startHourIdx);
-        if (startingHour !== undefined && eventGrid[startingHour]) {
-          event.rowspan = rowspan;
-          event.startHour = startingHour;
-          eventGrid[startingHour][dayIdx].events.push(event);
-        }
-
-        // Mark subsequent hours as occupied (for rowspan)
-        for (const hour of hours) {
-          if (hour > startHourIdx && hour < endHourIdx) {
-            if (eventGrid[hour]) {
-              eventGrid[hour][dayIdx].occupied = true;
-            }
-          }
-        }
+      const events = dayEvents[dayIdx];
+      const groups = findOverlapGroups(events);
+      for (const group of groups) {
+        assignColumns(group);
       }
     }
 
-    // Build HTML table
+    // Build grid-template-columns value
+    const gridCols = colWidths.map(w => `${w}px`).join(' ');
+
+    // Build HTML with CSS Grid
     let html = `
 <style>
-.oh-calendar-table {
-  border-collapse: collapse;
+.oh-calendar {
+  display: grid;
+  grid-template-columns: ${gridCols};
   font-size: 12px;
-  width: 100%;
-  table-layout: fixed;
-}
-.oh-calendar-table th,
-.oh-calendar-table td {
   border: 1px solid #ddd;
-  padding: 4px;
-  vertical-align: top;
 }
-.oh-calendar-table thead th {
+.oh-header {
   background: #f5f5f5;
   font-weight: bold;
   text-align: center;
+  padding: 8px 4px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
-.oh-calendar-table .oh-time {
+.oh-header:last-child {
+  border-right: none;
+}
+.oh-times {
+  border-right: 1px solid #ddd;
+}
+.oh-time-row {
   font-size: 11px;
   color: #666;
   text-align: right;
-  white-space: nowrap;
-}
-.oh-calendar-table .oh-cell {
-  vertical-align: top;
-  padding: 2px;
-}
-.oh-calendar-table .oh-cell-content {
+  padding-right: 8px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
   display: flex;
-  gap: 2px;
-  height: 100%;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+.oh-day {
+  position: relative;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+}
+.oh-day:last-child {
+  border-right: none;
+}
+.oh-hour-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
 }
 .oh-event {
-  flex: 1;
+  position: absolute;
   box-sizing: border-box;
   padding: 4px 6px;
   border-radius: 4px;
@@ -300,7 +393,7 @@ module.exports = function(eleventyConfig) {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 0;
+  overflow: hidden;
 }
 .oh-event strong {
   display: block;
@@ -319,85 +412,61 @@ module.exports = function(eleventyConfig) {
   white-space: nowrap;
 }
 </style>
-<table class="oh-calendar-table">
-<colgroup>
-`;
-    // Column widths
-    for (let i = 0; i < colWidths.length; i++) {
-      html += `  <col style="width: ${colWidths[i]}px">\n`;
-    }
-    html += `</colgroup>
-<thead>
-<tr>
-  <th></th>
+<div class="oh-calendar">
 `;
     // Header row
+    html += `  <div class="oh-header"></div>\n`;
     for (const day of days) {
-      html += `  <th>${day}</th>\n`;
+      html += `  <div class="oh-header">${day}</div>\n`;
     }
-    html += `</tr>
-</thead>
-<tbody>
-`;
 
-    // Body rows - one per hour
+    // Time column with variable-height rows
+    html += `  <div class="oh-times">\n`;
     for (const hour of hours) {
       const rowHeight = hourHasEvents[hour] ? eventRowHeight : emptyRowHeight;
-      html += `<tr style="height: ${rowHeight}px">\n`;
+      html += `    <div class="oh-time-row" style="height: ${rowHeight}px">${formatMinutesToTime(hour * 60)}</div>\n`;
+    }
+    html += `  </div>\n`;
 
-      // Time label cell
-      html += `  <td class="oh-time">${formatMinutesToTime(hour * 60)}</td>\n`;
+    // Day columns with absolutely positioned events
+    for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
+      html += `  <div class="oh-day" style="height: ${totalHeight}px">\n`;
 
-      // Day cells
-      for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
-        const cell = eventGrid[hour][dayIdx];
-
-        // Skip if this cell is occupied by a rowspan from above
-        if (cell.occupied) {
-          continue;
-        }
-
-        // Get events that start in this cell
-        const cellEvents = cell.events;
-
-        if (cellEvents.length === 0) {
-          html += `  <td class="oh-cell"></td>\n`;
-        } else {
-          // Calculate the rowspan - use max of all events' rowspans
-          const maxRowspan = Math.max(...cellEvents.map(e => e.rowspan || 1));
-
-          // Calculate total height for the cell
-          let totalHeight = 0;
-          for (let i = 0; i < maxRowspan && (hours.indexOf(hour) + i) < hours.length; i++) {
-            const h = hours[hours.indexOf(hour) + i];
-            totalHeight += hourHasEvents[h] ? eventRowHeight : emptyRowHeight;
-          }
-
-          const rowspanAttr = maxRowspan > 1 ? ` rowspan="${maxRowspan}"` : '';
-          html += `  <td class="oh-cell"${rowspanAttr} style="height: ${totalHeight}px">\n`;
-          html += `    <div class="oh-cell-content">\n`;
-
-          for (const event of cellEvents) {
-            const bgColor = getEventBgColor(event);
-            html += `      <div class="oh-event" style="background-color: ${bgColor};">\n`;
-            html += `        <strong>${event.name}</strong>\n`;
-            html += `        <small>${event.time}</small>\n`;
-            if (event.location) {
-              html += `        <small>${event.location}</small>\n`;
-            }
-            html += `      </div>\n`;
-          }
-
-          html += `    </div>\n`;
-          html += `  </td>\n`;
-        }
+      // Add hour line guides
+      for (const hour of hours) {
+        const top = hourTopOffset[hour];
+        const rowHeight = hourHasEvents[hour] ? eventRowHeight : emptyRowHeight;
+        html += `    <div class="oh-hour-line" style="top: ${top + rowHeight}px"></div>\n`;
       }
 
-      html += `</tr>\n`;
+      // Add events
+      const events = dayEvents[dayIdx];
+      for (const event of events) {
+        const pos = getEventPosition(event);
+        const bgColor = getEventBgColor(event);
+
+        // Calculate horizontal position based on column assignment
+        const totalCols = event.totalColumns || 1;
+        const col = event.column || 0;
+        const widthPercent = 100 / totalCols;
+        const leftPercent = col * widthPercent;
+
+        // Small gap between overlapping events
+        const gap = totalCols > 1 ? 1 : 0;
+
+        html += `    <div class="oh-event" style="background-color: ${bgColor}; top: ${pos.top}px; height: ${pos.height}px; left: calc(${leftPercent}% + ${gap}px); width: calc(${widthPercent}% - ${gap * 2}px);">\n`;
+        html += `      <strong>${event.name}</strong>\n`;
+        html += `      <small>${event.time}</small>\n`;
+        if (event.location) {
+          html += `      <small>${event.location}</small>\n`;
+        }
+        html += `    </div>\n`;
+      }
+
+      html += `  </div>\n`;
     }
 
-    html += `</tbody>
-</table>`;
+    html += `</div>`;
     return html;
   });
 
