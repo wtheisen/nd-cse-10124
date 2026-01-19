@@ -196,7 +196,7 @@ module.exports = function(eleventyConfig) {
 
     // Calculate row heights
     const emptyRowHeight = 25;  // px - just enough for time label
-    const eventRowHeight = 80;  // px - room for event content
+    const eventRowHeight = 60;  // px - room for event content
 
     // Build cumulative height lookup - map each hour to its pixel offset from top
     let cumulativeHeight = 0;
