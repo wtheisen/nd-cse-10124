@@ -1,11 +1,11 @@
 {# Resource sections partial - displays resources grouped by type #}
-{# Expects: resources - array of resource objects #}
+{# Expects: resourcesList - array of resource objects #}
 
 <div class="row">
     <div class="col-md-4">
         <h4><i class="fa-solid fa-book"></i> Readings</h4>
         <ul class="resource-list">
-        {% for r in resources %}
+        {% for r in resourcesList %}
             {% if r.type == 'reading' %}
                 <li>
                     {% if r.primary %}
@@ -25,7 +25,7 @@
     <div class="col-md-4">
         <h4><i class="fa-solid fa-video-camera"></i> Videos</h4>
         <ul class="resource-list">
-        {% for r in resources %}
+        {% for r in resourcesList %}
             {% if r.type == 'video' %}
                 <li>
                     {% if r.primary %}
@@ -45,7 +45,7 @@
     <div class="col-md-4">
         <h4><i class="fa-brands fa-python"></i> Notebooks</h4>
         <ul class="resource-list">
-        {% for r in resources %}
+        {% for r in resourcesList %}
             {% if r.type == 'notebook' %}
                 <li>
                     {% if r.primary %}
@@ -67,7 +67,7 @@
 {# Filter blogposts and papers #}
 {% set blogposts = [] %}
 {% set papers = [] %}
-{% for r in resources %}
+{% for r in resourcesList %}
     {% if r.type == 'blogpost' %}
         {% set blogposts = (blogposts.push(r), blogposts) %}
     {% endif %}

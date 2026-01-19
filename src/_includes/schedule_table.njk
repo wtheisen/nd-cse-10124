@@ -166,7 +166,7 @@
                         {% if day_resources | length %}
                             <tr id="resources-{{ lecture_id }}" class="resource-row" style="display: none;">
                                 <td colspan="3">
-                                    {% set resourcesForSection = day_resources %}
+                                    {% set resourcesList = day_resources %}
                                     {% include "resource_sections.njk" %}
                                 </td>
                             </tr>
