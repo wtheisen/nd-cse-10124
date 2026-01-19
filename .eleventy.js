@@ -18,15 +18,19 @@ module.exports = function(eleventyConfig) {
 
   // ===== CUSTOM FILTERS =====
 
-  // TA colors for office hours calendar
-  const TA_COLORS = {
-    'jmangion': 'rgba(255, 204, 204, 0.5)',
-    'ccerves':  'rgba(204, 255, 204, 0.5)',
-    'tlohman':  'rgba(204, 204, 255, 0.5)',
-    'ozino':    'rgba(255, 255, 204, 0.5)',
-    'snoonan2': 'rgba(255, 204, 255, 0.5)',
-    'fseptien': 'rgba(204, 255, 255, 0.5)'
-  };
+  // TA color palette - colors are assigned dynamically based on TA order
+  const TA_COLOR_PALETTE = [
+    'rgba(255, 204, 204, 0.5)',  // light red
+    'rgba(204, 255, 204, 0.5)',  // light green
+    'rgba(204, 204, 255, 0.5)',  // light blue
+    'rgba(255, 255, 204, 0.5)',  // light yellow
+    'rgba(255, 204, 255, 0.5)',  // light magenta
+    'rgba(204, 255, 255, 0.5)',  // light cyan
+    'rgba(255, 224, 204, 0.5)',  // light orange
+    'rgba(224, 204, 255, 0.5)',  // light purple
+    'rgba(204, 255, 224, 0.5)',  // light mint
+    'rgba(255, 204, 224, 0.5)',  // light pink
+  ];
 
   // Helper: parse time string like "10:00 AM" to minutes since midnight
   function parseTimeToMinutes(timeStr) {
@@ -58,7 +62,15 @@ module.exports = function(eleventyConfig) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const startMinutes = 10 * 60; // 10:00 AM
     const endMinutes = 21 * 60;   // 9:00 PM
-    const slotDuration = 30;      // 30 minutes per slot
+    const slotDuration = 15;      // 15 minutes per slot
+
+    // Build TA color map dynamically based on order in data
+    const taColorMap = {};
+    const tas = semesterInfo.TAs || {};
+    const taIds = Object.keys(tas);
+    taIds.forEach((taId, index) => {
+      taColorMap[taId] = TA_COLOR_PALETTE[index % TA_COLOR_PALETTE.length];
+    });
 
     // Build time slots
     const timeSlots = [];
@@ -190,10 +202,10 @@ module.exports = function(eleventyConfig) {
 
       html += '<tr>';
 
-      // Time label cell (spans 2 rows for each hour)
+      // Time label cell (spans 4 rows for each hour with 15-min slots)
       if (isHourStart) {
         const hourLabel = `${formatMinutesToTime(slot.start)} - ${formatMinutesToTime(slot.start + 60)}`;
-        html += `<td rowspan="2" style="text-align: left; padding: 8px; border-top: 1px solid #ddd;">${hourLabel}</td>`;
+        html += `<td rowspan="4" style="text-align: left; padding: 8px; border-top: 1px solid #ddd;">${hourLabel}</td>`;
       }
 
       // Day cells
@@ -224,10 +236,10 @@ module.exports = function(eleventyConfig) {
           const hasNonTa = cellEvents.some(e => e.type !== 'ta');
 
           if (!hasNonTa && taIds.length === 1) {
-            bgStyle = `background-color: ${TA_COLORS[taIds[0]] || 'rgba(240,240,240,0.5)'};`;
+            bgStyle = `background-color: ${taColorMap[taIds[0]] || 'rgba(240,240,240,0.5)'};`;
           } else if (!hasNonTa && taIds.length >= 2) {
             // Gradient for multiple TAs
-            const colors = taIds.map(id => TA_COLORS[id] || 'rgba(240,240,240,0.5)');
+            const colors = taIds.map(id => taColorMap[id] || 'rgba(240,240,240,0.5)');
             const stops = colors.map((c, i) => `${c} ${Math.floor(100*i/colors.length)}% ${Math.floor(100*(i+1)/colors.length)}%`);
             bgStyle = `background-image: linear-gradient(90deg, ${stops.join(', ')});`;
           } else if (cellEvents.some(e => e.type === 'lecture' || e.type === 'instructor')) {
@@ -256,12 +268,21 @@ module.exports = function(eleventyConfig) {
           }
           html += '</td>';
         } else {
-          // Empty cell - try to span 2 rows if at hour start and next slot also empty
-          if (isHourStart && slotIdx + 1 < timeSlots.length) {
-            const nextKey = key(slotIdx + 1, dayIdx);
-            if (!events[nextKey] || events[nextKey].length === 0) {
-              consumedCells[nextKey] = true;
-              html += '<td rowspan="2" style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
+          // Empty cell - try to span 4 rows if at hour start and all slots in the hour are empty
+          if (isHourStart) {
+            let canSpanHour = true;
+            for (let r = 1; r < 4 && slotIdx + r < timeSlots.length; r++) {
+              const checkKey = key(slotIdx + r, dayIdx);
+              if (events[checkKey] && events[checkKey].length > 0) {
+                canSpanHour = false;
+                break;
+              }
+            }
+            if (canSpanHour && slotIdx + 3 < timeSlots.length) {
+              for (let r = 1; r < 4; r++) {
+                consumedCells[key(slotIdx + r, dayIdx)] = true;
+              }
+              html += '<td rowspan="4" style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
             } else {
               html += '<td style="padding: 8px; border: 1px solid #ddd; border-top: 1px solid #ddd;"></td>';
             }
