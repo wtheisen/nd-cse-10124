@@ -1,4 +1,15 @@
-# CSE 30124 Programming Challenges (Fall 2022)
+# CSE 10124 - Building ChatGPT
 
-This is the source code for the CSE 30124 Programminge Challenges (Fall 2022)
-[course website](http://www3.nd.edu/~pbui/teaching/cse.30124.fa24/).
+Course website for CSE 10124 at Notre Dame.
+
+## Development
+
+```bash
+npm install       # Install dependencies
+npm run serve     # Dev server with live reload
+npm run build     # Build to docs/
+```
+
+## Deployment
+
+Push to `main` triggers GitHub Actions to build and deploy to GitHub Pages.

@@ -1,13 +1,16 @@
-# Old build system artifacts
-*.pyc
+# Editor / IDE
+.vscode/
+.idea/
 *.swp
+
+# OS
 .DS_Store
 
-# Course content
+# Local tool settings
+.claude/
+
+# Course content (not for public repo)
 *_solutions.ipynb
-alphabet
-MNIST
-*/solutions/*.png
 static/solutions
 static/csv/*
 
