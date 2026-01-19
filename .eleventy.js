@@ -448,11 +448,9 @@ module.exports = function(eleventyConfig) {
 
         // Use stacking instead of column-based positioning
         const stackIndex = event.stackIndex || 0;
-        const stackSize = event.stackSize || 1;
         const zIndex = stackIndex + 1;
-        const leftOffset = stackSize > 1 ? stackIndex * 4 : 0; // slight offset to show stacking
 
-        html += `    <div class="oh-event" style="--event-rgb: ${colorRGB}; background-color: rgba(${colorRGB}, 0.5); top: ${pos.top}px; height: ${pos.height}px; left: ${leftOffset}px; right: 0; z-index: ${zIndex};">\n`;
+        html += `    <div class="oh-event" style="--event-rgb: ${colorRGB}; background-color: rgba(${colorRGB}, 0.5); top: ${pos.top}px; height: ${pos.height}px; left: 0; right: 0; z-index: ${zIndex};">\n`;
         html += `      <strong>${event.name}</strong>\n`;
         html += `      <small>${event.time}</small>\n`;
         if (event.location) {
