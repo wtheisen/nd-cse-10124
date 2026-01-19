@@ -254,32 +254,20 @@ module.exports = function(eleventyConfig) {
       return groups;
     }
 
-    // Assign column positions to events within an overlap group
-    function assignColumns(group) {
+    // Assign stack index to events within an overlap group
+    function assignStackIndex(group) {
       if (group.length === 0) return;
 
-      // Sort by start time
-      const sorted = [...group].sort((a, b) => a.start - b.start);
+      // Sort by start time, then by duration (longer events behind)
+      const sorted = [...group].sort((a, b) => {
+        if (a.start !== b.start) return a.start - b.start;
+        return (b.end - b.start) - (a.end - a.start); // longer events first (behind)
+      });
 
-      // Track end times for each column
-      const columnEnds = [];
-
-      for (const event of sorted) {
-        // Find the first column where this event can fit
-        let col = 0;
-        while (col < columnEnds.length && columnEnds[col] > event.start) {
-          col++;
-        }
-
-        event.column = col;
-        columnEnds[col] = event.end;
-      }
-
-      // Calculate total columns in group
-      const totalColumns = columnEnds.length;
-      for (const event of group) {
-        event.totalColumns = totalColumns;
-      }
+      sorted.forEach((event, index) => {
+        event.stackIndex = index;
+        event.stackSize = group.length;
+      });
     }
 
     // Calculate pixel position for an event
@@ -320,12 +308,12 @@ module.exports = function(eleventyConfig) {
       return { top, height: Math.max(height, 20) }; // Minimum height of 20px
     }
 
-    // Process each day's events to assign columns
+    // Process each day's events to assign stack indices
     for (let dayIdx = 0; dayIdx < days.length; dayIdx++) {
       const events = dayEvents[dayIdx];
       const groups = findOverlapGroups(events);
       for (const group of groups) {
-        assignColumns(group);
+        assignStackIndex(group);
       }
     }
 
@@ -395,6 +383,13 @@ module.exports = function(eleventyConfig) {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  transition: z-index 0s, transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+.oh-event:hover {
+  z-index: 100 !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 .oh-event strong {
   display: block;
@@ -446,16 +441,13 @@ module.exports = function(eleventyConfig) {
         const pos = getEventPosition(event);
         const bgColor = getEventBgColor(event);
 
-        // Calculate horizontal position based on column assignment
-        const totalCols = event.totalColumns || 1;
-        const col = event.column || 0;
-        const widthPercent = 100 / totalCols;
-        const leftPercent = col * widthPercent;
+        // Use stacking instead of column-based positioning
+        const stackIndex = event.stackIndex || 0;
+        const stackSize = event.stackSize || 1;
+        const zIndex = stackIndex + 1;
+        const leftOffset = stackSize > 1 ? stackIndex * 4 : 0; // slight offset to show stacking
 
-        // Small gap between overlapping events
-        const gap = totalCols > 1 ? 1 : 0;
-
-        html += `    <div class="oh-event" style="background-color: ${bgColor}; top: ${pos.top}px; height: ${pos.height}px; left: calc(${leftPercent}% + ${gap}px); width: calc(${widthPercent}% - ${gap * 2}px);">\n`;
+        html += `    <div class="oh-event" style="background-color: ${bgColor}; top: ${pos.top}px; height: ${pos.height}px; left: ${leftOffset}px; right: 0; z-index: ${zIndex};">\n`;
         html += `      <strong>${event.name}</strong>\n`;
         html += `      <small>${event.time}</small>\n`;
         if (event.location) {

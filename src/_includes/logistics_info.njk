@@ -28,7 +28,7 @@
                                     {% elif day == 'Wednesday' %}
                                         {% set days_list = (days_list.push('W'), days_list) %}
                                     {% elif day == 'Thursday' %}
-                                        {% set days_list = (days_list.push('TR'), days_list) %}
+                                        {% set days_list = (days_list.push('Th'), days_list) %}
                                     {% elif day == 'Friday' %}
                                         {% set days_list = (days_list.push('F'), days_list) %}
                                     {% else %}
@@ -72,7 +72,7 @@
                     <dl>
                         {% set instructor = semesterInfo.Instructor %}
                         {% if instructor %}
-                            <dt><i class="fa fa-user"></i> Instructor</dt>
+                            <dt><i class="fa fa-user"></i> Professor</dt>
                             <dd>
                                 {% if instructor.name %}
                                     {% if instructor.github %}
@@ -82,10 +82,10 @@
                                     {% endif %}
                                     (<a href="mailto:{{ instructor.netid }}@nd.edu">{{ instructor.netid }}@nd.edu</a>)
                                 {% else %}
-                                    <a href="http://www.williamtheisen.com">Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)
+                                    <a href="http://www.williamtheisen.com">Dr. Bill Theisen</a> (<a href="mailto:wtheisen@nd.edu">wtheisen@nd.edu</a>)
                                 {% endif %}
                             </dd>
-                            <dd>Please use Dr./Professor Bill or <br>Dr./Professor Theisen</dd>
+                            <dd>I think many students call me just "Theisen", which is fine too.</dd>
 
                             <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
                             <dd>
@@ -98,7 +98,7 @@
                                             {% if oh_count == 0 %}
                                                 <strong>{{ day_abbrev }}</strong> {{ oh_time }}
                                             {% else %}
-                                                , {{ day_abbrev }} {{ oh_time }}
+                                                , <strong>{{ day_abbrev }}</strong> {{ oh_time }}
                                             {% endif %}
                                             {% set oh_count = oh_count + 1 %}
                                         {% endif %}
