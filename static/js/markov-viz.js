@@ -11,6 +11,7 @@
     let graph = null;
     let showLabels = true;
     let showEdges = true;
+    let lockedNode = null;  // Node that's been clicked to lock the highlight
 
     // Theme colors
     const themes = {
@@ -303,10 +304,12 @@
         // Create Sigma instance
         sigmaInstance = new Sigma(graph, container, {
             renderLabels: showLabels,
-            renderEdgeLabels: false,
+            renderEdgeLabels: true,
             labelSize: 12,
             labelWeight: 'bold',
             labelColor: { color: colors.label },
+            edgeLabelSize: 10,
+            edgeLabelColor: { color: colors.label },
             defaultNodeColor: colors.node,
             defaultEdgeColor: colors.edge,
             minCameraRatio: 0.1,
@@ -317,34 +320,92 @@
             hideLabelsOnMove: graphData.nodes.length > 500
         });
 
-        // Hover effects
+        // Reset locked node when loading new graph
+        lockedNode = null;
+
+        // Hover and lock effects
         let hoveredNode = null;
         let hoveredNeighbors = new Set();
 
-        sigmaInstance.on('enterNode', ({ node }) => {
-            hoveredNode = node;
-            hoveredNeighbors = new Set(graph.neighbors(node));
+        // Helper to build edge info string for a node
+        function getEdgeInfo(node) {
+            const edges = graph.edges(node);
+            const edgeDetails = [];
+            edges.forEach(edge => {
+                const source = graph.source(edge);
+                const target = graph.target(edge);
+                const weight = graph.getEdgeAttribute(edge, 'weight') || 1;
+                const otherNode = source === node ? target : source;
+                const direction = source === node ? '→' : '←';
+                edgeDetails.push(`${direction}${otherNode}: ${weight}`);
+            });
+            return edgeDetails.slice(0, 10).join(', ') + (edgeDetails.length > 10 ? '...' : '');
+        }
 
+        // Helper to update info display for a node
+        function updateNodeInfo(node) {
             const nodeData = graph.getNodeAttributes(node);
             const degree = graph.degree(node);
-            updateHoverInfo(`"${nodeData.label}" - ${nodeData.frequency || 0} occurrences, ${degree} connections`);
+            const edgeInfo = getEdgeInfo(node);
+            updateHoverInfo(`"${nodeData.label}" - ${nodeData.frequency || 0} occurrences, ${degree} connections | Edges: ${edgeInfo}`);
+        }
 
+        // Get the active node (locked takes priority over hovered)
+        function getActiveNode() {
+            return lockedNode || hoveredNode;
+        }
+
+        sigmaInstance.on('enterNode', ({ node }) => {
+            hoveredNode = node;
+            if (!lockedNode) {
+                hoveredNeighbors = new Set(graph.neighbors(node));
+                updateNodeInfo(node);
+            }
             sigmaInstance.refresh();
         });
 
         sigmaInstance.on('leaveNode', () => {
             hoveredNode = null;
-            hoveredNeighbors.clear();
-            updateHoverInfo('');
+            if (!lockedNode) {
+                hoveredNeighbors.clear();
+                updateHoverInfo('');
+            }
             sigmaInstance.refresh();
         });
 
-        // Node reducer for hover effects
+        // Click to lock/unlock node highlight
+        sigmaInstance.on('clickNode', ({ node }) => {
+            if (lockedNode === node) {
+                // Clicking same node unlocks it
+                lockedNode = null;
+                hoveredNeighbors.clear();
+                updateHoverInfo('');
+            } else {
+                // Lock to this node
+                lockedNode = node;
+                hoveredNeighbors = new Set(graph.neighbors(node));
+                updateNodeInfo(node);
+            }
+            sigmaInstance.refresh();
+        });
+
+        // Click on stage (background) to unlock
+        sigmaInstance.on('clickStage', () => {
+            if (lockedNode) {
+                lockedNode = null;
+                hoveredNeighbors.clear();
+                updateHoverInfo('');
+                sigmaInstance.refresh();
+            }
+        });
+
+        // Node reducer for hover/lock effects
         sigmaInstance.setSetting('nodeReducer', (node, data) => {
             const res = { ...data };
+            const activeNode = getActiveNode();
 
-            if (hoveredNode) {
-                if (node === hoveredNode) {
+            if (activeNode) {
+                if (node === activeNode) {
                     res.highlighted = true;
                     res.color = colors.nodeHover;
                     res.zIndex = 2;
@@ -360,7 +421,7 @@
             return res;
         });
 
-        // Edge reducer for hover effects
+        // Edge reducer for hover/lock effects
         sigmaInstance.setSetting('edgeReducer', (edge, data) => {
             const res = { ...data };
 
@@ -369,14 +430,17 @@
                 return res;
             }
 
-            if (hoveredNode) {
+            const activeNode = getActiveNode();
+            if (activeNode) {
                 const source = graph.source(edge);
                 const target = graph.target(edge);
 
-                if (source === hoveredNode || target === hoveredNode) {
+                if (source === activeNode || target === activeNode) {
                     res.color = colors.edgeHover;
                     res.size = data.size * 2;
                     res.zIndex = 1;
+                    // Show edge weight as label
+                    res.label = String(graph.getEdgeAttribute(edge, 'weight') || '');
                 } else {
                     res.hidden = true;
                 }
