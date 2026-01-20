@@ -13,29 +13,17 @@
     let showEdges = true;
     let lockedNode = null;  // Node that's been clicked to lock the highlight
 
-    // Theme colors
-    const themes = {
-        'gruvbox-light': {
-            node: '#0d6efd',
-            nodeHover: '#0b5ed7',
-            edge: '#6c757d',
-            edgeHover: '#495057',
-            label: '#333333',
-            background: '#fbf1c7'
-        },
-        'gruvbox-dark': {
-            node: '#83a598',
-            nodeHover: '#8ec07c',
-            edge: '#665c54',
-            edgeHover: '#928374',
-            label: '#ebdbb2',
-            background: '#282828'
-        }
-    };
-
+    // Get theme colors from CSS custom properties
     function getCurrentTheme() {
-        const theme = document.documentElement.getAttribute('data-theme');
-        return themes[theme] || themes['gruvbox-light'];
+        const style = getComputedStyle(document.documentElement);
+        return {
+            node: style.getPropertyValue('--graph-node-color').trim() || '#002b5c',
+            nodeHover: style.getPropertyValue('--graph-node-hover').trim() || '#b18d03',
+            edge: style.getPropertyValue('--graph-edge-color').trim() || '#999999',
+            edgeHover: style.getPropertyValue('--graph-edge-hover').trim() || '#fe8019',
+            label: style.getPropertyValue('--graph-label-color').trim() || '#555555',
+            background: style.getPropertyValue('--graph-background').trim() || '#f8f9fa'
+        };
     }
 
     function showLoading(show) {
@@ -403,17 +391,18 @@
         sigmaInstance.setSetting('nodeReducer', (node, data) => {
             const res = { ...data };
             const activeNode = getActiveNode();
+            const currentColors = getCurrentTheme();  // Get fresh colors each render
 
             if (activeNode) {
                 if (node === activeNode) {
                     res.highlighted = true;
-                    res.color = colors.nodeHover;
+                    res.color = currentColors.nodeHover;
                     res.zIndex = 2;
                 } else if (hoveredNeighbors.has(node)) {
-                    res.color = colors.nodeHover;
+                    res.color = currentColors.nodeHover;
                     res.zIndex = 1;
                 } else {
-                    res.color = colors.node + '40'; // Add transparency
+                    res.color = currentColors.node + '40'; // Add transparency
                     res.zIndex = 0;
                 }
             }
@@ -432,11 +421,12 @@
 
             const activeNode = getActiveNode();
             if (activeNode) {
+                const currentColors = getCurrentTheme();  // Get fresh colors each render
                 const source = graph.source(edge);
                 const target = graph.target(edge);
 
                 if (source === activeNode || target === activeNode) {
-                    res.color = colors.edgeHover;
+                    res.color = currentColors.edgeHover;
                     res.size = data.size * 2;
                     res.zIndex = 1;
                     // Show edge weight as label
@@ -470,6 +460,9 @@
         });
 
         sigmaInstance.setSetting('labelColor', { color: colors.label });
+        sigmaInstance.setSetting('edgeLabelColor', { color: colors.label });
+        sigmaInstance.setSetting('defaultNodeColor', colors.node);
+        sigmaInstance.setSetting('defaultEdgeColor', colors.edge);
         sigmaInstance.refresh();
     }
 

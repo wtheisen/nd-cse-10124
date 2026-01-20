@@ -3,6 +3,26 @@
  * Supports both light (bluegold) and dark (gruvbox-dark) themes
  */
 
+/* Graph color variables - light theme (bluegold) */
+:root, [data-theme="gruvbox-light"] {
+    --graph-node-color: #002b5c;       /* Notre Dame blue */
+    --graph-node-hover: #b18d03;       /* Notre Dame gold */
+    --graph-edge-color: #999999;
+    --graph-edge-hover: #b18d03;
+    --graph-label-color: #555555;
+    --graph-background: #f8f9fa;
+}
+
+/* Graph color variables - dark theme (gruvbox) */
+[data-theme="gruvbox-dark"] {
+    --graph-node-color: #83a598;       /* Gruvbox aqua */
+    --graph-node-hover: #d65d0e;       /* Gruvbox orange */
+    --graph-edge-color: #665c54;
+    --graph-edge-hover: #fe8019;
+    --graph-label-color: #ebdbb2;
+    --graph-background: #282828;
+}
+
 /* Graph container */
 #graph-container {
     position: relative;
