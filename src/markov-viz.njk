@@ -1,0 +1,118 @@
+---
+layout: base.njk
+title: Markov Graph Visualizer
+icon: fa-project-diagram
+navigation:
+  - name: "Home"
+    link: "index.html"
+    icon: "fa-home"
+  - name: "Controls"
+    link: "#controls"
+    icon: "fa-sliders"
+permalink: "markov-viz.html"
+extraScript: "static/js/markov-viz.js"
+---
+
+<link rel="stylesheet" href="static/css/markov-viz.css">
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            Visualize Markov chain transition graphs with interactive pan and zoom.
+            Select a pre-seeded graph from the dropdown below to explore word transitions.
+        </p>
+    </div>
+</div>
+
+<div class="row" id="controls">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="graph-select">Select a Markov Graph:</label>
+            <select id="graph-select" class="form-control">
+                <option value="">-- Choose a graph --</option>
+                <option value="demo-small">Demo: Simple Sentences (~30 nodes)</option>
+                <option value="demo-medium">Demo: Shakespeare Excerpt (~80 nodes)</option>
+                <option value="demo-large">Demo: Large Graph (~500 nodes)</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group" role="group" style="margin-top: 25px;">
+            <button type="button" class="btn btn-default" id="zoom-in" title="Zoom In">
+                <i class="fa fa-search-plus"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="zoom-out" title="Zoom Out">
+                <i class="fa fa-search-minus"></i>
+            </button>
+            <button type="button" class="btn btn-default" id="zoom-reset" title="Reset View">
+                <i class="fa fa-expand"></i> Reset
+            </button>
+            <button type="button" class="btn btn-default" id="toggle-labels" title="Toggle Labels">
+                <i class="fa fa-font"></i> Labels
+            </button>
+            <button type="button" class="btn btn-default" id="toggle-edges" title="Toggle Edges">
+                <i class="fa fa-arrows"></i> Edges
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="graph-container">
+            <div id="loading-indicator" style="display: none;">
+                <i class="fa fa-spinner fa-spin fa-3x"></i>
+                <p>Loading graph...</p>
+            </div>
+            <div id="graph-placeholder">
+                <i class="fa fa-project-diagram fa-3x"></i>
+                <p>Select a graph to visualize</p>
+            </div>
+            <div id="sigma-container"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="graph-info" class="alert alert-info" style="display: none;">
+            <strong>Graph Stats:</strong>
+            <span id="node-count">0</span> nodes,
+            <span id="edge-count">0</span> edges
+            <span id="hover-info" style="margin-left: 20px;"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#usage-info">
+                        <i class="fa fa-info-circle"></i> Usage Instructions
+                    </a>
+                </h4>
+            </div>
+            <div id="usage-info" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        <li><strong>Pan:</strong> Click and drag on the canvas</li>
+                        <li><strong>Zoom:</strong> Use mouse wheel or pinch gestures</li>
+                        <li><strong>Hover:</strong> Mouse over nodes to see word details and connections</li>
+                        <li><strong>Node Size:</strong> Larger nodes represent more frequently occurring words</li>
+                        <li><strong>Edge Thickness:</strong> Thicker edges indicate stronger transitions</li>
+                    </ul>
+                    <h5>Creating Your Own Graphs</h5>
+                    <p>Use the Python script in <code>scripts/markov_to_graph.py</code> to convert your Markov babbler dictionaries:</p>
+                    <pre>python scripts/markov_to_graph.py your_markov.pkl output.json</pre>
+                    <p>Then place the JSON file in <code>static/data/graphs/</code> and add it to the dropdown.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sigma.js and Graphology from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>

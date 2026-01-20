@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"key": "hello", "label": "hello", "x": 0.2, "y": 0.5, "size": 8, "frequency": 25},
+    {"key": "world", "label": "world", "x": 0.8, "y": 0.5, "size": 6, "frequency": 15},
+    {"key": "the", "label": "the", "x": 0.5, "y": 0.2, "size": 10, "frequency": 50},
+    {"key": "cat", "label": "cat", "x": 0.3, "y": 0.8, "size": 5, "frequency": 10},
+    {"key": "sat", "label": "sat", "x": 0.7, "y": 0.8, "size": 4, "frequency": 8}
+  ],
+  "edges": [
+    {"source": "hello", "target": "world", "weight": 20},
+    {"source": "the", "target": "cat", "weight": 15},
+    {"source": "cat", "target": "sat", "weight": 12},
+    {"source": "the", "target": "world", "weight": 5},
+    {"source": "hello", "target": "the", "weight": 3}
+  ],
+  "metadata": {
+    "nodeCount": 5,
+    "edgeCount": 5,
+    "description": "Sample graph demonstrating the JSON format"
+  }
+}
