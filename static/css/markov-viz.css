@@ -32,7 +32,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #fbf1c7;
+    background-color: var(--graph-background);
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -53,9 +53,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(251, 241, 199, 0.9);
+    background-color: var(--graph-background);
     z-index: 100;
-    color: #333;
+    color: var(--graph-label-color);
 }
 
 #loading-indicator p {
@@ -111,13 +111,7 @@
 
 /* Dark theme overrides */
 [data-theme="gruvbox-dark"] #graph-container {
-    background-color: #282828;
     border-color: #504945;
-}
-
-[data-theme="gruvbox-dark"] #loading-indicator {
-    background-color: rgba(40, 40, 40, 0.9);
-    color: #ebdbb2;
 }
 
 [data-theme="gruvbox-dark"] #graph-placeholder {
