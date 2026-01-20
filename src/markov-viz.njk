@@ -30,9 +30,15 @@ extraScript: "static/js/markov-viz.js"
             <label for="graph-select">Select a Markov Graph:</label>
             <select id="graph-select" class="form-control">
                 <option value="">-- Choose a graph --</option>
-                <option value="demo-small">Demo: Simple Sentences (~30 nodes)</option>
-                <option value="demo-medium">Demo: Shakespeare Excerpt (~80 nodes)</option>
-                <option value="demo-large">Demo: Large Graph (~500 nodes)</option>
+                <optgroup label="Zoomer Babbler">
+                    <option value="json/zoomer_word_graph">Word-level (~3,700 nodes)</option>
+                    <option value="json/zoomer_char_graph">Character-level (~92 nodes)</option>
+                </optgroup>
+                <optgroup label="Demo Graphs">
+                    <option value="demo-small">Simple Sentences (~30 nodes)</option>
+                    <option value="demo-medium">Shakespeare Excerpt (~80 nodes)</option>
+                    <option value="demo-large">Synthetic Large (~500 nodes)</option>
+                </optgroup>
             </select>
         </div>
     </div>
