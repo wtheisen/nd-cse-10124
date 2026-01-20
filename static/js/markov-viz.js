@@ -47,64 +47,6 @@
     }
 
     /**
-     * Convert raw Markov format {word: {nextWord: count}} to Graphology format
-     */
-    function convertMarkovToGraphology(markovData) {
-        // Count word frequencies
-        const wordFreq = {};
-        for (const word in markovData) {
-            const transitions = markovData[word];
-            let total = 0;
-            for (const next in transitions) {
-                total += transitions[next];
-                wordFreq[next] = (wordFreq[next] || 0) + transitions[next];
-            }
-            wordFreq[word] = (wordFreq[word] || 0) + total;
-        }
-
-        // Build nodes with circular layout
-        const allWords = Object.keys(wordFreq);
-        const maxFreq = Math.max(...Object.values(wordFreq));
-        const nodes = allWords.map((word, i) => {
-            const angle = (i / allWords.length) * Math.PI * 2;
-            const radius = 0.4;
-            return {
-                key: word,
-                label: word,
-                x: 0.5 + Math.cos(angle) * radius + (Math.random() - 0.5) * 0.1,
-                y: 0.5 + Math.sin(angle) * radius + (Math.random() - 0.5) * 0.1,
-                size: 2 + 6 * Math.log(1 + wordFreq[word]) / Math.log(1 + maxFreq),
-                frequency: wordFreq[word]
-            };
-        });
-
-        // Build edges
-        const edges = [];
-        for (const source in markovData) {
-            for (const target in markovData[source]) {
-                edges.push({
-                    source: source,
-                    target: target,
-                    weight: markovData[source][target]
-                });
-            }
-        }
-
-        return {
-            nodes: nodes,
-            edges: edges,
-            metadata: { nodeCount: nodes.length, edgeCount: edges.length }
-        };
-    }
-
-    /**
-     * Detect if data is raw Markov format or Graphology format
-     */
-    function isGraphologyFormat(data) {
-        return data && Array.isArray(data.nodes) && Array.isArray(data.edges);
-    }
-
-    /**
      * Load a graph JSON file and render it
      */
     async function loadGraph(graphId) {
@@ -133,16 +75,7 @@
             if (!response.ok) {
                 throw new Error(`Failed to load graph: ${response.statusText}`);
             }
-            const rawData = await response.json();
-
-            // Convert if it's raw Markov format
-            let graphData;
-            if (isGraphologyFormat(rawData)) {
-                graphData = rawData;
-            } else {
-                console.log('Converting raw Markov format to Graphology format...');
-                graphData = convertMarkovToGraphology(rawData);
-            }
+            const graphData = await response.json();
 
             renderGraph(graphData);
         } catch (error) {
