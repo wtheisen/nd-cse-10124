@@ -599,6 +599,28 @@ module.exports = function(eleventyConfig) {
     return resources.filter(r => r.type === type);
   });
 
+  // findAssignmentBranches - return resources whose name starts with
+  // `${assignmentName} ` (e.g. "Lab 05 RAG", "Lab 05 Agent"), so an assignment
+  // page can render its primary notebook plus optional branch notebooks.
+  eleventyConfig.addFilter("findAssignmentBranches", function(resourcesMap, assignmentName) {
+    if (!resourcesMap || typeof resourcesMap !== 'object') return [];
+    const target = (assignmentName || '').trim();
+    if (!target) return [];
+    const prefix = `${target.toLowerCase()} `;
+    const out = [];
+    for (const items of Object.values(resourcesMap)) {
+      if (!Array.isArray(items)) continue;
+      for (const r of items) {
+        const rn = (r.name || '').trim().toLowerCase();
+        if (!rn.startsWith(prefix)) continue;
+        out.push(r);
+      }
+    }
+    // Stable sort by display name so the order on the page is deterministic.
+    out.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+    return out;
+  });
+
   // Get day abbreviation
   eleventyConfig.addFilter("dayAbbrev", function(day) {
     const abbrevs = {

@@ -22,6 +22,7 @@ navigation:
 {% if assignment_resource %}
     {% set notebook_link = assignment_resource.link %}
 {% endif %}
+{% set branch_resources = resources | findAssignmentBranches(assignment_display) %}
 
 <h2>Task 1: Notebook</h2>
 
@@ -35,6 +36,15 @@ navigation:
 <div class="alert alert-warning">
 <p>Notebook link not yet available. Please check back later.</p>
 </div>
+{% endif %}
+
+{% if branch_resources and branch_resources.length %}
+<p>This lab also has additional branch notebooks. Open and complete each one alongside the main notebook above:</p>
+{% for branch in branch_resources %}
+<div class="alert alert-info">
+<a href="{{ branch.link }}">OPEN {{ branch.name | upper }} IN GOOGLE COLAB</a>
+</div>
+{% endfor %}
 {% endif %}
 
 <p>For your convenience the notebook is displayed below as HTML but you will likely
