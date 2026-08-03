@@ -1,6 +1,6 @@
 # CSE 10124 - Building ChatGPT
 
-Course website for CSE 10124 at Notre Dame.
+Course website for CSE 10124 at Notre Dame for Fall 2026.
 
 ## Development
 
