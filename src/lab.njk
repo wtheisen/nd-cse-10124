@@ -7,7 +7,7 @@ permalink: "lab_{{ lab.numberStr }}.html"
 layout: base.njk
 tags: lab
 eleventyComputed:
-  title: "Lab {{ lab.numberStr }}: Building an LLM (5 pts.)"
+  title: "Lab {{ lab.numberStr }}: {{ lab.title }} ({{ lab.points }} pts.)"
 icon: fa-book
 navigation:
   - name: "Home"
@@ -39,10 +39,10 @@ navigation:
 {% endif %}
 
 {% if branch_resources and branch_resources.length %}
-<p>This lab also has additional branch notebooks. Open and complete each one alongside the main notebook above:</p>
+<p>Earlier or supplemental versions of this lab remain available for reference. They are optional unless announced otherwise:</p>
 {% for branch in branch_resources %}
 <div class="alert alert-info">
-<a href="{{ branch.link }}">OPEN {{ branch.name | upper }} IN GOOGLE COLAB</a>
+<a href="{{ branch.link }}">OPEN OPTIONAL {{ branch.name | upper }} NOTEBOOK</a>
 </div>
 {% endfor %}
 {% endif %}
@@ -64,5 +64,5 @@ find it easier to copy the notebook from the Google Colab link above.</p>
 
 <h2>Task 2: Assignment Submission Instructions</h2>
 
-<p>The final cell of the notebook will export and download a .html file of your
-notebook. Upload this to canvas for the assignment.</p>
+<p>Follow the submission checklist at the end of the notebook and upload the
+requested completed file to Canvas.</p>

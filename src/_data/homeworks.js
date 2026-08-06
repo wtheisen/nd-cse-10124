@@ -13,8 +13,11 @@ module.exports = async function() {
   for (const unit of schedule) {
     if (!unit.days) continue;
     for (const day of unit.days) {
-      if (!day.assignments) continue;
-      for (const assignment of day.assignments) {
+      // The current schedule feed stores assignments in the topics cell.
+      // Retain support for the older assignments array so archived/local
+      // schedule files continue to work too.
+      const assignments = day.assignments || (day.topics ? [day.topics] : []);
+      for (const assignment of assignments) {
         const match = assignment.match(/homework\s*(\d+)/i);
         if (match) {
           homeworkNumbers.add(parseInt(match[1], 10));
