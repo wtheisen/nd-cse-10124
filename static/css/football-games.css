@@ -1,0 +1,201 @@
+.dataset-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 8px 0 24px;
+}
+
+.dataset-intro .lead,
+.dataset-intro p:last-child {
+  margin-bottom: 4px;
+}
+
+.dataset-download {
+  flex: 0 0 auto;
+}
+
+.dataset-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  padding: 16px;
+  text-align: center;
+  border: 1px solid #d9e2ec;
+  border-top: 4px solid #0c2340;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.summary-card strong,
+.summary-card span {
+  display: block;
+}
+
+.summary-card strong {
+  color: #0c2340;
+  font-size: 1.8em;
+  line-height: 1.1;
+}
+
+.summary-card span {
+  margin-top: 5px;
+  color: #52606d;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-card--win { border-top-color: #2f855a; }
+.summary-card--loss { border-top-color: #c53030; }
+
+.dataset-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #d9e2ec;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: #f8fafc;
+}
+
+.dataset-controls .form-group {
+  margin: 0;
+}
+
+.dataset-controls .form-group:first-child {
+  flex: 1 1 340px;
+}
+
+.dataset-controls .form-group:nth-child(2) {
+  flex: 0 0 150px;
+}
+
+.game-count {
+  flex: 0 0 auto;
+  margin: 0 0 7px auto;
+  color: #52606d;
+}
+
+.dataset-table-wrap {
+  max-height: 68vh;
+  overflow: auto;
+  border: 1px solid #d9e2ec;
+  border-radius: 0 0 6px 6px;
+}
+
+.dataset-table {
+  min-width: 1000px;
+  margin-bottom: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.dataset-table > thead > tr > th {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  padding: 0;
+  border-bottom: 2px solid #ae9142;
+  background: #0c2340;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.dataset-table th button {
+  width: 100%;
+  padding: 11px 9px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: right;
+}
+
+.dataset-table th button::after {
+  content: "\2195";
+  margin-left: 6px;
+  opacity: 0.45;
+}
+
+.dataset-table th button[data-direction="asc"]::after { content: "\2191"; opacity: 1; }
+.dataset-table th button[data-direction="desc"]::after { content: "\2193"; opacity: 1; }
+
+.dataset-table > tbody > tr > td {
+  padding: 9px;
+  text-align: right;
+}
+
+.dataset-table .positive { color: #27734d; font-weight: 600; }
+.dataset-table .negative { color: #b02a37; font-weight: 600; }
+
+.result-badge {
+  display: inline-block;
+  min-width: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+}
+
+.result-badge--win { background: #2f855a; }
+.result-badge--loss { background: #c53030; }
+
+.no-games {
+  padding: 32px;
+  text-align: center;
+  color: #52606d;
+}
+
+.dataset-notes {
+  margin-top: 28px;
+}
+
+.dataset-notes h2 {
+  font-size: 1.35em;
+}
+
+.dataset-notes dt {
+  float: left;
+  clear: left;
+  width: 190px;
+}
+
+.dataset-notes dd {
+  margin: 0 0 8px 205px;
+}
+
+[data-theme="gruvbox-dark"] .summary-card,
+[data-theme="gruvbox-dark"] .dataset-controls {
+  border-color: #665c54;
+  background: #282828;
+}
+
+[data-theme="gruvbox-dark"] .summary-card strong { color: #fabd2f; }
+[data-theme="gruvbox-dark"] .summary-card span,
+[data-theme="gruvbox-dark"] .game-count,
+[data-theme="gruvbox-dark"] .no-games { color: #d5c4a1; }
+[data-theme="gruvbox-dark"] .dataset-table-wrap { border-color: #665c54; }
+[data-theme="gruvbox-dark"] .dataset-table > thead > tr > th { background: #1d2021; }
+[data-theme="gruvbox-dark"] .dataset-table .positive { color: #8ec07c; }
+[data-theme="gruvbox-dark"] .dataset-table .negative { color: #fb4934; }
+
+@media (max-width: 767px) {
+  .dataset-intro,
+  .dataset-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dataset-download { align-self: flex-start; }
+  .dataset-summary { grid-template-columns: repeat(2, 1fr); }
+  .dataset-controls .form-group:first-child,
+  .dataset-controls .form-group:nth-child(2) { flex: auto; width: 100%; }
+  .game-count { margin: 2px 0 0; }
+  .dataset-notes dt { float: none; width: auto; }
+  .dataset-notes dd { margin-left: 0; }
+}

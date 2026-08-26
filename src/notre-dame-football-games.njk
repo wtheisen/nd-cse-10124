@@ -1,0 +1,100 @@
+---
+layout: base.njk
+title: Notre Dame Football Games
+icon: fa-football-ball
+permalink: notre_dame_football_games_2012_2022.html
+navigation:
+  - name: Home
+    link: index.html
+    icon: fa-home
+extraScript: static/js/football-games.js
+---
+
+<link rel="stylesheet" href="static/css/football-games.css">
+
+<div class="dataset-intro">
+    <div>
+        <p class="lead">A numeric dataset of Notre Dame football games from 2012&ndash;2022.</p>
+        <p class="text-muted">Use the controls to explore the data, or download the original CSV for analysis.</p>
+    </div>
+    <a class="btn btn-primary btn-lg dataset-download"
+       href="static/data/notre_dame_football_games_2012_2022.csv"
+       download>
+        <i class="fa fa-download" aria-hidden="true"></i> Download CSV
+    </a>
+</div>
+
+<div class="dataset-summary" aria-label="Dataset summary">
+    <div class="summary-card"><strong>{{ notreDameFootballGames.summary.games }}</strong><span>Games</span></div>
+    <div class="summary-card summary-card--win"><strong>{{ notreDameFootballGames.summary.wins }}</strong><span>Wins</span></div>
+    <div class="summary-card summary-card--loss"><strong>{{ notreDameFootballGames.summary.losses }}</strong><span>Losses</span></div>
+    <div class="summary-card"><strong>{{ notreDameFootballGames.summary.winPercentage }}%</strong><span>Win rate</span></div>
+</div>
+
+<div class="dataset-controls">
+    <div class="form-group">
+        <label for="game-search">Search values</label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            <input id="game-search" class="form-control" type="search" placeholder="Search the table&hellip;">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="season-filter">Season</label>
+        <select id="season-filter" class="form-control">
+            <option value="">All seasons</option>
+            {% for season in notreDameFootballGames.seasons %}
+            <option value="{{ season }}">{{ season }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <p id="game-count" class="game-count" aria-live="polite">Showing all {{ notreDameFootballGames.summary.games }} games</p>
+</div>
+
+<div class="dataset-table-wrap">
+    <table class="table table-striped table-hover dataset-table" id="football-games-table">
+        <caption class="sr-only">Notre Dame football game data from 2012 through 2022</caption>
+        <thead>
+            <tr>
+                <th><button type="button" data-column="0" data-type="number">Season</button></th>
+                <th><button type="button" data-column="1" data-type="number">Week</button></th>
+                <th><button type="button" data-column="2" data-type="number">ND home</button></th>
+                <th><button type="button" data-column="3" data-type="number">Neutral</button></th>
+                <th><button type="button" data-column="4" data-type="number">Attendance</button></th>
+                <th><button type="button" data-column="5" data-type="number">Capacity</button></th>
+                <th><button type="button" data-column="6" data-type="number">Attend. rate</button></th>
+                <th><button type="button" data-column="7" data-type="number">ND points</button></th>
+                <th><button type="button" data-column="8" data-type="number">Opp. points</button></th>
+                <th><button type="button" data-column="9" data-type="number">Margin</button></th>
+                <th><button type="button" data-column="10" data-type="number">Win</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in notreDameFootballGames.records %}
+            <tr data-season="{{ game.season }}">
+                <td>{{ game.season }}</td>
+                <td>{{ game.week }}</td>
+                <td>{{ game.nd_home }}</td>
+                <td>{{ game.neutral_site }}</td>
+                <td>{{ game.attendance | default(0) }}</td>
+                <td>{{ game.venue_capacity }}</td>
+                <td>{{ game.attendance_rate }}</td>
+                <td>{{ game.nd_points }}</td>
+                <td>{{ game.opponent_points }}</td>
+                <td class="{% if game.point_margin > 0 %}positive{% elif game.point_margin < 0 %}negative{% endif %}">{{ game.point_margin }}</td>
+                <td><span class="result-badge result-badge--{% if game.win == 1 %}win{% else %}loss{% endif %}">{{ game.win }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="no-games" class="no-games" hidden>No games match those filters.</div>
+</div>
+
+<div class="dataset-notes">
+    <h2>Column guide</h2>
+    <dl>
+        <dt>ND home / Neutral / Win</dt><dd>Binary indicators: <code>1</code> means yes, <code>0</code> means no.</dd>
+        <dt>Attend. rate</dt><dd>Recorded attendance divided by the venue capacity.</dd>
+        <dt>Margin</dt><dd>Notre Dame points minus opponent points.</dd>
+    </dl>
+</div>
