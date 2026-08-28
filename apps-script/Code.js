@@ -65,9 +65,8 @@ function setupPublisher() {
     );
   }
 
-  onOpen();
-  SpreadsheetApp.getUi().alert(
-    'Website publisher installed. Your edits will publish after ten quiet minutes.',
+  console.log(
+    'Website publisher installed. Owner edits will publish after ten quiet minutes.',
   );
 }
 
