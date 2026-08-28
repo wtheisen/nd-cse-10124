@@ -1,3 +1,5 @@
+/** @OnlyCurrentDoc */
+
 /**
  * CSE 10124 website publisher for Google Sheets.
  *
