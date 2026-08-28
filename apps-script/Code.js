@@ -134,7 +134,12 @@ function processPublishQueue() {
 function publishWebsiteNow() {
   assertOwner_();
 
-  const ui = SpreadsheetApp.getUi();
+  let ui = null;
+  try {
+    ui = SpreadsheetApp.getUi();
+  } catch (error) {
+    console.log('Running without an active spreadsheet UI.');
+  }
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
@@ -143,10 +148,14 @@ function publishWebsiteNow() {
       dispatchWebsiteBuild_('sheet_publish_now');
       properties.deleteProperty(PUBLISHER_KEYS.lastOwnerEditAt);
       deletePendingPublisherTrigger_(properties);
-      ui.alert('Website build requested successfully.');
+      if (ui) {
+        ui.alert('Website build requested successfully.');
+      }
     } catch (error) {
       notifyDispatchFailure_(error, 'manual publication');
-      ui.alert(`Website publication failed: ${error.message}`);
+      if (ui) {
+        ui.alert(`Website publication failed: ${error.message}`);
+      }
       throw error;
     }
   } finally {
