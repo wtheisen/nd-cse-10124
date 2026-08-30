@@ -56,6 +56,18 @@ jobs:
             echo "ERROR: Homework 02 does not contain the published assignment link"
             exit 1
           fi
+          for preview in \
+            docs/static/labs/lab01/lab01-light.html \
+            docs/static/labs/lab01/lab01-dark.html; do
+            if [ ! -s "$preview" ]; then
+              echo "ERROR: required Lab 01 preview $preview is missing or empty"
+              exit 1
+            fi
+          done
+          if ! grep -q 'static/labs/lab01/lab01-light.html' docs/lab_01.html; then
+            echo "ERROR: Lab 01 does not contain the hosted HTML preview"
+            exit 1
+          fi
           echo "Build verification passed"
 
       - name: Upload artifact

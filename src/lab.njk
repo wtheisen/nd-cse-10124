@@ -47,16 +47,22 @@ navigation:
 {% endfor %}
 {% endif %}
 
-<p>For your convenience the notebook is displayed below as HTML but you will likely
+{% if lab.previewBase %}
+<p>For your convenience the notebook is displayed below as HTML, but you will likely
 find it easier to copy the notebook from the Google Colab link above.</p>
 
-{% if notebook_link %}
 <div class="embed-responsive embed-responsive-4by3">
-<iframe class="embed-responsive-item course-embed" width="100%" height="800" src="{{ notebook_link }}?embedded=true"></iframe>
+<iframe
+    class="embed-responsive-item course-embed theme-notebook-frame"
+    width="100%"
+    height="800"
+    src="{{ lab.previewBase }}-light.html"
+    data-src-light="{{ lab.previewBase }}-light.html"
+    data-src-dark="{{ lab.previewBase }}-dark.html"></iframe>
 </div>
 {% else %}
 <div class="alert alert-warning">
-<p>Document link not yet available. Please check back later.</p>
+<p>Rendered notebook preview not yet available. Use the Google Colab link above.</p>
 </div>
 {% endif %}
 

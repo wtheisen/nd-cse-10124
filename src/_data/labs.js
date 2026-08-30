@@ -27,7 +27,11 @@ module.exports = async function() {
 
   // Convert to sorted array of lab objects
   const labMeta = {
-    1: { title: 'Learning from Numbers with MNIST', points: 10 },
+    1: {
+      title: 'Learning from Numbers with MNIST',
+      points: 10,
+      previewBase: 'static/labs/lab01/lab01'
+    },
     2: { title: 'From Text to Model Inputs', points: 10 },
     3: { title: 'Transformer Block', points: 10 },
     4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 10 },
@@ -44,7 +48,8 @@ module.exports = async function() {
         assignmentName: `lab${String(num).padStart(2, '0')}`,
         assignmentDisplay: `Lab ${String(num).padStart(2, '0')}`,
         title: meta.title,
-        points: meta.points
+        points: meta.points,
+        previewBase: meta.previewBase || ''
       };
     });
 
