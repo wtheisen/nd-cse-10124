@@ -667,6 +667,7 @@ module.exports = function(eleventyConfig) {
     const id = assignmentId.toLowerCase();
     if (id.includes('solutions')) return 'success';
     if (id.startsWith('reading')) return 'primary';
+    if (id.startsWith('lab_')) return 'info';
     if (id.includes('practice')) return 'success';
     if (id.includes('exam')) return 'danger';
     if (id.includes('primer')) return 'success';
