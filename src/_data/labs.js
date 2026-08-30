@@ -27,17 +27,17 @@ module.exports = async function() {
 
   // Convert to sorted array of lab objects
   const labMeta = {
-    1: { title: 'Learning from Numbers with MNIST', points: 5 },
-    2: { title: 'From Text to Model Inputs', points: 6 },
-    3: { title: 'Transformer Block', points: 5 },
-    4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 7 },
-    5: { title: 'Grounded Notre Dame Course Assistant', points: 8 }
+    1: { title: 'Learning from Numbers with MNIST', points: 10 },
+    2: { title: 'From Text to Model Inputs', points: 10 },
+    3: { title: 'Transformer Block', points: 10 },
+    4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 10 },
+    5: { title: 'Grounded Notre Dame Course Assistant', points: 10 }
   };
 
   const labs = Array.from(labNumbers)
     .sort((a, b) => a - b)
     .map(num => {
-      const meta = labMeta[num] || { title: 'Building an LLM', points: 5 };
+      const meta = labMeta[num] || { title: 'Building an LLM', points: 10 };
       return {
         number: num,
         numberStr: String(num).padStart(2, '0'),
