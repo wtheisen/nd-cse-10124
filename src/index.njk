@@ -76,6 +76,8 @@ extraScript: "static/js/index.js"
 
 <div class="row">
     <div class="col-md-6">
+    {% set practice_packet_01 = resources | findAssignmentResource('Practice Packet 01', '') %}
+    {% set practice_packet_02 = resources | findAssignmentResource('Practice Packet 02', '') %}
     <h3>Coursework</h3>
     <table class="table table-condensed table-bordered table-striped">
         <thead>
@@ -94,11 +96,11 @@ extraScript: "static/js/index.js"
                 <td class="text-center">10 &times; 5</td>
             </tr>
             <tr>
-                <td><span class="label label-danger">Midterm</span> Midterm Exam (15 points for turning in the exam practice packet)</td>
+                <td><span class="label label-danger">Midterm</span> Midterm Exam (15 points for turning in <a class="label label-success" href="{{ practice_packet_01.link }}">Practice Packet 01</a>)</td>
                 <td class="text-center">1 &times; 75</td>
             </tr>
             <tr>
-                <td><span class="label label-danger">Exam</span> Final Exam (25 points for turning in the exam practice packet)</td>
+                <td><span class="label label-danger">Exam</span> Final Exam (25 points for turning in <a class="label label-success" href="{{ practice_packet_02.link }}">Practice Packet 02</a>)</td>
                 <td class="text-center">1 &times; 125</td>
             </tr>
             <tr>
