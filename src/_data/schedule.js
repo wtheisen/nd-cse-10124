@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
+const fetchCsv = require('../../lib/fetchCsv.js');
+
+let cachedSchedule = null;
+let inFlightSchedule = null;
 
 /**
  * Load schedule from CSV URL or local file
@@ -51,21 +55,6 @@ function parseDate(dateStr) {
 function parseAssignments(assignmentsStr) {
   if (!assignmentsStr) return [];
   return assignmentsStr.split(',').map(a => a.trim()).filter(a => a);
-}
-
-async function fetchCSV(url) {
-  const response = await fetch(url, {
-    headers: { 'User-Agent': 'nd-cse-site-bot/1.0' }
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch CSV: ${response.status}`);
-  }
-  let text = await response.text();
-  // Handle UTF-8 BOM
-  if (text.charCodeAt(0) === 0xFEFF) {
-    text = text.slice(1);
-  }
-  return text;
 }
 
 function loadScheduleFromCSV(text) {
@@ -150,7 +139,7 @@ function loadScheduleFromCSV(text) {
   return result;
 }
 
-module.exports = async function() {
+async function loadSchedule() {
   // Read config.json for CSV URL
   const configPath = path.join(process.cwd(), 'config.json');
 
@@ -160,31 +149,46 @@ module.exports = async function() {
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     scheduleUrl = config.csv_urls?.schedule || '';
   } catch (err) {
-    console.error('Warning: Could not read config.json:', err.message);
+    throw new Error(`Could not read config.json: ${err.message}`);
   }
 
   // Try local CSV file first
   const localCsvPath = path.join(process.cwd(), 'static', 'csv', 'schedule.csv');
 
-  try {
-    if (fs.existsSync(localCsvPath)) {
+  if (fs.existsSync(localCsvPath)) {
+    try {
       const csvText = fs.readFileSync(localCsvPath, 'utf8');
       return loadScheduleFromCSV(csvText);
+    } catch (err) {
+      throw new Error(`Could not read local schedule.csv: ${err.message}`);
     }
-  } catch (err) {
-    console.error('Warning: Could not read local schedule.csv:', err.message);
   }
 
   // Fetch from URL if available
   if (scheduleUrl) {
-    try {
-      const csvText = await fetchCSV(scheduleUrl);
-      return loadScheduleFromCSV(csvText);
-    } catch (err) {
-      console.error('Warning: Could not fetch schedule CSV:', err.message);
-    }
+    const csvText = await fetchCsv(scheduleUrl);
+    return loadScheduleFromCSV(csvText);
   }
 
-  console.warn('Warning: No schedule data available');
-  return [];
+  throw new Error('No schedule data source configured');
+}
+
+module.exports = async function() {
+  if (cachedSchedule) return cachedSchedule;
+
+  if (!inFlightSchedule) {
+    inFlightSchedule = loadSchedule()
+      .then(schedule => {
+        if (!schedule.length) {
+          throw new Error('Schedule data source returned no class days');
+        }
+        cachedSchedule = schedule;
+        return schedule;
+      })
+      .finally(() => {
+        inFlightSchedule = null;
+      });
+  }
+
+  return inFlightSchedule;
 };

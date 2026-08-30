@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
+const fetchCsv = require('../../lib/fetchCsv.js');
 
 /**
  * Load resources from CSV URL or local file
@@ -25,21 +26,6 @@ function toBool(s) {
   if (!s) return false;
   s = s.trim().toLowerCase();
   return ['1', 'true', 'yes', 'y', 'required'].includes(s);
-}
-
-async function fetchCSV(url) {
-  const response = await fetch(url, {
-    headers: { 'User-Agent': 'nd-cse-site-bot/1.0' }
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch CSV: ${response.status}`);
-  }
-  let text = await response.text();
-  // Handle UTF-8 BOM
-  if (text.charCodeAt(0) === 0xFEFF) {
-    text = text.slice(1);
-  }
-  return text;
 }
 
 function loadResourcesFromCSV(text) {
@@ -143,12 +129,8 @@ module.exports = async function() {
 
   // Fetch from URL if available
   if (resourcesUrl) {
-    try {
-      const csvText = await fetchCSV(resourcesUrl);
-      return loadResourcesFromCSV(csvText);
-    } catch (err) {
-      console.error('Warning: Could not fetch resources CSV:', err.message);
-    }
+    const csvText = await fetchCsv(resourcesUrl);
+    return loadResourcesFromCSV(csvText);
   }
 
   console.warn('Warning: No resources data available');

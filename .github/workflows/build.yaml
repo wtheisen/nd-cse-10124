@@ -45,10 +45,18 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "Checking build output..."
-          ls -la docs/
-          test -f docs/index.html || (echo "ERROR: index.html not found" && exit 1)
-          echo "Build verification passed!"
+          set -eu
+          for page in index.html homework_01.html homework_02.html lab_01.html; do
+            if [ ! -s "docs/$page" ]; then
+              echo "ERROR: required page docs/$page is missing or empty"
+              exit 1
+            fi
+          done
+          if ! grep -q '1eHTDqRj8guxWswoSMjxJ11HjK7kuo-4tc95QS6ZTS8U' docs/homework_02.html; then
+            echo "ERROR: Homework 02 does not contain the published assignment link"
+            exit 1
+          fi
+          echo "Build verification passed"
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')

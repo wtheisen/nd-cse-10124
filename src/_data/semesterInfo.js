@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('csv-parse/sync');
+const fetchCsv = require('../../lib/fetchCsv.js');
 
 /**
  * Load semester info from CSV URL or local YAML file
@@ -59,21 +60,6 @@ function parseOfficeHours(ohStr, location = '') {
     }
   }
   return result;
-}
-
-async function fetchCSV(url) {
-  const response = await fetch(url, {
-    headers: { 'User-Agent': 'nd-cse-site-bot/1.0' }
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch CSV: ${response.status}`);
-  }
-  let text = await response.text();
-  // Handle UTF-8 BOM
-  if (text.charCodeAt(0) === 0xFEFF) {
-    text = text.slice(1);
-  }
-  return text;
 }
 
 function loadSemesterInfoFromCSV(text) {
@@ -198,13 +184,9 @@ module.exports = async function() {
 
   // Fetch from CSV if URL available
   if (csvUrls.info) {
-    try {
-      const csvText = await fetchCSV(csvUrls.info);
-      semesterInfo = loadSemesterInfoFromCSV(csvText);
-      semesterInfo.cancelled_days = cancelledDays;
-    } catch (err) {
-      console.error('Warning: Could not fetch semester info CSV:', err.message);
-    }
+    const csvText = await fetchCsv(csvUrls.info);
+    semesterInfo = loadSemesterInfoFromCSV(csvText);
+    semesterInfo.cancelled_days = cancelledDays;
   }
 
   // Add CSV URLs for reference
