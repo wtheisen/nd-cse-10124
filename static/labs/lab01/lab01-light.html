@@ -7793,8 +7793,9 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --></head>
-<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<!-- End of mermaid configuration --><link rel="stylesheet" href="../../css/bluegold.css?v=614c9b14234d" data-theme="light">
+</head>
+<body data-theme="bluegold" class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=HGL3QR-Ad6no">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7991,9 +7992,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># TODO: get the first image and label.</span>
-<span class="c1"># TODO: print its shape, label, minimum, and maximum.</span>
-<span class="c1"># TODO: display the 28 x 28 image in grayscale with the label as its title.</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># <span class="todo-keyword">TODO</span>: get the first image and label.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: print its shape, label, minimum, and maximum.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: display the 28 x 28 image in grayscale with the label as its title.</span>
 <span class="c1"># LINES: ~6</span>
 </pre></div>
 </div>
@@ -8037,9 +8038,9 @@ pixel range: 0.0 to 1.0
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># TODO: create train_loader and test_loader using BATCH_SIZE.</span>
-<span class="c1"># TODO: shuffle only the training data.</span>
-<span class="c1"># TODO: print the image-batch and label-batch shapes.</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># <span class="todo-keyword">TODO</span>: create train_loader and test_loader using BATCH_SIZE.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: shuffle only the training data.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: print the image-batch and label-batch shapes.</span>
 <span class="c1"># LINES: ~5</span>
 </pre></div>
 </div>
@@ -8092,15 +8093,15 @@ labels: torch.Size([128])
 <div class="highlight hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MNISTClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="c1"># TODO: store a Flatten -&gt; Linear(784,128) -&gt; ReLU -&gt; Linear(128,10) network.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: store a Flatten -&gt; Linear(784,128) -&gt; ReLU -&gt; Linear(128,10) network.</span>
         <span class="c1"># LINES: ~6</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="c1"># TODO: return the network output.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: return the network output.</span>
         <span class="c1"># LINES: 1</span>
         <span class="k">pass</span>
 
-<span class="c1"># TODO: instantiate MNISTClassifier as model on device and print one output shape.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: instantiate MNISTClassifier as model on device and print one output shape.</span>
 <span class="c1"># LINES: ~2</span>
 </pre></div>
 </div>
@@ -8149,9 +8150,9 @@ labels: torch.Size([128])
     <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">total_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
-        <span class="c1"># TODO: move X and y to device.</span>
-        <span class="c1"># TODO: clear gradients, compute logits and loss, backpropagate, and update.</span>
-        <span class="c1"># TODO: add this batch's loss to total_loss.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: move X and y to device.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: clear gradients, compute logits and loss, backpropagate, and update.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: add this batch's loss to total_loss.</span>
         <span class="c1"># LINES: ~8</span>
         <span class="k">pass</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"epoch </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss = </span><span class="si">{</span><span class="n">total_loss</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -8203,13 +8204,13 @@ epoch 3: loss = 0.1381
 <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-        <span class="c1"># TODO: compute predictions and update correct and total.</span>
+        <span class="c1"># <span class="todo-keyword">TODO</span>: compute predictions and update correct and total.</span>
         <span class="c1"># LINES: ~5</span>
         <span class="k">pass</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="c1"># TODO: display the first 8 test images with predicted and true labels.</span>
+<span class="c1"># <span class="todo-keyword">TODO</span>: display the first 8 test images with predicted and true labels.</span>
 <span class="c1"># LINES: ~10</span>
 </pre></div>
 </div>

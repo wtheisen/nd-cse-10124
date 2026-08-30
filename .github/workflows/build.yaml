@@ -68,6 +68,18 @@ jobs:
             echo "ERROR: Lab 01 does not contain the hosted HTML preview"
             exit 1
           fi
+          if ! grep -q '../../css/bluegold.css' docs/static/labs/lab01/lab01-light.html; then
+            echo "ERROR: Lab 01 light preview does not use the Bluegold theme"
+            exit 1
+          fi
+          if ! grep -q '../../css/gruvbox-dark.css' docs/static/labs/lab01/lab01-dark.html; then
+            echo "ERROR: Lab 01 dark preview does not use the Gruvbox theme"
+            exit 1
+          fi
+          if ! grep -q 'data-theme="gruvbox-dark"' docs/static/labs/lab01/lab01-dark.html; then
+            echo "ERROR: Lab 01 dark preview does not activate Gruvbox notebook colors"
+            exit 1
+          fi
           echo "Build verification passed"
 
       - name: Upload artifact

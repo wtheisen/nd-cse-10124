@@ -7,6 +7,53 @@ body {
   color: #ebdbb2 !important;
 }
 
+/* Modern nbconvert uses JupyterLab variables inside the notebook body. */
+body.jp-Notebook[data-theme="gruvbox-dark"] {
+  --jp-ui-font-color0: #fbf1c7;
+  --jp-ui-font-color1: #ebdbb2;
+  --jp-ui-font-color2: #d5c4a1;
+  --jp-ui-font-color3: #bdae93;
+  --jp-content-font-color0: #fbf1c7;
+  --jp-content-font-color1: #ebdbb2;
+  --jp-content-font-color2: #d5c4a1;
+  --jp-content-link-color: #83a598;
+  --jp-layout-color0: #1d2021;
+  --jp-layout-color1: #1d2021;
+  --jp-layout-color2: #282828;
+  --jp-layout-color3: #32302f;
+  --jp-layout-color4: #3c3836;
+  --jp-border-color0: #7c6f64;
+  --jp-border-color1: #665c54;
+  --jp-border-color2: #504945;
+  --jp-border-color3: #3c3836;
+  --jp-input-background: #282828;
+  --jp-input-active-background: #32302f;
+  --jp-input-border-color: #665c54;
+  --jp-cell-editor-background: #282828;
+  --jp-cell-editor-active-background: #32302f;
+  --jp-mirror-editor-variable-color: #ebdbb2;
+  --jp-mirror-editor-keyword-color: #fb4934;
+  --jp-mirror-editor-number-color: #d3869b;
+  --jp-mirror-editor-string-color: #b8bb26;
+  --jp-mirror-editor-comment-color: #a89984;
+  --jp-mirror-editor-operator-color: #fe8019;
+  --jp-mirror-editor-punctuation-color: #d5c4a1;
+}
+
+body.jp-Notebook[data-theme="gruvbox-dark"] .todo-keyword {
+  color: #fb4934 !important;
+  font-weight: 700;
+}
+
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon,
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon p,
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon li,
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon strong,
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon td,
+body.jp-Notebook[data-theme="gruvbox-dark"] .jp-RenderedHTMLCommon th {
+  color: #ebdbb2 !important;
+}
+
 .container {
   background-color: transparent !important;
   border-color: transparent !important;
