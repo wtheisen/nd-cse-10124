@@ -117,6 +117,7 @@ function loadScheduleFromCSV(text) {
     if (currentSection) {
       const dayEntry = {
         date,
+        source_date: dateRaw,
         topics: topic
       };
       if (assignments.length > 0) {

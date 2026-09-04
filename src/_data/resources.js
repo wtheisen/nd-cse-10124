@@ -102,6 +102,53 @@ function loadResourcesFromCSV(text) {
   return out;
 }
 
+function dateKey(dateText) {
+  const match = String(dateText || '').match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})$/);
+  if (!match) return null;
+  const [, month, day, shortYear] = match;
+  return Number(`20${shortYear}${month.padStart(2, '0')}${day.padStart(2, '0')}`);
+}
+
+function todayKey() {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Indiana/Indianapolis',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return Number(`${values.year}${values.month}${values.day}`);
+}
+
+async function assertCurrentLectureCoverage(resources) {
+  const schedule = await require('./schedule.js')();
+  const config = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'config.json'), 'utf8'));
+  const cancelledTopics = new Set(config.cancelled_days || []);
+  const missing = [];
+  const today = todayKey();
+
+  for (const section of schedule) {
+    for (const day of section.days || []) {
+      const slug = day.topic_slug || '';
+      const scheduledDate = dateKey(day.source_date);
+      const isCoursework = /^(?:homework|lab)-/i.test(slug);
+      const isCancelled = cancelledTopics.has(day.topics);
+
+      if (!slug || !scheduledDate || scheduledDate > today || isCoursework || isCancelled) continue;
+      if (!resources[`lec-${slug}`]?.length) {
+        missing.push(`${day.source_date} ${day.topics} (${slug})`);
+      }
+    }
+  }
+
+  if (missing.length) {
+    throw new Error(
+      `Scheduled class resources are missing from the published export: ${missing.join('; ')}. ` +
+      'Check that each current Lecture Topic List entry exactly matches its sheet tab.'
+    );
+  }
+}
+
 module.exports = async function() {
   // Read config.json for CSV URL
   const configPath = path.join(process.cwd(), 'config.json');
@@ -121,7 +168,9 @@ module.exports = async function() {
   try {
     if (fs.existsSync(localCsvPath)) {
       const csvText = fs.readFileSync(localCsvPath, 'utf8');
-      return loadResourcesFromCSV(csvText);
+      const resources = loadResourcesFromCSV(csvText);
+      await assertCurrentLectureCoverage(resources);
+      return resources;
     }
   } catch (err) {
     console.error('Warning: Could not read local resources.csv:', err.message);
@@ -130,7 +179,9 @@ module.exports = async function() {
   // Fetch from URL if available
   if (resourcesUrl) {
     const csvText = await fetchCsv(resourcesUrl);
-    return loadResourcesFromCSV(csvText);
+    const resources = loadResourcesFromCSV(csvText);
+    await assertCurrentLectureCoverage(resources);
+    return resources;
   }
 
   console.warn('Warning: No resources data available');
