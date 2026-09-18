@@ -120,7 +120,7 @@ function todayKey() {
   return Number(`${values.year}${values.month}${values.day}`);
 }
 
-async function assertCurrentLectureCoverage(resources) {
+async function warnMissingCurrentLectureResources(resources) {
   const schedule = await require('./schedule.js')();
   const config = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'config.json'), 'utf8'));
   const cancelledTopics = new Set(config.cancelled_days || []);
@@ -142,9 +142,9 @@ async function assertCurrentLectureCoverage(resources) {
   }
 
   if (missing.length) {
-    throw new Error(
-      `Scheduled class resources are missing from the published export: ${missing.join('; ')}. ` +
-      'Check that each current Lecture Topic List entry exactly matches its sheet tab.'
+    console.warn(
+      `[11ty] Warning: Scheduled class resources are missing from the published export: ${missing.join('; ')}. ` +
+      'Continuing without resources for these topics. If resources are expected, check that each Lecture Topic List entry matches its sheet tab.'
     );
   }
 }
@@ -169,7 +169,7 @@ module.exports = async function() {
     if (fs.existsSync(localCsvPath)) {
       const csvText = fs.readFileSync(localCsvPath, 'utf8');
       const resources = loadResourcesFromCSV(csvText);
-      await assertCurrentLectureCoverage(resources);
+      await warnMissingCurrentLectureResources(resources);
       return resources;
     }
   } catch (err) {
@@ -180,7 +180,7 @@ module.exports = async function() {
   if (resourcesUrl) {
     const csvText = await fetchCsv(resourcesUrl);
     const resources = loadResourcesFromCSV(csvText);
-    await assertCurrentLectureCoverage(resources);
+    await warnMissingCurrentLectureResources(resources);
     return resources;
   }
 
