@@ -85,6 +85,12 @@ function loadResourcesFromCSV(text) {
     keptRows++;
   }
 
+  // The Fall schedule numbers the first RNN lecture; the resource sheet
+  // retains its original unnumbered topic name. Share those resources.
+  if (!out['lec-recurrent-neural-networks-01'] && out['lec-recurrent-neural-networks']) {
+    out['lec-recurrent-neural-networks-01'] = [...out['lec-recurrent-neural-networks']];
+  }
+
   // Deduplicate
   for (const [k, items] of Object.entries(out)) {
     const seen = new Set();

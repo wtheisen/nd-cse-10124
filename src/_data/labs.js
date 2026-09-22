@@ -32,7 +32,7 @@ module.exports = async function() {
       points: 10,
       previewBase: 'static/labs/lab01/lab01'
     },
-    2: { title: 'From Text to Model Inputs', points: 10 },
+    2: { title: 'From Text to Model Inputs', points: 10, previewBase: 'static/labs/lab02/lab02' },
     3: { title: 'Transformer Block', points: 10 },
     4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 10 },
     5: { title: 'Grounded Notre Dame Course Assistant', points: 10 }
