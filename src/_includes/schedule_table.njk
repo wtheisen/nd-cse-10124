@@ -26,6 +26,17 @@
 
         /* Row striping is handled by JS-applied classes in theme CSS */
 
+        html[data-theme] table.schedule a.label-workbook {
+            background-color: #7540a0;
+            color: #fff !important;
+        }
+
+        html[data-theme] table.schedule a.label-workbook:hover,
+        html[data-theme] table.schedule a.label-workbook:focus {
+            background-color: #5c2e82;
+            filter: none;
+        }
+
         tr.resource-row ul {
             list-style-position: inside;
             padding-left: 0;
@@ -150,6 +161,9 @@
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
+                            {% if 'Practice Packet 01' in day.assignments %}
+                                <a href="https://docs.google.com/presentation/d/1mIbmsca6cB9Cs9dioUDAB7seQqGs3SRjM5R_7dGNzKU/edit" class="label label-workbook">Unit 01 Workbook</a>
+                            {% endif %}
                             {% endif %}
                             </td>
                         </tr>
