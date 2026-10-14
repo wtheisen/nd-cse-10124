@@ -11,6 +11,20 @@
 
 	<!-- Theme CSS (toggleable) -->
 	<link id="theme-style" href="{{ prefix | default('') }}static/css/bluegold.css" rel="stylesheet">
+    <script>
+    // Resolve the preference before the page is painted.
+    (function() {
+        var saved;
+        try { saved = localStorage.getItem('ai-landing-theme'); } catch (err) {}
+        var dark = saved === 'gruvbox-dark' ||
+            (saved !== 'bluegold' && saved !== 'gruvbox-light' &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'gruvbox-dark' : 'gruvbox-light');
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        document.getElementById('theme-style').href = '{{ prefix | default("") }}static/css/' +
+            (dark ? 'gruvbox-dark' : 'bluegold') + '.css';
+    })();
+    </script>
 	<script src="https://kit.fontawesome.com/9d2722956c.js" crossorigin="anonymous"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -272,6 +286,7 @@
 			<span class="theme-icon theme-icon--moon"><i class="fa-solid fa-moon"></i></span>
 			<span class="theme-toggle-handle"></span>
 		    </button>
+            <button type="button" id="theme-system" class="btn btn-link pull-right">Use system theme</button>
 		    <ul class="nav nav-pills pull-right">
 			{% for item in navigation %}
 			<li><a href="{{ item.link }}"><i class="fa {{ item.icon }}"></i> <span class="visible-md-inline visible-lg-inline">{{ item.name }}</span></a></li>
@@ -321,6 +336,8 @@
 	    };
 	    var linkEl = document.getElementById('theme-style');
 	    var toggleBtn = document.getElementById('theme-toggle');
+        var systemBtn = document.getElementById('theme-system');
+        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 	    if (!linkEl || !toggleBtn) {
 	        return;
 	    }
@@ -345,6 +362,8 @@
             var name = themes[theme] ? theme : 'gruvbox-light';
             linkEl.setAttribute('href', themes[name]);
             document.documentElement.setAttribute('data-theme', name);
+            document.documentElement.style.colorScheme = name === 'gruvbox-dark' ? 'dark' : 'light';
+            systemBtn.hidden = !savedTheme;
             updateButton(name);
             updateNotebookFrames(name);
             return name;
@@ -356,12 +375,31 @@
 	            return null;
 	        }
     })();
-        var currentTheme = applyTheme(savedTheme);
+        // Both light names have been used by these sites on the same origin.
+        savedTheme = savedTheme === 'bluegold' || savedTheme === 'gruvbox-light'
+            ? 'gruvbox-light' : savedTheme === 'gruvbox-dark' ? savedTheme : null;
+        function preferredTheme() {
+            return savedTheme || (systemTheme.matches ? 'gruvbox-dark' : 'gruvbox-light');
+        }
+        function refreshTheme() {
+            currentTheme = applyTheme(preferredTheme());
+            document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
+        }
+        var currentTheme = applyTheme(preferredTheme());
+        systemTheme.addEventListener('change', function() {
+            if (!savedTheme) refreshTheme();
+        });
+        systemBtn.addEventListener('click', function() {
+            savedTheme = null;
+            try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
+            refreshTheme();
+        });
         document.addEventListener('themechange', function(event) {
             updateNotebookFrames(event.detail || currentTheme);
         });
         toggleBtn.addEventListener('click', function() {
             var nextTheme = currentTheme === 'gruvbox-dark' ? 'gruvbox-light' : 'gruvbox-dark';
+            savedTheme = nextTheme;
             currentTheme = applyTheme(nextTheme);
             document.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
             try {
