@@ -7976,7 +7976,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Task-01:-Load-and-Inspect-Numerical-Data-(1-pt.)">Task 01: Load and Inspect Numerical Data (1 pt.)<a class="anchor-link" href="#Task-01:-Load-and-Inspect-Numerical-Data-(1-pt.)">¶</a></h2><p>Connect this to Homework 01: one image is one data point, its 784 pixel intensities are <strong>features</strong>, and the digit class is the <strong>target</strong>. The supplied digit for a particular image is its <strong>label</strong>. <code>ToTensor()</code> has already scaled the raw pixel intensities to the range <code>[0, 1]</code>.</p>
+<h2 id="Task-01:-Load-and-Inspect-Numerical-Data-(1-pt.)">Task 01: Load and Inspect Numerical Data (1 pt.)<a class="anchor-link" href="#Task-01:-Load-and-Inspect-Numerical-Data-(1-pt.)">¶</a></h2><p><img alt="One MNIST image is 784 numbers: the first training image, a handwritten 5, is a 28 x 28 grid of pixel intensities. A 5 x 5 patch shown in numbers: raw values 0 to 255, divided by 255 by ToTensor to 0.0 to 1.0. image.shape is torch.Size([1, 28, 28]), label 5, range 0.0 to 1.0. Only 166 of the 784 pixels are not 0." src="https://10124.williamtheisen.com/static/labs/lab01/plates/plate_01_one_image.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<p>Connect this to Homework 01: one image is one data point, its 784 pixel intensities are <strong>features</strong>, and the digit class is the <strong>target</strong>. The supplied digit for a particular image is its <strong>label</strong>. <code>ToTensor()</code> has already scaled the raw pixel intensities to the range <code>[0, 1]</code>.</p>
 <p>Get the first <code>(image, label)</code> pair from <code>train_data</code>. Store them in variables named <code>image</code> and <code>label</code>. Print the image shape, label, minimum pixel value, and maximum pixel value. Then display the image in grayscale with its label as the title.</p>
 <p><strong>Sanity check:</strong> the image shape should be <code>torch.Size([1, 28, 28])</code>, the first label should be <code>5</code>, and the pixel values should fall between <code>0.0</code> and <code>1.0</code>.</p>
 <p><strong>Grading (1.0):</strong> retrieve and inspect the example (0.5); display it correctly (0.5).</p>
@@ -8023,7 +8024,8 @@ pixel range: 0.0 to 1.0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Task-02:-Prepare-Tensors-and-Data-Loaders-(2-pts.)">Task 02: Prepare Tensors and Data Loaders (2 pts.)<a class="anchor-link" href="#Task-02:-Prepare-Tensors-and-Data-Loaders-(2-pts.)">¶</a></h2><p>Create <code>train_loader</code> and <code>test_loader</code> using <code>BATCH_SIZE</code>. Shuffle the training data so the model does not see examples in the same order every <strong>epoch</strong>; do not shuffle the test data. Pull one <strong>batch</strong> from the training loader into variables named <code>X_batch</code> and <code>y_batch</code>, then print both shapes.</p>
+<h2 id="Task-02:-Prepare-Tensors-and-Data-Loaders-(2-pts.)">Task 02: Prepare Tensors and Data Loaders (2 pts.)<a class="anchor-link" href="#Task-02:-Prepare-Tensors-and-Data-Loaders-(2-pts.)">¶</a></h2><p><img alt="A DataLoader serves the 60,000 training images in shuffled batches of 128: 60,000 / 128 = 468.75, so 469 batches per epoch, the last holding 96. X_batch is &lt;128, 1, 28, 28&gt; (batch, channel, height, width) and y_batch &lt;128&gt;. Shuffle the training data, not the test data." src="https://10124.williamtheisen.com/static/labs/lab01/plates/plate_02_batches.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<p>Create <code>train_loader</code> and <code>test_loader</code> using <code>BATCH_SIZE</code>. Shuffle the training data so the model does not see examples in the same order every <strong>epoch</strong>; do not shuffle the test data. Pull one <strong>batch</strong> from the training loader into variables named <code>X_batch</code> and <code>y_batch</code>, then print both shapes.</p>
 <p><strong>Sanity check:</strong> the image batch should have shape <code>torch.Size([128, 1, 28, 28])</code>; the label batch should have shape <code>torch.Size([128])</code>.</p>
 <p><strong>Grading (2.0):</strong> configure both data loaders correctly (1.0); retrieve and inspect one batch (1.0).</p>
 <p><strong>LINES:</strong> about 5</p>
@@ -8040,8 +8042,12 @@ pixel range: 0.0 to 1.0
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="c1"># <span class="todo-keyword">TODO</span>: create train_loader and test_loader using BATCH_SIZE.</span>
 <span class="c1"># <span class="todo-keyword">TODO</span>: shuffle only the training data.</span>
+<span class="c1"># LINES: 2</span>
+
+<span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_loader</span><span class="p">))</span>
+
 <span class="c1"># <span class="todo-keyword">TODO</span>: print the image-batch and label-batch shapes.</span>
-<span class="c1"># LINES: ~5</span>
+<span class="c1"># LINES: 2</span>
 </pre></div>
 </div>
 </div>
@@ -8068,7 +8074,8 @@ labels: torch.Size([128])
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Task-03:-Define-a-Neural-Network-(3-pts.)">Task 03: Define a Neural Network (3 pts.)<a class="anchor-link" href="#Task-03:-Define-a-Neural-Network-(3-pts.)">¶</a></h2><p>Define <code>MNISTClassifier</code> with this exact path:</p>
+<h2 id="Task-03:-Define-a-Neural-Network-(3-pts.)">Task 03: Define a Neural Network (3 pts.)<a class="anchor-link" href="#Task-03:-Define-a-Neural-Network-(3-pts.)">¶</a></h2><p><img alt="MNISTClassifier: X (B, 1, 28, 28) to Flatten (B, 784) to Linear 784 to 128 to ReLU (B, 128) to Linear 128 to 10 to logits (B, 10). h = ReLU(x Omega1^T + b1), z = h Omega2^T + b2. Parameters: 100,480 + 1,290 = 101,770. No softmax at the end: CrossEntropyLoss applies it to the raw logits." src="https://10124.williamtheisen.com/static/labs/lab01/plates/plate_03-1_network.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<p>Define <code>MNISTClassifier</code> with this exact path:</p>
 <ol>
 <li>Flatten each image from <code>1 × 28 × 28</code> into 784 numbers.</li>
 <li>Apply a linear layer from 784 inputs to 128 hidden values.</li>
@@ -8090,16 +8097,17 @@ labels: torch.Size([128])
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MNISTClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MNISTClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># <span class="todo-keyword">TODO</span>: store a Flatten -&gt; Linear(784,128) -&gt; ReLU -&gt; Linear(128,10) network.</span>
-        <span class="c1"># LINES: ~6</span>
+        <span class="c1"># LINES: ~3</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># <span class="todo-keyword">TODO</span>: return the network output.</span>
-        <span class="c1"># LINES: 1</span>
-        <span class="k">pass</span>
+        <span class="c1"># LINES: ~4</span>
 
 <span class="c1"># <span class="todo-keyword">TODO</span>: instantiate MNISTClassifier as model on device and print one output shape.</span>
 <span class="c1"># LINES: ~2</span>
@@ -8128,7 +8136,8 @@ labels: torch.Size([128])
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Task-04:-Train-the-Model-(2-pts.)">Task 04: Train the Model (2 pts.)<a class="anchor-link" href="#Task-04:-Train-the-Model-(2-pts.)">¶</a></h2><p>Use <strong>cross-entropy loss</strong> and the Adam <strong>optimizer</strong> with <code>LEARNING_RATE</code>. Train for <code>EPOCHS</code> <strong>epochs</strong>. For each <strong>batch</strong>: move data to <code>device</code>, clear old <strong>gradients</strong>, compute <strong>logits</strong> and <strong>loss</strong>, run <strong>backpropagation</strong>, update the <strong>parameters</strong>, and add the scalar batch loss to <code>total_loss</code>.</p>
+<h2 id="Task-04:-Train-the-Model-(2-pts.)">Task 04: Train the Model (2 pts.)<a class="anchor-link" href="#Task-04:-Train-the-Model-(2-pts.)">¶</a></h2><p><img alt="One training step in five lines: optimizer.zero_grad(), logits = model(X), loss = loss_fn(logits, y), loss.backward(), optimizer.step(). Cross-entropy loss is -log softmax(z)_y. The first training image (label 5): untrained, every logit near 0 and loss 2.09, near log 10 = 2.30; after 3 epochs the logit for 5 is 9.62, p(5) = 0.978, loss 0.022. Expected mean loss per epoch 0.4138, 0.1901, 0.1381. Adam with learning rate 0.001." src="https://10124.williamtheisen.com/static/labs/lab01/plates/plate_04-1_training_step.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<p>Use <strong>cross-entropy loss</strong> and the Adam <strong>optimizer</strong> with <code>LEARNING_RATE</code>. Train for <code>EPOCHS</code> <strong>epochs</strong>. For each <strong>batch</strong>: move data to <code>device</code>, clear old <strong>gradients</strong>, compute <strong>logits</strong> and <strong>loss</strong>, run <strong>backpropagation</strong>, update the <strong>parameters</strong>, and add the scalar batch loss to <code>total_loss</code>.</p>
 <p><strong>Sanity check:</strong> the code should print one mean <strong>loss</strong> per <strong>epoch</strong>, and the <strong>loss</strong> should generally decrease. Exact values will vary.</p>
 <p><strong>Grading (2.0):</strong> complete the training steps correctly (1.5); accumulate and report mean loss (0.5).</p>
 <p><strong>LINES:</strong> about 16</p>
@@ -8154,7 +8163,7 @@ labels: torch.Size([128])
         <span class="c1"># <span class="todo-keyword">TODO</span>: clear gradients, compute logits and loss, backpropagate, and update.</span>
         <span class="c1"># <span class="todo-keyword">TODO</span>: add this batch's loss to total_loss.</span>
         <span class="c1"># LINES: ~8</span>
-        <span class="k">pass</span>
+
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"epoch </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss = </span><span class="si">{</span><span class="n">total_loss</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8172,7 +8181,6 @@ labels: torch.Size([128])
 epoch 2: loss = 0.1901
 epoch 3: loss = 0.1381
 </pre></div>
-<p>With the provided seed and a fresh top-to-bottom run, these values should match. If you rerun individual cells out of order, restart the session and run all cells again before troubleshooting.</p>
 </div>
 </div>
 </div>
@@ -8183,7 +8191,8 @@ epoch 3: loss = 0.1381
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Task-05:-Evaluate-and-Interpret-Predictions-(2-pts.)">Task 05: Evaluate and Interpret Predictions (2 pts.)<a class="anchor-link" href="#Task-05:-Evaluate-and-Interpret-Predictions-(2-pts.)">¶</a></h2><p>Switch the model to evaluation mode. Inside <code>torch.no_grad()</code>, count correct predictions across the complete <strong>test set</strong>. Store the final fraction in a variable named <code>accuracy</code> and print it as a percentage. Then display the first 8 test images with predicted and true <strong>labels</strong>.</p>
+<h2 id="Task-05:-Evaluate-and-Interpret-Predictions-(2-pts.)">Task 05: Evaluate and Interpret Predictions (2 pts.)<a class="anchor-link" href="#Task-05:-Evaluate-and-Interpret-Predictions-(2-pts.)">¶</a></h2><p><img alt="Evaluation: model.eval(), torch.no_grad(), predicted digit = argmax of the logits, count correct over the 10,000 test images. The first eight test images are predicted 7 2 1 0 4 1 4 9, all correct. Expected test accuracy 96.13%. High training accuracy with low test accuracy would mean memorizing instead of generalizing." src="https://10124.williamtheisen.com/static/labs/lab01/plates/plate_05-1_evaluate.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<p>Switch the model to evaluation mode. Inside <code>torch.no_grad()</code>, count correct predictions across the complete <strong>test set</strong>. Store the final fraction in a variable named <code>accuracy</code> and print it as a percentage. Then display the first 8 test images with predicted and true <strong>labels</strong>.</p>
 <p><strong>Sanity check:</strong> <code>total</code> should equal <code>10000</code>, and a correctly trained model should normally exceed 95% test accuracy. If yours does not, check Tasks 03 and 04 before submitting.</p>
 <p>Finally, answer the reflection in the Markdown cell below. Your response should use the idea of <strong>generalization</strong> and distinguish learning a pattern from memorizing examples.</p>
 <p><strong>Grading (2.0):</strong> complete test-set evaluation (1.0); prediction visualization (0.5); reflection (0.5).</p>
@@ -8206,7 +8215,7 @@ epoch 3: loss = 0.1381
     <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
         <span class="c1"># <span class="todo-keyword">TODO</span>: compute predictions and update correct and total.</span>
         <span class="c1"># LINES: ~5</span>
-        <span class="k">pass</span>
+
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">total</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
