@@ -7797,7 +7797,7 @@ a.anchor-link {
 </head>
 <body data-theme="gruvbox-dark" class="jp-Notebook" data-jp-theme-light="false" data-jp-theme-name="Gruvbox Dark">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2613677d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c530889">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7874,7 +7874,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c8e08093">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=577680ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7885,7 +7885,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3247ab67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51a546f3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7923,7 +7923,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=945f8801">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ace5e3c8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7944,13 +7944,15 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c4b82658">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d6b91961">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-01-1:-Description-(0-pts.)">Task 01-1: Description (0 pts.)<a class="anchor-link" href="#Task-01-1:-Description-(0-pts.)">¶</a></h3><h4 id="RMSNorm-Class"><code>RMSNorm</code> Class<a class="anchor-link" href="#RMSNorm-Class">¶</a></h4><p>Complete <code>forward</code>:</p>
+<h3 id="Task-01-1:-Description-(0-pts.)">Task 01-1: Description (0 pts.)<a class="anchor-link" href="#Task-01-1:-Description-(0-pts.)">¶</a></h3><p><img alt="RMSNorm keeps the scale and skips the centering: LayerNorm subtracts the mean, divides by the std, then gamma times x_hat plus beta; RMSNorm divides by RMS(x) = sqrt(mean of x squared + eps) and multiplies by gamma, no beta. X &lt;2, 8, 64&gt;, rms &lt;2, 8, 1&gt;, gamma &lt;64&gt;. Always normalizes the last dimension, so it also works on attention heads (QK-Norm)." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1a_rmsnorm.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
+<img alt="Worked example: x = [3, -1, 1, 1], gamma all ones. RMS = sqrt(3) = 1.732, x_hat = [1.73, -0.58, 0.58, 0.58], RMS 1 but mean 0.58. LayerNorm gives [1.41, -1.41, 0, 0], mean exactly 0. Common mistakes: no dim in mean, missing keepdim=True, eps after the square root." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1b_rmsnorm_example.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h4 id="RMSNorm-Class"><code>RMSNorm</code> Class<a class="anchor-link" href="#RMSNorm-Class">¶</a></h4><p>Complete <code>forward</code>:</p>
 <ol>
 <li>Compute <code>rms</code> over the last dimension: square <code>X</code>, take the mean with <code>dim=-1, keepdim=True</code>, add <code>self.eps</code>, take the square root. Its shape is <code>(..., 1)</code>.</li>
 <li>Divide <code>X</code> by <code>rms</code> to get <code>X_hat</code>.</li>
@@ -7960,7 +7962,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4bdcf245">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32b2c2e1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7989,7 +7991,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12108198">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ab66fd0a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8020,7 +8022,7 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0b9723a7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7ae25501">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8035,7 +8037,7 @@ Mean of each output token (NOT forced to 0): &lt;some value that is clearly not 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d5b3371">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78148f62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8047,7 +8049,7 @@ Mean of each output token (NOT forced to 0): &lt;some value that is clearly not 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=561be84d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee59867b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8069,13 +8071,15 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62caa1f2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f97ccc48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-02-1:-Description-(0-pts.)">Task 02-1: Description (0 pts.)<a class="anchor-link" href="#Task-02-1:-Description-(0-pts.)">¶</a></h3><h4 id="silu-Function-and-SwiGLU-Class"><code>silu</code> Function and <code>SwiGLU</code> Class<a class="anchor-link" href="#silu-Function-and-SwiGLU-Class">¶</a></h4><ol>
+<h3 id="Task-02-1:-Description-(0-pts.)">Task 02-1: Description (0 pts.)<a class="anchor-link" href="#Task-02-1:-Description-(0-pts.)">¶</a></h3><p><img alt="SwiGLU: X goes through two projections, X @ W_gate.T then SiLU (the gate, g) and X @ W_up.T (the content, u), both &lt;2, 8, 192&gt;; g * u then @ W_down.T back to &lt;2, 8, 64&gt;. W_gate and W_up are &lt;192, 64&gt;, W_down &lt;64, 192&gt;, no biases." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1a_swiglu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
+<img alt="SiLU(x) = x * sigmoid(x): smooth, no corner at 0, small negative outputs for negative inputs. SiLU(-2) = -0.238, SiLU(1) = 0.731, SiLU(2) = 1.762; ReLU gives 0, 1, 2. Applied only to the gate branch." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1b_silu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h4 id="silu-Function-and-SwiGLU-Class"><code>silu</code> Function and <code>SwiGLU</code> Class<a class="anchor-link" href="#silu-Function-and-SwiGLU-Class">¶</a></h4><ol>
 <li>Complete <code>silu(X)</code>: return <code>X * torch.sigmoid(X)</code>.</li>
 <li>Complete <code>SwiGLU.forward(X)</code>:<ul>
 <li><code>g = silu(X @ self.W_gate.T)</code> (shape <code>(B, T, F)</code>)</li>
@@ -8089,7 +8093,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ea39f2c0">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8afeb31f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8120,7 +8124,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57a21201">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5d32a1c9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8148,7 +8152,7 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30ad8208">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cfbd19ec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8164,7 +8168,7 @@ Weight matrices: torch.Size([192, 64]) torch.Size([192, 64]) torch.Size([64, 192
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e197572">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fef39e6a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8176,7 +8180,7 @@ Weight matrices: torch.Size([192, 64]) torch.Size([192, 64]) torch.Size([64, 192
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2bd077dd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=020da983">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8199,13 +8203,15 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36b3540a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2826b3b6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-03-1:-Description-(0-pts.)">Task 03-1: Description (0 pts.)<a class="anchor-link" href="#Task-03-1:-Description-(0-pts.)">¶</a></h3><h4 id="RotaryEmbedding-Class"><code>RotaryEmbedding</code> Class<a class="anchor-link" href="#RotaryEmbedding-Class">¶</a></h4><p>The constructor (given) precomputes <code>self.cos</code> and <code>self.sin</code>, each of shape <code>(max_seq_len, Dh)</code>. You complete:</p>
+<h3 id="Task-03-1:-Description-(0-pts.)">Task 03-1: Description (0 pts.)<a class="anchor-link" href="#Task-03-1:-Description-(0-pts.)">¶</a></h3><p><img alt="RoPE by hand with Dh = 4 at position p = 1: x = [1, 2, 3, 4], rotate_half(x) = [-3, -4, 1, 2], cos = [0.540, 1.000, 0.540, 1.000], sin = [0.841, 0.010, 0.841, 0.010], RoPE(x) = [-1.984, 1.960, 2.462, 4.020]. Pair 0 turns by 1 radian and keeps its length. Applied to Q and K only, never V." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_03-1a_rope_by_hand.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
+<img alt="start_pos picks the rows of the cos/sin tables (&lt;128, 16&gt;): cos = self.cos[start_pos:start_pos + T]. Whole prompt: rows 0 to 7; one new token with a KV cache: row 8; the Task 03-1 check: rows 57 to 64. The &lt;8, 16&gt; table broadcasts over X &lt;2, 4, 8, 16&gt;. Mistakes: ignoring start_pos, indexing one row, chunking dim=1." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_03-1b_rope_start_pos.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h4 id="RotaryEmbedding-Class"><code>RotaryEmbedding</code> Class<a class="anchor-link" href="#RotaryEmbedding-Class">¶</a></h4><p>The constructor (given) precomputes <code>self.cos</code> and <code>self.sin</code>, each of shape <code>(max_seq_len, Dh)</code>. You complete:</p>
 <ol>
 <li><code>rotate_half(X)</code>: split the last dimension in two with <code>x1, x2 = X.chunk(2, dim=-1)</code> and return <code>torch.cat([-x2, x1], dim=-1)</code>.</li>
 <li><code>forward(X, start_pos=0)</code>: <code>X</code> has shape <code>(B, H, T, Dh)</code>.<ul>
@@ -8219,7 +8225,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=06e97a4c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9294dff3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8254,7 +8260,7 @@ $$</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26355083">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=000cbf9d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8291,7 +8297,7 @@ $$</p>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=315ad606">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5f8157a0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8306,7 +8312,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2953cfc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9196e887">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8317,7 +8323,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8562b778">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75ef233b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8341,7 +8347,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=577200bd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d248e1c0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8354,7 +8360,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=992b3bf5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9ee4f972">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8424,13 +8430,15 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87b4b3d8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7768f235">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-04-1:-Description-(0-pts.)">Task 04-1: Description (0 pts.)<a class="anchor-link" href="#Task-04-1:-Description-(0-pts.)">¶</a></h3><h4 id="GroupedQueryAttention.forward"><code>GroupedQueryAttention.forward</code><a class="anchor-link" href="#GroupedQueryAttention.forward">¶</a></h4><p>Complete steps 1 through 8 from the table. Useful operations:</p>
+<h3 id="Task-04-1:-Description-(0-pts.)">Task 04-1: Description (0 pts.)<a class="anchor-link" href="#Task-04-1:-Description-(0-pts.)">¶</a></h3><p><img alt="Grouped-query attention: 4 query heads share 2 K/V heads, G = 2 per group. Before Q @ K^T each K/V head is copied G times with repeat_interleave(2, dim=1) giving [0, 0, 1, 1]; repeat gives [0, 1, 0, 1], the same shape but the wrong pairing. Q &lt;2, 4, 8, 16&gt;, K and V &lt;2, 2, 8, 16&gt; then &lt;2, 4, 8, 16&gt;, attn &lt;2, 4, 8, 8&gt;. QK-Norm before RoPE, V gets neither." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_04-1a_gqa.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
+<img alt="Worked example, one head, T = 3: scores [[2,1,0],[1,3,1],[0,2,2]] divided by sqrt(4), positions above the diagonal set to -inf, softmax over each row gives [[1,0,0],[0.269,0.731,0],[0.155,0.422,0.422]]. Mask with -inf, not 0; softmax over dim=-1." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_04-1b_causal_mask.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h4 id="GroupedQueryAttention.forward"><code>GroupedQueryAttention.forward</code><a class="anchor-link" href="#GroupedQueryAttention.forward">¶</a></h4><p>Complete steps 1 through 8 from the table. Useful operations:</p>
 <ul>
 <li><code>self.split_heads(X @ self.Wq.T, self.H)</code> gives <code>(B, H, T, Dh)</code>; use <code>self.H_kv</code> for K and V.</li>
 <li><code>self.q_norm.forward(...)</code>, <code>self.k_norm.forward(...)</code>, <code>self.rope.forward(..., start_pos)</code></li>
@@ -8443,7 +8451,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4b18a480">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=acbbc926">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8485,7 +8493,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b053002b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=75141ae5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8528,7 +8536,7 @@ Position 0 is not rotated: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d8f39a9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0704beb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8545,7 +8553,7 @@ K/V weight rows vs. Q weight rows: 32 vs 64
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a080b5dd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5a07fe1f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8557,7 +8565,7 @@ K/V weight rows vs. Q weight rows: 32 vs 64
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67b2ca4c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad9eb993">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8587,18 +8595,19 @@ K/V weight rows vs. Q weight rows: 32 vs 64
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9edb68e0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a8c4443f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-05-1:-Description-(0-pts.)">Task 05-1: Description (0 pts.)<a class="anchor-link" href="#Task-05-1:-Description-(0-pts.)">¶</a></h3><h4 id="QwenBlock-Class"><code>QwenBlock</code> Class<a class="anchor-link" href="#QwenBlock-Class">¶</a></h4><p>The constructor (given) builds <code>LN1</code>, <code>SA</code>, <code>LN2</code>, and <code>FFN</code>. Complete <code>forward</code> using the two lines in the table above, then return <code>X</code>.</p>
+<h3 id="Task-05-1:-Description-(0-pts.)">Task 05-1: Description (0 pts.)<a class="anchor-link" href="#Task-05-1:-Description-(0-pts.)">¶</a></h3><p><img alt="One irishQwen block: X = X + SA.forward(LN1.forward(X), start_pos); X = X + FFN.forward(LN2.forward(X)). Pre-norm RMSNorm before masked GQA (with QK-Norm and RoPE) and SwiGLU, residual adds after each. Weights: 64 + 64 for the norms, 12,320 for attention, 36,864 for the FFN, 49,312 per block. Normalize the copy, not the stream." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_05-1a_block.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h4 id="QwenBlock-Class"><code>QwenBlock</code> Class<a class="anchor-link" href="#QwenBlock-Class">¶</a></h4><p>The constructor (given) builds <code>LN1</code>, <code>SA</code>, <code>LN2</code>, and <code>FFN</code>. Complete <code>forward</code> using the two lines in the table above, then return <code>X</code>.</p>
 <h3 id="Task-05-1:-Code-(1-pt.)">Task 05-1: Code (1 pt.)<a class="anchor-link" href="#Task-05-1:-Code-(1-pt.)">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fac6bca7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0498e9d6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8625,7 +8634,7 @@ K/V weight rows vs. Q weight rows: 32 vs 64
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7df8e9d8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34ae5e07">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8665,7 +8674,7 @@ K/V weight rows vs. Q weight rows: 32 vs 64
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f19ed8c9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8ce56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8681,7 +8690,7 @@ Parameters in one block: 49312
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5654ba16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95e10cc0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8693,7 +8702,7 @@ Parameters in one block: 49312
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f7d30c40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=90039441">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8736,7 +8745,7 @@ Parameters in one block: 49312
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4aa1a02a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6f4b1329">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8749,7 +8758,7 @@ Parameters in one block: 49312
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5cb452fa">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6693cc3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8761,7 +8770,7 @@ Parameters in one block: 49312
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bb646006">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f0d0a2fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
