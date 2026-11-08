@@ -6844,7 +6844,9 @@ all of MD as it is not optimized for dense, information rich UIs.
    * https://material-components-web.appspot.com/elevation.html
    */
 
-  --jp-shadow-base-lightness: 0;
+  /* The dark theme shadows need a bit of work, but this will probably also require work on the core layout
+   * colors used in the theme as well. */
+  --jp-shadow-base-lightness: 32;
   --jp-shadow-umbra-color: rgba(
     var(--jp-shadow-base-lightness),
     var(--jp-shadow-base-lightness),
@@ -6898,10 +6900,10 @@ all of MD as it is not optimized for dense, information rich UIs.
    */
 
   --jp-border-width: 1px;
-  --jp-border-color0: var(--md-grey-400);
-  --jp-border-color1: var(--md-grey-400);
-  --jp-border-color2: var(--md-grey-300);
-  --jp-border-color3: var(--md-grey-200);
+  --jp-border-color0: var(--md-grey-700);
+  --jp-border-color1: var(--md-grey-700);
+  --jp-border-color2: var(--md-grey-800);
+  --jp-border-color3: var(--md-grey-900);
   --jp-inverse-border-color: var(--md-grey-600);
   --jp-border-radius: 2px;
 
@@ -6930,20 +6932,20 @@ all of MD as it is not optimized for dense, information rich UIs.
    */
 
   /* Defaults use Material Design specification */
-  --jp-ui-font-color0: rgba(0, 0, 0, 1);
-  --jp-ui-font-color1: rgba(0, 0, 0, 0.87);
-  --jp-ui-font-color2: rgba(0, 0, 0, 0.54);
-  --jp-ui-font-color3: rgba(0, 0, 0, 0.38);
+  --jp-ui-font-color0: rgba(255, 255, 255, 1);
+  --jp-ui-font-color1: rgba(255, 255, 255, 0.87);
+  --jp-ui-font-color2: rgba(255, 255, 255, 0.54);
+  --jp-ui-font-color3: rgba(255, 255, 255, 0.38);
 
   /*
    * Use these against the brand/accent/warn/error colors.
    * These will typically go from light to darker, in both a dark and light theme.
    */
 
-  --jp-ui-inverse-font-color0: rgba(255, 255, 255, 1);
-  --jp-ui-inverse-font-color1: rgba(255, 255, 255, 1);
-  --jp-ui-inverse-font-color2: rgba(255, 255, 255, 0.7);
-  --jp-ui-inverse-font-color3: rgba(255, 255, 255, 0.5);
+  --jp-ui-inverse-font-color0: rgba(0, 0, 0, 1);
+  --jp-ui-inverse-font-color1: rgba(0, 0, 0, 0.8);
+  --jp-ui-inverse-font-color2: rgba(0, 0, 0, 0.5);
+  --jp-ui-inverse-font-color3: rgba(0, 0, 0, 0.3);
 
   /* Content Fonts
    *
@@ -6971,11 +6973,11 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-content-heading-font-weight: 500;
 
   /* Defaults use Material Design specification */
-  --jp-content-font-color0: rgba(0, 0, 0, 1);
-  --jp-content-font-color1: rgba(0, 0, 0, 0.87);
-  --jp-content-font-color2: rgba(0, 0, 0, 0.54);
-  --jp-content-font-color3: rgba(0, 0, 0, 0.38);
-  --jp-content-link-color: var(--md-blue-900);
+  --jp-content-font-color0: rgba(255, 255, 255, 1);
+  --jp-content-font-color1: rgba(255, 255, 255, 1);
+  --jp-content-font-color2: rgba(255, 255, 255, 0.7);
+  --jp-content-font-color3: rgba(255, 255, 255, 0.5);
+  --jp-content-link-color: var(--md-blue-300);
   --jp-content-font-family: system-ui, -apple-system, blinkmacsystemfont,
     'Segoe UI', helvetica, arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -7006,10 +7008,10 @@ all of MD as it is not optimized for dense, information rich UIs.
    * theme these would go from light to dark.
    */
 
-  --jp-layout-color0: white;
-  --jp-layout-color1: white;
-  --jp-layout-color2: var(--md-grey-200);
-  --jp-layout-color3: var(--md-grey-400);
+  --jp-layout-color0: #111;
+  --jp-layout-color1: var(--md-grey-900);
+  --jp-layout-color2: var(--md-grey-800);
+  --jp-layout-color3: var(--md-grey-700);
   --jp-layout-color4: var(--md-grey-600);
 
   /* Inverse Layout
@@ -7018,40 +7020,40 @@ all of MD as it is not optimized for dense, information rich UIs.
    * theme these would go from dark to light.
    */
 
-  --jp-inverse-layout-color0: #111;
-  --jp-inverse-layout-color1: var(--md-grey-900);
-  --jp-inverse-layout-color2: var(--md-grey-800);
-  --jp-inverse-layout-color3: var(--md-grey-700);
+  --jp-inverse-layout-color0: white;
+  --jp-inverse-layout-color1: white;
+  --jp-inverse-layout-color2: var(--md-grey-200);
+  --jp-inverse-layout-color3: var(--md-grey-400);
   --jp-inverse-layout-color4: var(--md-grey-600);
 
   /* Brand/accent */
 
-  --jp-brand-color0: var(--md-blue-900);
-  --jp-brand-color1: var(--md-blue-700);
+  --jp-brand-color0: var(--md-blue-700);
+  --jp-brand-color1: var(--md-blue-500);
   --jp-brand-color2: var(--md-blue-300);
   --jp-brand-color3: var(--md-blue-100);
   --jp-brand-color4: var(--md-blue-50);
-  --jp-accent-color0: var(--md-green-900);
-  --jp-accent-color1: var(--md-green-700);
+  --jp-accent-color0: var(--md-green-700);
+  --jp-accent-color1: var(--md-green-500);
   --jp-accent-color2: var(--md-green-300);
   --jp-accent-color3: var(--md-green-100);
 
   /* State colors (warn, error, success, info) */
 
-  --jp-warn-color0: var(--md-orange-900);
-  --jp-warn-color1: var(--md-orange-700);
+  --jp-warn-color0: var(--md-orange-700);
+  --jp-warn-color1: var(--md-orange-500);
   --jp-warn-color2: var(--md-orange-300);
   --jp-warn-color3: var(--md-orange-100);
-  --jp-error-color0: var(--md-red-900);
-  --jp-error-color1: var(--md-red-700);
+  --jp-error-color0: var(--md-red-700);
+  --jp-error-color1: var(--md-red-500);
   --jp-error-color2: var(--md-red-300);
   --jp-error-color3: var(--md-red-100);
-  --jp-success-color0: var(--md-green-900);
-  --jp-success-color1: var(--md-green-700);
+  --jp-success-color0: var(--md-green-700);
+  --jp-success-color1: var(--md-green-500);
   --jp-success-color2: var(--md-green-300);
   --jp-success-color3: var(--md-green-100);
-  --jp-info-color0: var(--md-cyan-900);
-  --jp-info-color1: var(--md-cyan-700);
+  --jp-info-color0: var(--md-cyan-700);
+  --jp-info-color1: var(--md-cyan-500);
   --jp-info-color2: var(--md-cyan-300);
   --jp-info-color3: var(--md-cyan-100);
 
@@ -7061,8 +7063,8 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-cell-collapser-width: 8px;
   --jp-cell-collapser-min-height: 20px;
   --jp-cell-collapser-not-active-hover-opacity: 0.6;
-  --jp-cell-editor-background: var(--md-grey-100);
-  --jp-cell-editor-border-color: var(--md-grey-300);
+  --jp-cell-editor-background: var(--jp-layout-color1);
+  --jp-cell-editor-border-color: var(--md-grey-700);
   --jp-cell-editor-box-shadow: inset 0 0 2px var(--md-blue-300);
   --jp-cell-editor-active-background: var(--jp-layout-color0);
   --jp-cell-editor-active-border-color: var(--jp-brand-color1);
@@ -7070,8 +7072,8 @@ all of MD as it is not optimized for dense, information rich UIs.
   --jp-cell-prompt-font-family: var(--jp-code-font-family-default);
   --jp-cell-prompt-letter-spacing: 0;
   --jp-cell-prompt-opacity: 1;
-  --jp-cell-prompt-not-active-opacity: 0.5;
-  --jp-cell-prompt-not-active-font-color: var(--md-grey-700);
+  --jp-cell-prompt-not-active-opacity: 1;
+  --jp-cell-prompt-not-active-font-color: var(--md-grey-300);
 
   /* A custom blend of MD grey and blue 600
    * See https://meyerweb.com/eric/tools/color-blend/#546E7A:1E88E5:5:hex */
@@ -7085,7 +7087,7 @@ all of MD as it is not optimized for dense, information rich UIs.
 
   --jp-notebook-padding: 10px;
   --jp-notebook-select-background: var(--jp-layout-color1);
-  --jp-notebook-multiselected-color: var(--md-blue-50);
+  --jp-notebook-multiselected-color: rgba(33, 150, 243, 0.24);
 
   /* The scroll padding is calculated to fill enough space at the bottom of the
   notebook to show one single-line cell (with appropriate padding) at the top
@@ -7100,13 +7102,13 @@ all of MD as it is not optimized for dense, information rich UIs.
 
   /* Rendermime styles */
 
-  --jp-rendermime-error-background: #fdd;
-  --jp-rendermime-table-row-background: var(--md-grey-100);
-  --jp-rendermime-table-row-hover-background: var(--md-light-blue-50);
+  --jp-rendermime-error-background: rgba(244, 67, 54, 0.28);
+  --jp-rendermime-table-row-background: var(--md-grey-900);
+  --jp-rendermime-table-row-hover-background: rgba(3, 169, 244, 0.2);
 
   /* Dialog specific styles */
 
-  --jp-dialog-background: rgba(0, 0, 0, 0.25);
+  --jp-dialog-background: rgba(0, 0, 0, 0.6);
 
   /* Console specific styles */
 
@@ -7114,12 +7116,12 @@ all of MD as it is not optimized for dense, information rich UIs.
 
   /* Toolbar specific styles */
 
-  --jp-toolbar-border-color: var(--jp-border-color1);
+  --jp-toolbar-border-color: var(--jp-border-color2);
   --jp-toolbar-micro-height: 8px;
   --jp-toolbar-background: var(--jp-layout-color1);
-  --jp-toolbar-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.24);
+  --jp-toolbar-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.8);
   --jp-toolbar-header-margin: 4px 4px 0 4px;
-  --jp-toolbar-active-background: var(--md-grey-300);
+  --jp-toolbar-active-background: var(--jp-layout-color0);
 
   /* Statusbar specific styles */
 
@@ -7128,43 +7130,43 @@ all of MD as it is not optimized for dense, information rich UIs.
   /* Input field styles */
 
   --jp-input-box-shadow: inset 0 0 2px var(--md-blue-300);
-  --jp-input-active-background: var(--jp-layout-color1);
-  --jp-input-hover-background: var(--jp-layout-color1);
-  --jp-input-background: var(--md-grey-100);
+  --jp-input-active-background: var(--jp-layout-color0);
+  --jp-input-hover-background: var(--jp-layout-color2);
+  --jp-input-background: var(--md-grey-800);
   --jp-input-border-color: var(--jp-inverse-border-color);
   --jp-input-active-border-color: var(--jp-brand-color1);
   --jp-input-active-box-shadow-color: rgba(19, 124, 189, 0.3);
 
   /* General editor styles */
 
-  --jp-editor-selected-background: #d9d9d9;
-  --jp-editor-selected-focused-background: #d7d4f0;
+  --jp-editor-selected-background: var(--jp-layout-color2);
+  --jp-editor-selected-focused-background: rgba(33, 150, 243, 0.24);
   --jp-editor-cursor-color: var(--jp-ui-font-color0);
 
   /* Code mirror specific styles */
 
-  --jp-mirror-editor-keyword-color: #008000;
-  --jp-mirror-editor-atom-color: #88f;
-  --jp-mirror-editor-number-color: #080;
-  --jp-mirror-editor-def-color: #00f;
-  --jp-mirror-editor-variable-color: var(--md-grey-900);
-  --jp-mirror-editor-variable-2-color: rgb(0, 54, 109);
-  --jp-mirror-editor-variable-3-color: #085;
-  --jp-mirror-editor-punctuation-color: #05a;
-  --jp-mirror-editor-property-color: #05a;
+  --jp-mirror-editor-keyword-color: var(--md-green-500);
+  --jp-mirror-editor-atom-color: var(--md-blue-300);
+  --jp-mirror-editor-number-color: var(--md-green-400);
+  --jp-mirror-editor-def-color: var(--md-blue-600);
+  --jp-mirror-editor-variable-color: var(--md-grey-300);
+  --jp-mirror-editor-variable-2-color: var(--md-blue-500);
+  --jp-mirror-editor-variable-3-color: var(--md-green-600);
+  --jp-mirror-editor-punctuation-color: var(--md-blue-400);
+  --jp-mirror-editor-property-color: var(--md-blue-400);
   --jp-mirror-editor-operator-color: #a2f;
   --jp-mirror-editor-comment-color: #408080;
-  --jp-mirror-editor-string-color: #ba2121;
-  --jp-mirror-editor-string-2-color: #708;
+  --jp-mirror-editor-string-color: #ff7070;
+  --jp-mirror-editor-string-2-color: var(--md-purple-300);
   --jp-mirror-editor-meta-color: #a2f;
   --jp-mirror-editor-qualifier-color: #555;
-  --jp-mirror-editor-builtin-color: #008000;
+  --jp-mirror-editor-builtin-color: var(--md-green-600);
   --jp-mirror-editor-bracket-color: #997;
-  --jp-mirror-editor-tag-color: #170;
-  --jp-mirror-editor-attribute-color: #00c;
-  --jp-mirror-editor-header-color: blue;
-  --jp-mirror-editor-quote-color: #090;
-  --jp-mirror-editor-link-color: #00c;
+  --jp-mirror-editor-tag-color: var(--md-green-700);
+  --jp-mirror-editor-attribute-color: var(--md-blue-700);
+  --jp-mirror-editor-header-color: var(--md-blue-500);
+  --jp-mirror-editor-quote-color: var(--md-green-300);
+  --jp-mirror-editor-link-color: var(--md-blue-700);
   --jp-mirror-editor-error-color: #f00;
   --jp-mirror-editor-hr-color: #999;
 
@@ -7174,17 +7176,17 @@ all of MD as it is not optimized for dense, information rich UIs.
     and the icon of the user.
   */
 
-  --jp-collaborator-color1: #ffad8e;
-  --jp-collaborator-color2: #dac83d;
-  --jp-collaborator-color3: #72dd76;
-  --jp-collaborator-color4: #00e4d0;
-  --jp-collaborator-color5: #45d4ff;
-  --jp-collaborator-color6: #e2b1ff;
-  --jp-collaborator-color7: #ff9de6;
+  --jp-collaborator-color1: #ad4a00;
+  --jp-collaborator-color2: #7b6a00;
+  --jp-collaborator-color3: #007e00;
+  --jp-collaborator-color4: #008772;
+  --jp-collaborator-color5: #0079b9;
+  --jp-collaborator-color6: #8b45c6;
+  --jp-collaborator-color7: #be208b;
 
   /* Vega extension styles */
 
-  --jp-vega-background: white;
+  --jp-vega-background: var(--md-grey-400);
 
   /* Sidebar-related styles */
 
@@ -7192,15 +7194,28 @@ all of MD as it is not optimized for dense, information rich UIs.
 
   /* Search-related styles */
 
-  --jp-search-toggle-off-opacity: 0.5;
+  --jp-search-toggle-off-opacity: 0.6;
   --jp-search-toggle-hover-opacity: 0.8;
   --jp-search-toggle-on-opacity: 1;
-  --jp-search-selected-match-background-color: rgb(245, 200, 0);
+  --jp-search-selected-match-background-color: rgb(255, 225, 0);
   --jp-search-selected-match-color: black;
   --jp-search-unselected-match-background-color: var(
     --jp-inverse-layout-color0
   );
   --jp-search-unselected-match-color: var(--jp-ui-inverse-font-color0);
+
+  /* scrollbar related styles. Supports every browser except Edge. */
+
+  /* colors based on JetBrain's Darcula theme */
+
+  --jp-scrollbar-background-color: #3f4244;
+  --jp-scrollbar-thumb-color: 88, 96, 97; /* need to specify thumb color as an RGB triplet */
+  --jp-scrollbar-endpad: 3px; /* the minimum gap between the thumb and the ends of a scrollbar */
+
+  /* hacks for setting the thumb shape. These do nothing in Firefox */
+
+  --jp-scrollbar-thumb-margin: 3.5px; /* the space in between the sides of the thumb and the track */
+  --jp-scrollbar-thumb-radius: 9px; /* set to a large-ish value for rounded endcaps on the thumb */
 
   /* Icon colors that work well with light or dark backgrounds */
   --jp-icon-contrast-color0: var(--md-purple-600);
@@ -7222,15 +7237,15 @@ all of MD as it is not optimized for dense, information rich UIs.
   /* File or activity icons and switch semantic variables */
   --jp-jupyter-icon-color: #f37626;
   --jp-notebook-icon-color: #f37626;
-  --jp-json-icon-color: var(--md-orange-700);
-  --jp-console-icon-background-color: var(--md-blue-700);
+  --jp-json-icon-color: var(--md-orange-500);
+  --jp-console-icon-background-color: var(--md-blue-500);
   --jp-console-icon-color: white;
-  --jp-terminal-icon-background-color: var(--md-grey-800);
-  --jp-terminal-icon-color: var(--md-grey-200);
-  --jp-text-editor-icon-color: var(--md-grey-700);
-  --jp-inspector-icon-color: var(--md-grey-700);
+  --jp-terminal-icon-background-color: var(--md-grey-200);
+  --jp-terminal-icon-color: var(--md-grey-800);
+  --jp-text-editor-icon-color: var(--md-grey-200);
+  --jp-inspector-icon-color: var(--md-grey-200);
   --jp-switch-color: var(--md-grey-400);
-  --jp-switch-true-position-color: var(--md-orange-900);
+  --jp-switch-true-position-color: var(--md-orange-700);
 }
 </style>
 <style type="text/css">
@@ -7793,9 +7808,8 @@ a.anchor-link {
     white-space: normal;
   }
 </style>
-<!-- End of mermaid configuration --><link rel="stylesheet" href="../../css/gruvbox-dark.css?v=51344d95f496" data-theme="dark">
-</head>
-<body data-theme="gruvbox-dark" class="jp-Notebook" data-jp-theme-light="false" data-jp-theme-name="Gruvbox Dark">
+<!-- End of mermaid configuration --></head>
+<body class="jp-Notebook" data-jp-theme-light="false" data-jp-theme-name="JupyterLab Dark">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c530889">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7808,64 +7822,7 @@ a.anchor-link {
 </ul>
 <h2 id="Overview">Overview<a class="anchor-link" href="#Overview">¶</a></h2><p>In lecture we replaced the pieces of our GPT-2 block with the ones Qwen3 uses: <strong>RMSNorm</strong> instead of LayerNorm, a <strong>SwiGLU</strong> feed-forward network instead of Linear → ReLU → Linear, <strong>rotary position embeddings (RoPE)</strong> instead of learned position vectors, and <strong>grouped-query attention (GQA)</strong> with <strong>QK-Norm</strong> instead of plain multi-head attention. In this lab you build each of those pieces from scratch (forward pass only) and assemble them into one <strong>irishQwen decoder block</strong>: the repeating unit that <code>irishQwen</code> stacks to build the full model.</p>
 <p>Every piece is checked against an independent PyTorch reference, so you will know each part is right before you build on it.</p>
-<h3 id="What-We're-Building">What We're Building<a class="anchor-link" href="#What-We're-Building">¶</a></h3><p>A block takes an input $X$ of shape $(B, T, C)$ and returns an output of the same shape:</p>
-<ol>
-<li><strong>Attention sub-block:</strong> $X \rightarrow$ RMSNorm $\rightarrow$ GQA (QK-Norm, then RoPE on $Q$ and $K$, causal mask) $\rightarrow$ add back $X$ (residual).</li>
-<li><strong>FFN sub-block:</strong> the result $\rightarrow$ RMSNorm $\rightarrow$ SwiGLU $\rightarrow$ add back (residual).</li>
-</ol>
-<p>This is the same pre-norm + residual skeleton as the GPT-2 block. Only the parts inside changed.</p>
-<h3 id="Shapes-Used-Throughout">Shapes Used Throughout<a class="anchor-link" href="#Shapes-Used-Throughout">¶</a></h3><table>
-<thead>
-<tr>
-<th style="text-align:left">Symbol</th>
-<th style="text-align:left">Meaning</th>
-<th style="text-align:left">Value in this lab</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">$B$</td>
-<td style="text-align:left">batch size</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">$T$</td>
-<td style="text-align:left">sequence length</td>
-<td style="text-align:left">8</td>
-</tr>
-<tr>
-<td style="text-align:left">$C$</td>
-<td style="text-align:left">model dimension</td>
-<td style="text-align:left">64</td>
-</tr>
-<tr>
-<td style="text-align:left">$H$</td>
-<td style="text-align:left">query heads</td>
-<td style="text-align:left">4</td>
-</tr>
-<tr>
-<td style="text-align:left">$H_{kv}$</td>
-<td style="text-align:left">key/value heads</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">$G = H / H_{kv}$</td>
-<td style="text-align:left">query heads per K/V head</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">$D_h$</td>
-<td style="text-align:left">head dimension</td>
-<td style="text-align:left">16</td>
-</tr>
-<tr>
-<td style="text-align:left">$F$</td>
-<td style="text-align:left">SwiGLU hidden size</td>
-<td style="text-align:left">192</td>
-</tr>
-</tbody>
-</table>
-<p>Qwen3-0.6B uses $C = 1024$, $H = 16$, $H_{kv} = 8$, $D_h = 128$, $F = 3072$: same code, bigger numbers.</p>
+<p><img alt="From GPT-2 to irishQwen: a block takes X (B, T, C) and returns the same shape. Pre-norm and residual skeleton: X, RMSNorm, GQA (QK-Norm, RoPE), add; RMSNorm, SwiGLU, add. Four swaps: LayerNorm to RMSNorm (Task 01), Linear-ReLU-Linear to SwiGLU (Task 02), learned added positions to RoPE rotating Q and K (Task 03), multi-head to GQA with QK-Norm (Task 04), the block (Task 05). Shapes, this lab vs Qwen3-0.6B: C 64 vs 1,024, H 4 vs 16, H_kv 2 vs 8, G 2 vs 2, D_h 16 vs 128, F 192 vs 3,072; B 2, T 8." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_00_overview.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 <h3 id="Rules">Rules<a class="anchor-link" href="#Rules">¶</a></h3><ul>
 <li>Write the forward passes with basic tensor operations (<code>@</code>, <code>*</code>, <code>.mean</code>, <code>torch.sqrt</code>, <code>torch.sigmoid</code>, <code>torch.cat</code>, <code>.view</code>, <code>.permute</code>, <code>torch.tril</code>, <code>masked_fill</code>, <code>F.softmax</code>).</li>
 <li>Do <strong>not</strong> call <code>torch.nn.RMSNorm</code>, <code>F.silu</code>, or <code>F.scaled_dot_product_attention</code> in your own code. Those only appear in the checking cells.</li>
@@ -7930,16 +7887,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="Task-01:-RMSNorm-(2-pts.)">Task 01: RMSNorm (2 pts.)<a class="anchor-link" href="#Task-01:-RMSNorm-(2-pts.)">¶</a></h2><h3 id="Why-Change-the-Normalizer?">Why Change the Normalizer?<a class="anchor-link" href="#Why-Change-the-Normalizer?">¶</a></h3><p>LayerNorm does two things to each token vector: it <strong>re-centers</strong> (subtracts the mean) and <strong>re-scales</strong> (divides by the standard deviation), then applies a learned scale $\gamma$ and shift $\beta$. RMSNorm, used by Llama, Mistral, and Qwen, keeps only the re-scaling:</p>
-<p>$$
-\text{RMS}(\mathbf{x}) = \sqrt{\frac{1}{C}\sum_{i=1}^{C} x_i^2 + \epsilon}, \qquad \text{RMSNorm}(\mathbf{x}) = \gamma \odot \frac{\mathbf{x}}{\text{RMS}(\mathbf{x})}
-$$</p>
-<ul>
-<li>No mean subtraction: the output's mean is <strong>not</strong> forced to zero.</li>
-<li>No $\beta$: only a learned scale $\gamma$ (initialized to ones).</li>
-<li>Cheaper, and it trains just as well in practice.</li>
-</ul>
-<p>RMSNorm always normalizes over the <strong>last</strong> dimension, so the same class works on $(B, T, C)$ token vectors and, later, on $(B, H, T, D_h)$ attention heads (that is QK-Norm).</p>
+<h2 id="Task-01:-RMSNorm-(2-pts.)">Task 01: RMSNorm (2 pts.)<a class="anchor-link" href="#Task-01:-RMSNorm-(2-pts.)">¶</a></h2><h3 id="Why-Change-the-Normalizer?">Why Change the Normalizer?<a class="anchor-link" href="#Why-Change-the-Normalizer?">¶</a></h3><p><img alt="RMSNorm keeps the scale and skips the centering: LayerNorm subtracts the mean, divides by the std, then gamma times x_hat plus beta; RMSNorm divides by RMS(x) = sqrt(mean of x squared + eps) and multiplies by gamma, no beta. X &lt;2, 8, 64&gt;, rms &lt;2, 8, 1&gt;, gamma &lt;64&gt;. Always normalizes the last dimension, so it also works on attention heads (QK-Norm)." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1a_rmsnorm.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 </div>
 </div>
 </div>
@@ -7950,8 +7898,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-01-1:-Description-(0-pts.)">Task 01-1: Description (0 pts.)<a class="anchor-link" href="#Task-01-1:-Description-(0-pts.)">¶</a></h3><p><img alt="RMSNorm keeps the scale and skips the centering: LayerNorm subtracts the mean, divides by the std, then gamma times x_hat plus beta; RMSNorm divides by RMS(x) = sqrt(mean of x squared + eps) and multiplies by gamma, no beta. X &lt;2, 8, 64&gt;, rms &lt;2, 8, 1&gt;, gamma &lt;64&gt;. Always normalizes the last dimension, so it also works on attention heads (QK-Norm)." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1a_rmsnorm.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
-<img alt="Worked example: x = [3, -1, 1, 1], gamma all ones. RMS = sqrt(3) = 1.732, x_hat = [1.73, -0.58, 0.58, 0.58], RMS 1 but mean 0.58. LayerNorm gives [1.41, -1.41, 0, 0], mean exactly 0. Common mistakes: no dim in mean, missing keepdim=True, eps after the square root." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1b_rmsnorm_example.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h3 id="Task-01-1:-Description-(0-pts.)">Task 01-1: Description (0 pts.)<a class="anchor-link" href="#Task-01-1:-Description-(0-pts.)">¶</a></h3><p><img alt="Worked example: x = [3, -1, 1, 1], gamma all ones. RMS = sqrt(3) = 1.732, x_hat = [1.73, -0.58, 0.58, 0.58], RMS 1 but mean 0.58. LayerNorm gives [1.41, -1.41, 0, 0], mean exactly 0. Common mistakes: no dim in mean, missing keepdim=True, eps after the square root." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_01-1b_rmsnorm_example.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 <h4 id="RMSNorm-Class"><code>RMSNorm</code> Class<a class="anchor-link" href="#RMSNorm-Class">¶</a></h4><p>Complete <code>forward</code>:</p>
 <ol>
 <li>Compute <code>rms</code> over the last dimension: square <code>X</code>, take the mean with <code>dim=-1, keepdim=True</code>, add <code>self.eps</code>, take the square root. Its shape is <code>(..., 1)</code>.</li>
@@ -7984,7 +7931,7 @@ $$</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>   <span class="c1"># learned scale, starts at 1</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: compute rms, X_hat, and return gamma * X_hat</span>
+        <span class="c1"># TODO: compute rms, X_hat, and return gamma * X_hat</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -8056,17 +8003,7 @@ Mean of each output token (NOT forced to 0): &lt;some value that is clearly not 
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="Task-02:-SiLU-and-the-SwiGLU-Feed-Forward-Network-(2-pts.)">Task 02: SiLU and the SwiGLU Feed-Forward Network (2 pts.)<a class="anchor-link" href="#Task-02:-SiLU-and-the-SwiGLU-Feed-Forward-Network-(2-pts.)">¶</a></h2><h3 id="From-ReLU-to-a-Gated-FFN">From ReLU to a Gated FFN<a class="anchor-link" href="#From-ReLU-to-a-Gated-FFN">¶</a></h3><p>Our GPT-2 FFN was $\text{FFN}(X) = W_2\,\text{ReLU}(W_1 X)$. Qwen3 uses <strong>SwiGLU</strong>, which has <em>three</em> weight matrices and a gate:</p>
-<p>$$
-\text{SwiGLU}(X) = \Big(\text{SiLU}(X W_{\text{gate}}^\top) \odot (X W_{\text{up}}^\top)\Big)\, W_{\text{down}}^\top
-$$</p>
-<ul>
-<li>The <strong>up</strong> branch carries content, shape $(B, T, F)$.</li>
-<li>The <strong>gate</strong> branch decides, per hidden unit, how much of that content to let through.</li>
-<li><strong>down</strong> projects back from $F$ to $C$ so the output can be added to the residual stream.</li>
-<li>No biases anywhere (Qwen and Llama drop them).</li>
-</ul>
-<p>The gate's activation is <strong>SiLU</strong> (also called Swish): $\text{SiLU}(x) = x \cdot \sigma(x)$, where $\sigma$ is the sigmoid. Unlike ReLU it is smooth, and a negative input gives a small <em>negative</em> output instead of exactly zero.</p>
+<h2 id="Task-02:-SiLU-and-the-SwiGLU-Feed-Forward-Network-(2-pts.)">Task 02: SiLU and the SwiGLU Feed-Forward Network (2 pts.)<a class="anchor-link" href="#Task-02:-SiLU-and-the-SwiGLU-Feed-Forward-Network-(2-pts.)">¶</a></h2><h3 id="From-ReLU-to-a-Gated-FFN">From ReLU to a Gated FFN<a class="anchor-link" href="#From-ReLU-to-a-Gated-FFN">¶</a></h3><p><img alt="SwiGLU: X goes through two projections, X @ W_gate.T then SiLU (the gate, g) and X @ W_up.T (the content, u), both &lt;2, 8, 192&gt;; g * u then @ W_down.T back to &lt;2, 8, 64&gt;. W_gate and W_up are &lt;192, 64&gt;, W_down &lt;64, 192&gt;, no biases." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1a_swiglu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 </div>
 </div>
 </div>
@@ -8077,8 +8014,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Task-02-1:-Description-(0-pts.)">Task 02-1: Description (0 pts.)<a class="anchor-link" href="#Task-02-1:-Description-(0-pts.)">¶</a></h3><p><img alt="SwiGLU: X goes through two projections, X @ W_gate.T then SiLU (the gate, g) and X @ W_up.T (the content, u), both &lt;2, 8, 192&gt;; g * u then @ W_down.T back to &lt;2, 8, 64&gt;. W_gate and W_up are &lt;192, 64&gt;, W_down &lt;64, 192&gt;, no biases." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1a_swiglu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
-<img alt="SiLU(x) = x * sigmoid(x): smooth, no corner at 0, small negative outputs for negative inputs. SiLU(-2) = -0.238, SiLU(1) = 0.731, SiLU(2) = 1.762; ReLU gives 0, 1, 2. Applied only to the gate branch." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1b_silu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
+<h3 id="Task-02-1:-Description-(0-pts.)">Task 02-1: Description (0 pts.)<a class="anchor-link" href="#Task-02-1:-Description-(0-pts.)">¶</a></h3><p><img alt="SiLU(x) = x * sigmoid(x): smooth, no corner at 0, small negative outputs for negative inputs. SiLU(-2) = -0.238, SiLU(1) = 0.731, SiLU(2) = 1.762; ReLU gives 0, 1, 2. Applied only to the gate branch." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_02-1b_silu.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 <h4 id="silu-Function-and-SwiGLU-Class"><code>silu</code> Function and <code>SwiGLU</code> Class<a class="anchor-link" href="#silu-Function-and-SwiGLU-Class">¶</a></h4><ol>
 <li>Complete <code>silu(X)</code>: return <code>X * torch.sigmoid(X)</code>.</li>
 <li>Complete <code>SwiGLU.forward(X)</code>:<ul>
@@ -8102,7 +8038,7 @@ $$</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">silu</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-    <span class="c1"># <span class="todo-keyword">TODO</span>: return SiLU(X) = X * sigmoid(X)</span>
+    <span class="c1"># TODO: return SiLU(X) = X * sigmoid(X)</span>
     <span class="k">pass</span>
 
 
@@ -8117,7 +8053,7 @@ $$</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">W_down</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span> <span class="n">ffn_dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">ffn_dim</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: compute the gate branch g, the up branch u, and project (g * u) down</span>
+        <span class="c1"># TODO: compute the gate branch g, the up branch u, and project (g * u) down</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -8187,18 +8123,7 @@ Weight matrices: torch.Size([192, 64]) torch.Size([192, 64]) torch.Size([64, 192
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="Task-03:-Rotary-Position-Embeddings-(2-pts.)">Task 03: Rotary Position Embeddings (2 pts.)<a class="anchor-link" href="#Task-03:-Rotary-Position-Embeddings-(2-pts.)">¶</a></h2><h3 id="Rotating-Instead-of-Adding">Rotating Instead of Adding<a class="anchor-link" href="#Rotating-Instead-of-Adding">¶</a></h3><p>GPT-2 <strong>added</strong> a learned position vector to every token embedding. RoPE instead <strong>rotates</strong> each query and key vector by an angle that depends on its position. Split a head's $D_h$ coordinates into $D_h/2$ pairs $(x_i,\, x_{i + D_h/2})$. Pair $i$ at position $p$ is rotated by angle $p\,\theta_i$, where $\theta_i = \text{base}^{-2i/D_h}$:</p>
-<p>$$
-\begin{pmatrix} x_i' \\ x_{i+D_h/2}' \end{pmatrix} =
-\begin{pmatrix} \cos p\theta_i &amp; -\sin p\theta_i \\ \sin p\theta_i &amp; \cos p\theta_i \end{pmatrix}
-\begin{pmatrix} x_i \\ x_{i+D_h/2} \end{pmatrix}
-$$</p>
-<p>All pairs at once, using a trick called <code>rotate_half</code>:</p>
-<p>$$
-\text{RoPE}(X) = X \odot \cos + \text{rotate\_half}(X) \odot \sin, \qquad \text{rotate\_half}(x_1, x_2) = (-x_2,\; x_1)
-$$</p>
-<p>where $x_1$ is the first half of the coordinates, $x_2$ the second half, and the <code>cos</code>/<code>sin</code> tables repeat each pair's angle in both halves.</p>
-<p><strong>Why it helps:</strong> after rotating a query at position $m$ and a key at position $n$, their dot product depends only on $m - n$. Attention scores become a function of <strong>relative</strong> position. RoPE has no trainable parameters, and it is applied to $Q$ and $K$ only, never to $V$.</p>
+<h2 id="Task-03:-Rotary-Position-Embeddings-(2-pts.)">Task 03: Rotary Position Embeddings (2 pts.)<a class="anchor-link" href="#Task-03:-Rotary-Position-Embeddings-(2-pts.)">¶</a></h2><h3 id="Rotating-Instead-of-Adding">Rotating Instead of Adding<a class="anchor-link" href="#Rotating-Instead-of-Adding">¶</a></h3><p><img alt="RoPE rotates instead of adding: a head's D_h coordinates form D_h/2 pairs (x_i, x_{i+D/2}); pair i at position p turns by p times theta_i, theta_i = base^(-2i/D_h), base 10,000: [x'_i, x'_{i+D/2}] = [[cos p theta_i, -sin p theta_i], [sin p theta_i, cos p theta_i]] [x_i, x_{i+D/2}]. All pairs at once: RoPE(X) = X * cos + rotate_half(X) * sin, rotate_half(x1, x2) = (-x2, x1). Shifting q and k by 50 positions turns both by the same angle, so q dot k depends only on m - n. No parameters; Q and K only, never V." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_03-0_rope.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 </div>
 </div>
 </div>
@@ -8248,12 +8173,12 @@ $$</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">sin</span> <span class="o">=</span> <span class="n">angles</span><span class="o">.</span><span class="n">sin</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate_half</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: (x1, x2) -&gt; (-x2, x1) along the last dimension</span>
+        <span class="c1"># TODO: (x1, x2) -&gt; (-x2, x1) along the last dimension</span>
         <span class="k">pass</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">start_pos</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: slice cos/sin for positions start_pos ... start_pos + T - 1, then rotate X</span>
+        <span class="c1"># TODO: slice cos/sin for positions start_pos ... start_pos + T - 1, then rotate X</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -8367,65 +8292,7 @@ Position 0 is not rotated: True
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="Task-04:-Grouped-Query-Attention-with-QK-Norm-(2-pts.)">Task 04: Grouped-Query Attention with QK-Norm (2 pts.)<a class="anchor-link" href="#Task-04:-Grouped-Query-Attention-with-QK-Norm-(2-pts.)">¶</a></h2><h3 id="Three-Changes-to-Multi-Head-Attention">Three Changes to Multi-Head Attention<a class="anchor-link" href="#Three-Changes-to-Multi-Head-Attention">¶</a></h3><p>Our GPT-2 attention had $H$ query, $H$ key, and $H$ value heads. Qwen3's attention changes three things:</p>
-<ol>
-<li><strong>Grouped-Query Attention (GQA):</strong> $H$ query heads but only $H_{kv}$ key/value heads. Each K/V head is shared by a group of $G = H / H_{kv}$ query heads. With $H = 4$ and $H_{kv} = 2$: query heads 0 and 1 read K/V head 0; query heads 2 and 3 read K/V head 1. This shrinks the KV cache by a factor of $G$.</li>
-<li><strong>QK-Norm:</strong> an RMSNorm over $D_h$ on every query head and every key head, applied <strong>before</strong> RoPE. It keeps attention scores from blowing up during training. $V$ is not normalized.</li>
-<li><strong>RoPE</strong> on $Q$ and $K$ (Task 03) instead of a learned position embedding.</li>
-</ol>
-<p>Also: no biases, and $H \cdot D_h$ does not have to equal $C$.</p>
-<h3 id="The-Data-Flow">The Data Flow<a class="anchor-link" href="#The-Data-Flow">¶</a></h3><table>
-<thead>
-<tr>
-<th style="text-align:left">step</th>
-<th style="text-align:left">operation</th>
-<th style="text-align:left">shape</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left"><code>Q = X @ Wq.T</code>, split into heads</td>
-<td style="text-align:left">$(B, H, T, D_h)$</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left"><code>K = X @ Wk.T</code>, <code>V = X @ Wv.T</code>, split into heads</td>
-<td style="text-align:left">$(B, H_{kv}, T, D_h)$</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">QK-Norm: <code>q_norm(Q)</code>, <code>k_norm(K)</code></td>
-<td style="text-align:left">unchanged</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">RoPE on Q and K</td>
-<td style="text-align:left">unchanged</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">repeat each K/V head $G$ times: <code>repeat_interleave(G, dim=1)</code></td>
-<td style="text-align:left">$(B, H, T, D_h)$</td>
-</tr>
-<tr>
-<td style="text-align:left">6</td>
-<td style="text-align:left">scores $= QK^\top / \sqrt{D_h}$, causal mask, softmax</td>
-<td style="text-align:left">$(B, H, T, T)$</td>
-</tr>
-<tr>
-<td style="text-align:left">7</td>
-<td style="text-align:left"><code>attn @ V</code>, merge heads</td>
-<td style="text-align:left">$(B, T, H \cdot D_h)$</td>
-</tr>
-<tr>
-<td style="text-align:left">8</td>
-<td style="text-align:left"><code>@ Wo.T</code></td>
-<td style="text-align:left">$(B, T, C)$</td>
-</tr>
-</tbody>
-</table>
-<p>The helpers <code>split_heads</code> and <code>merge_heads</code> are given.</p>
+<h2 id="Task-04:-Grouped-Query-Attention-with-QK-Norm-(2-pts.)">Task 04: Grouped-Query Attention with QK-Norm (2 pts.)<a class="anchor-link" href="#Task-04:-Grouped-Query-Attention-with-QK-Norm-(2-pts.)">¶</a></h2><h3 id="Three-Changes-to-Multi-Head-Attention">Three Changes to Multi-Head Attention<a class="anchor-link" href="#Three-Changes-to-Multi-Head-Attention">¶</a></h3><p><img alt="Three changes to multi-head attention: 1. GQA, H query heads share H_kv key/value heads in groups of G = H / H_kv (here 4 / 2 = 2), KV cache G times smaller; 2. QK-Norm, an RMSNorm over D_h on every query and key head, before RoPE, V not normalized; 3. RoPE on Q and K. No biases; H * D_h need not equal C. Data flow: 1 Q = X @ Wq.T split, (2, 4, 8, 16); 2 K, V = X @ Wk.T, X @ Wv.T split, (2, 2, 8, 16); 3 QK-Norm; 4 RoPE; 5 repeat_interleave(G, dim=1), (2, 4, 8, 16); 6 Q K^T / sqrt(D_h), causal mask, softmax, (2, 4, 8, 8); 7 attn @ V, merge heads, (2, 8, 64); 8 @ Wo.T, (2, 8, 64). split_heads and merge_heads are given." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_04-0_attention.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
 </div>
 </div>
 </div>
@@ -8438,7 +8305,7 @@ Position 0 is not rotated: True
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Task-04-1:-Description-(0-pts.)">Task 04-1: Description (0 pts.)<a class="anchor-link" href="#Task-04-1:-Description-(0-pts.)">¶</a></h3><p><img alt="Grouped-query attention: 4 query heads share 2 K/V heads, G = 2 per group. Before Q @ K^T each K/V head is copied G times with repeat_interleave(2, dim=1) giving [0, 0, 1, 1]; repeat gives [0, 1, 0, 1], the same shape but the wrong pairing. Q &lt;2, 4, 8, 16&gt;, K and V &lt;2, 2, 8, 16&gt; then &lt;2, 4, 8, 16&gt;, attn &lt;2, 4, 8, 8&gt;. QK-Norm before RoPE, V gets neither." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_04-1a_gqa.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/>
 <img alt="Worked example, one head, T = 3: scores [[2,1,0],[1,3,1],[0,2,2]] divided by sqrt(4), positions above the diagonal set to -inf, softmax over each row gives [[1,0,0],[0.269,0.731,0],[0.155,0.422,0.422]]. Mask with -inf, not 0; softmax over dim=-1." src="https://10124.williamtheisen.com/static/labs/lab03/plates/plate_04-1b_causal_mask.png" style="display: block; max-width: 900px; width: 100%; height: auto; margin: 0 auto 12px;"/></p>
-<h4 id="GroupedQueryAttention.forward"><code>GroupedQueryAttention.forward</code><a class="anchor-link" href="#GroupedQueryAttention.forward">¶</a></h4><p>Complete steps 1 through 8 from the table. Useful operations:</p>
+<h4 id="GroupedQueryAttention.forward"><code>GroupedQueryAttention.forward</code><a class="anchor-link" href="#GroupedQueryAttention.forward">¶</a></h4><p>Complete steps 1 through 8 from the data-flow table above. Useful operations:</p>
 <ul>
 <li><code>self.split_heads(X @ self.Wq.T, self.H)</code> gives <code>(B, H, T, Dh)</code>; use <code>self.H_kv</code> for K and V.</li>
 <li><code>self.q_norm.forward(...)</code>, <code>self.k_norm.forward(...)</code>, <code>self.rope.forward(..., start_pos)</code></li>
@@ -8486,7 +8353,7 @@ Position 0 is not rotated: True
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">start_pos</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">B</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: steps 1-8 from the table above (store the attention weights in self.attn)</span>
+        <span class="c1"># TODO: steps 1-8 from the table above (store the attention weights in self.attn)</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -8627,7 +8494,7 @@ K/V weight rows vs. Q weight rows: 32 vs 64
         <span class="bp">self</span><span class="o">.</span><span class="n">FFN</span> <span class="o">=</span> <span class="n">SwiGLU</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span> <span class="n">ffn_dim</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">start_pos</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="c1"># <span class="todo-keyword">TODO</span>: attention sub-block with residual, then FFN sub-block with residual</span>
+        <span class="c1"># TODO: attention sub-block with residual, then FFN sub-block with residual</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -8793,7 +8660,7 @@ Parameters in one block: 49312
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Not running in Colab: use File &gt; Download &gt; .html (or jupyter nbconvert) instead."</span><span class="p">)</span>
 
-<span class="c1"># <span class="todo-keyword">TODO</span>: Uncomment the line below and run to generate the file to submit on Canvas</span>
+<span class="c1"># TODO: Uncomment the line below and run to generate the file to submit on Canvas</span>
 <span class="c1">#export_notebook()</span>
 </pre></div>
 </div>
