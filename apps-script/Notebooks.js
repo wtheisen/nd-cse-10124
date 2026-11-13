@@ -8,7 +8,9 @@
  *      same name in place, so its file id and every share link to it stay the same (a new one is created only the
  *      first time; nothing is ever trashed),
  *   2. shares the student copy as anyone-with-the-link can view, and puts its Colab link in the chapter's tab
- *      (the tab named like the chapter, row "Notebook", columns D:F only; column B is the sheet's own formula),
+ *      (the tab named like the chapter) in a row of its own, "Book Notebook" (columns D:F only; column B is the
+ *      sheet's own formula). Every other row, the tab's existing "Notebook" link included, is left as it is
+ *      (Eric, 2026-11-13: don't replace the old notebooks),
  *   3. rebuilds the course website when a link changed.
  * The Solutions copy goes into the folder but isn't linked anywhere.
  */
@@ -19,7 +21,7 @@ const NOTEBOOK_CONFIG = Object.freeze({
   folderId: '12NkDRl_8M_X5n6SNcwObGrq3LikcezGL',   // CSE 10124 > Notebooks (where Programming_Day_NN_*.ipynb live)
   mimeType: 'application/vnd.google.colaboratory',
   everyMinutes: 10,
-  rowName: 'Notebook',
+  rowName: 'Book Notebook',   // its own row: the tab's existing "Notebook" row (older notebooks) is never touched
 });
 
 const NOTEBOOK_KEYS = Object.freeze({
@@ -112,7 +114,7 @@ function upsertNotebook_(name, text, ids) {
 }
 
 /**
- * Puts the Colab link in the chapter tab's "Notebook" row (columns D:F), adding the row if there is none.
+ * Puts the Colab link in the chapter tab's "Book Notebook" row (columns D:F), adding the row if there is none.
  * Returns true if the link changed, false if it was already there, null if there is no such tab.
  */
 function linkNotebook_(tab, fileId) {

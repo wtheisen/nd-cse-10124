@@ -39,8 +39,9 @@ notebook that is new or changed:
 
 - writes it into the CSE 10124 **Notebooks** folder, replacing the content of the file with the same name, so the
   file id and its share links stay the same (a file is only created the first time; nothing is trashed),
-- shares the student copy (anyone with the link can view) and puts its Colab link in the chapter's tab, row
-  **Notebook** (columns D:F only), adding the row if the tab has none,
+- shares the student copy (anyone with the link can view) and puts its Colab link in the chapter's tab, in a row of
+  its own, **Book Notebook** (columns D:F only), added the first time; the tab's existing **Notebook** row and every
+  other row stay as they are,
 - dispatches a website build when a link changed.
 
 The Solutions copy goes into the folder but isn't linked. A chapter whose title doesn't match a tab name is reported
