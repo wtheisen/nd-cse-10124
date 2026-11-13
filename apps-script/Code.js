@@ -98,10 +98,13 @@ function recordOwnerEdit(event) {
  * Publishes after ten minutes without another owner edit. If editing continues,
  * the same queue reschedules itself rather than creating GitHub Actions runs.
  */
-function processPublishQueue() {
+function processPublishQueue(event) {
   const lock = LockService.getScriptLock();
   lock.waitLock(30000);
   try {
+    // The one-time trigger that started this run has fired: delete it. Google keeps spent one-time triggers
+    // (listed as "Disabled"), and they count toward the 20-trigger limit per project.
+    deleteTriggerById_(event && event.triggerUid);
     const properties = PropertiesService.getScriptProperties();
     properties.deleteProperty(PUBLISHER_KEYS.pendingTriggerId);
 
@@ -202,11 +205,25 @@ function dispatchWebsiteBuild_(source) {
 function ensurePublisherTrigger_(properties, delayMs) {
   if (properties.getProperty(PUBLISHER_KEYS.pendingTriggerId)) return;
 
+  // No run is queued, so any processPublishQueue trigger still listed is a spent one: clear them out first.
+  for (const old of ScriptApp.getProjectTriggers()) {
+    if (old.getHandlerFunction() === 'processPublishQueue') ScriptApp.deleteTrigger(old);
+  }
   const trigger = ScriptApp.newTrigger('processPublishQueue')
     .timeBased()
     .after(Math.max(delayMs, 60 * 1000))
     .create();
   properties.setProperty(PUBLISHER_KEYS.pendingTriggerId, trigger.getUniqueId());
+}
+
+function deleteTriggerById_(uid) {
+  if (!uid) return;
+  for (const trigger of ScriptApp.getProjectTriggers()) {
+    if (trigger.getUniqueId() === uid) {
+      ScriptApp.deleteTrigger(trigger);
+      return;
+    }
+  }
 }
 
 function deletePendingPublisherTrigger_(properties) {
