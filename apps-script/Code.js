@@ -27,10 +27,12 @@ const PUBLISHER_KEYS = Object.freeze({
 
 /** Adds the owner-only publishing menu when the spreadsheet opens. */
 function onOpen() {
-  SpreadsheetApp.getUi()
+  const menu = SpreadsheetApp.getUi()
     .createMenu('Website')
-    .addItem('Publish website now', 'publishWebsiteNow')
-    .addToUi();
+    .addItem('Publish website now', 'publishWebsiteNow');
+  // Notebooks.js (CSE 10124 - Resources only): the Book Editor's notebooks into Drive and onto the site
+  if (typeof syncNotebooksNow === 'function') menu.addItem('Sync notebooks now', 'syncNotebooksNow');
+  menu.addToUi();
 }
 
 /**

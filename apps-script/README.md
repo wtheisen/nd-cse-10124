@@ -30,3 +30,27 @@ rare case where multiple sheets request builds at nearly the same time.
 - Collaborator edits are ignored.
 - Dispatch failures email the owner immediately and remain queued for retry.
 - The manual menu command publishes immediately and clears that sheet's queue.
+
+## Notebook sync (CSE 10124 - Resources only)
+
+`Notebooks.js` takes the notebooks the Book Editor makes (its **Make notebook** button on a BaLLM chapter) into Drive
+and onto this site. Every ten minutes it reads `ballm/notebooks.json` from `wtheisen/ai-landing-page` and, for each
+notebook that is new or changed:
+
+- writes it into the CSE 10124 **Notebooks** folder, replacing the content of the file with the same name, so the
+  file id and its share links stay the same (a file is only created the first time; nothing is trashed),
+- shares the student copy (anyone with the link can view) and puts its Colab link in the chapter's tab, row
+  **Notebook** (columns D:F only), adding the row if the tab has none,
+- dispatches a website build when a link changed.
+
+The Solutions copy goes into the folder but isn't linked. A chapter whose title doesn't match a tab name is reported
+by email (rename the tab, or set `"sheetTab"` in the chapter's book-meta).
+
+Installation, in **CSE 10124 - Resources** only:
+
+1. **Extensions > Apps Script**: add a script file `Notebooks.gs` with the contents of `Notebooks.js`, and update
+   `Code.gs` from `Code.js` (its menu gains **Sync notebooks now**).
+2. **Project Settings**: replace the manifest with `appsscript.json` from this directory (it adds the Drive scope).
+3. Run `setupNotebookSync` once and approve the Drive permission. It installs the ten-minute trigger and syncs once.
+
+The other two spreadsheets don't need `Notebooks.js` or the Drive scope.
