@@ -51,17 +51,12 @@
                         <dt><i class="fa fa-slack"></i> Slack</dt>
                         <dd>
                             {% set term_code = semesterInfo | termCode %}
-                            <a href="https://nd-cse.slack.com/messages/cse-30124-{{ term_code }}/">#cse-30124-{{ term_code }}</a>
+                            <a href="https://nd-cse.slack.com/messages/cse-10124-{{ term_code }}/">#cse-10124-{{ term_code }}</a>
                         </dd>
 
                         <dt><i class="fa fa-github"></i> GitHub</dt>
                         <dd>
-                            {% set instructor = semesterInfo.Instructor %}
-                            {% if instructor and instructor.github %}
-                                <a href="https://www.github.com/{{ instructor.github }}/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
-                            {% else %}
-                                <a href="https://www.github.com/wtheisen/nd-cse-30124-homeworks/">nd-cse-30124-homeworks</a>
-                            {% endif %}
+                            <a href="https://www.github.com/wtheisen/irishQwen/">irishQwen</a>
                         </dd>
                     </dl>
                 </div>

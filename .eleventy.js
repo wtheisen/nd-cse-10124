@@ -2,7 +2,12 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItFootnote = require("markdown-it-footnote");
 
+const { lectureIdFor } = require("./lib/lectureId.js");
+
 module.exports = function(eleventyConfig) {
+  // Footer copyright year: the year the site was built
+  eleventyConfig.addGlobalData("buildYear", () => new Date().getFullYear());
+
   // ===== MARKDOWN CONFIGURATION =====
   const md = markdownIt({
     html: true,
@@ -466,61 +471,14 @@ module.exports = function(eleventyConfig) {
     return html;
   });
 
-  // Known aliases for topic-to-lecture-id mapping
-  const LECTURE_ALIASES = {
-    'syllabus, history of ai': 'introduction',
-    'intro to ai': 'introduction',
-  };
-
-  // Slugify function - convert string to URL-safe slug
-  eleventyConfig.addFilter("slugify", function(s) {
-    if (!s) return '';
-    return s.toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  });
-
-  // Pad number with leading zeros
-  eleventyConfig.addFilter("pad", function(num, size) {
-    let s = String(num);
-    while (s.length < size) s = "0" + s;
-    return s;
-  });
-
   // startswith filter - check if string starts with prefix
   eleventyConfig.addFilter("startswith", function(str, prefix) {
     if (!str || !prefix) return false;
     return String(str).startsWith(prefix);
   });
 
-  // lecture_id_for - convert topic name to lecture ID
-  eleventyConfig.addFilter("lectureIdFor", function(topic) {
-    if (!topic) return '';
-    const key = topic.trim().toLowerCase();
-    const slug = LECTURE_ALIASES[key] || key
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-    return slug ? `lec-${slug}` : '';
-  });
-
-  // resources_for - get resources for a topic/lecture_id
-  eleventyConfig.addFilter("resourcesFor", function(resourcesMap, topicOrId) {
-    if (!resourcesMap || typeof resourcesMap !== 'object') return [];
-    const key = (topicOrId || '').trim();
-
-    // If caller passed a full id like 'lec-...'
-    if (key.startsWith('lec-')) {
-      return resourcesMap[key] || [];
-    }
-
-    // Otherwise compute from topic text
-    const keyLower = key.toLowerCase();
-    const slug = LECTURE_ALIASES[keyLower] || keyLower
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-    const lid = slug ? `lec-${slug}` : '';
-    return resourcesMap[lid] || [];
-  });
+  // lecture_id_for - convert topic name to lecture ID (lib/lectureId.js, shared with the resources warning)
+  eleventyConfig.addFilter("lectureIdFor", lectureIdFor);
 
   // find_assignment_resource - find resource for an assignment
   eleventyConfig.addFilter("findAssignmentResource", function(resourcesMap, assignmentName, lectureId = '') {
@@ -532,22 +490,6 @@ module.exports = function(eleventyConfig) {
     const preferredKeywords = [
       'assignment', 'homework', 'project', 'exam', 'quiz', 'practice', 'solution'
     ];
-
-    // Helper to slugify
-    const slugify = (s) => {
-      if (!s) return '';
-      return s.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-    };
-
-    // Helper to get lecture ID from topic
-    const lectureIdFor = (topic) => {
-      if (!topic) return '';
-      const key = topic.trim().toLowerCase();
-      const slug = LECTURE_ALIASES[key] || slugify(topic);
-      return slug ? `lec-${slug}` : '';
-    };
 
     // Build candidate IDs
     const candidateIds = [];
@@ -591,12 +533,6 @@ module.exports = function(eleventyConfig) {
     if (result) return result;
 
     return searchResources(allKeys);
-  });
-
-  // Filter resources by type
-  eleventyConfig.addFilter("filterByType", function(resources, type) {
-    if (!resources || !Array.isArray(resources)) return [];
-    return resources.filter(r => r.type === type);
   });
 
   // findAssignmentBranches - return resources whose name starts with
@@ -685,73 +621,6 @@ module.exports = function(eleventyConfig) {
       topicLower.includes(cancelled.toLowerCase()) ||
       cancelled.toLowerCase().includes(topicLower)
     );
-  });
-
-  // Get homeworks from schedule
-  eleventyConfig.addFilter("getHomeworks", function(schedule) {
-    if (!schedule || !Array.isArray(schedule)) return [];
-    const homeworks = new Set();
-
-    for (const unit of schedule) {
-      if (!unit.days) continue;
-      for (const day of unit.days) {
-        if (!day.assignments) continue;
-        for (const assignment of day.assignments) {
-          const match = assignment.match(/homework\s*(\d+)/i);
-          if (match) {
-            homeworks.add(parseInt(match[1], 10));
-          }
-        }
-      }
-    }
-
-    return Array.from(homeworks).sort((a, b) => a - b);
-  });
-
-  // Get readings from schedule
-  eleventyConfig.addFilter("getReadings", function(schedule) {
-    if (!schedule || !Array.isArray(schedule)) return [];
-    const readings = new Map(); // Map reading number to topics
-
-    for (const unit of schedule) {
-      if (!unit.days) continue;
-      for (const day of unit.days) {
-        if (!day.assignments) continue;
-        for (const assignment of day.assignments) {
-          const match = assignment.match(/reading\s*(\d+)/i);
-          if (match) {
-            const num = parseInt(match[1], 10);
-            if (!readings.has(num)) {
-              readings.set(num, {
-                number: num,
-                topics: [],
-                topicSlugs: []
-              });
-            }
-            // Add topic if it exists and isn't already added
-            if (day.topics && !readings.get(num).topics.includes(day.topics)) {
-              readings.get(num).topics.push(day.topics);
-              if (day.topic_slug) {
-                readings.get(num).topicSlugs.push(day.topic_slug);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    return Array.from(readings.values()).sort((a, b) => a.number - b.number);
-  });
-
-  // Format reading title from topics
-  eleventyConfig.addFilter("formatReadingTitle", function(reading) {
-    if (!reading) return '';
-    const num = String(reading.number).padStart(2, '0');
-    if (!reading.topics || reading.topics.length === 0) {
-      return `Reading ${num}`;
-    }
-    const topicsStr = reading.topics.join(' + ');
-    return `Reading ${num}: ${topicsStr}`;
   });
 
   // ===== PASSTHROUGH COPY =====

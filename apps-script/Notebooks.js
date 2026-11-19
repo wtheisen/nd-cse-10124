@@ -1,5 +1,5 @@
 /**
- * CSE 10124 notebooks from the BaLLM book (2026-11-13). Install in the CSE 10124 - Resources spreadsheet only,
+ * CSE 10124 notebooks from the BaLLM book. Install in the CSE 10124 - Resources spreadsheet only,
  * next to Code.js (see README.md, "Notebook sync").
  *
  * The Book Editor's "Make notebook" button builds a chapter's two notebooks from its Lecture (student and Solutions)
@@ -9,8 +9,8 @@
  *      first time; nothing is ever trashed),
  *   2. shares the student copy as anyone-with-the-link can view, and puts its Colab link in the chapter's tab
  *      (the tab named like the chapter) in a row of its own, "Book Notebook" (columns D:F only; column B is the
- *      sheet's own formula). Every other row, the tab's existing "Notebook" link included, is left as it is
- *      (Eric, 2026-11-13: don't replace the old notebooks),
+ *      sheet's own formula). Every other row, the tab's existing "Notebook" link included, is left as it is,
+ *      so the older notebooks stay linked,
  *   3. rebuilds the course website when a link changed.
  * The Solutions copy goes into the folder but isn't linked anywhere.
  */
