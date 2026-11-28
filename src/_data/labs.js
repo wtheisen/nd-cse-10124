@@ -34,7 +34,7 @@ module.exports = async function() {
     },
     2: { title: 'From Text to Model Inputs', points: 10, previewBase: 'static/labs/lab02/lab02' },
     3: { title: 'The irishQwen Transformer Block', points: 10, previewBase: 'static/labs/lab03/lab03' },
-    4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 10 },
+    4: { title: 'Supervised Fine-Tuning and Efficient Updates', points: 10, previewBase: 'static/labs/lab04/lab04' },
     5: { title: 'Grounded Notre Dame Course Assistant', points: 10 }
   };
 
